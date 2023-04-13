@@ -51,6 +51,7 @@ builder.Services.AddAuthentication(options =>
 });
 builder.Services.AddTransient<IAdmin, AdminRepo>();
 builder.Services.AddTransient<EmployeeInterface, EmployeeImplimentation>();
+builder.Services.AddCors(options => { options.AddPolicy("AllowAnyOrigin", builder => { builder.AllowAnyOrigin(); builder.AllowAnyMethod(); builder.AllowAnyHeader(); }); });
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -59,7 +60,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors(builder => { builder.AllowAnyOrigin(); builder.AllowAnyMethod(); builder.AllowAnyHeader(); });
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
