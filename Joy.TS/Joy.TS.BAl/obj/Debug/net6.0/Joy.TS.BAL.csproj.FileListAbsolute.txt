@@ -1,0 +1,17 @@
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.BAl\obj\Debug\net6.0\Joy.TS.BAL.csproj.AssemblyReference.cache
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.BAl\obj\Debug\net6.0\Joy.TS.BAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.BAl\obj\Debug\net6.0\Joy.TS.BAL.AssemblyInfoInputs.cache
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.BAl\obj\Debug\net6.0\Joy.TS.BAL.AssemblyInfo.cs
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.BAl\obj\Debug\net6.0\Joy.TS.BAL.csproj.CoreCompileInputs.cache
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.BAl\bin\Debug\net6.0\Joy.TS.BAL.deps.json
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.BAl\bin\Debug\net6.0\Joy.TS.BAL.runtimeconfig.json
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.BAl\bin\Debug\net6.0\Joy.TS.BAL.dll
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.BAl\bin\Debug\net6.0\Joy.TS.BAL.pdb
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.BAl\bin\Debug\net6.0\Joy.TS.DAL.dll
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.BAl\bin\Debug\net6.0\Joy.TS.DAL.pdb
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.BAl\obj\Debug\net6.0\Joy.TS.BAL.csproj.CopyComplete
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.BAl\obj\Debug\net6.0\Joy.TS.BAL.dll
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.BAl\obj\Debug\net6.0\refint\Joy.TS.BAL.dll
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.BAl\obj\Debug\net6.0\Joy.TS.BAL.pdb
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.BAl\obj\Debug\net6.0\Joy.TS.BAL.genruntimeconfig.cache
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.BAl\obj\Debug\net6.0\ref\Joy.TS.BAL.dll

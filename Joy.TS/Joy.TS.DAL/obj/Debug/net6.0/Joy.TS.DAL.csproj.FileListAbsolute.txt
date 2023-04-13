@@ -1,0 +1,14 @@
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.DAL\bin\Debug\net6.0\Joy.TS.DAL.deps.json
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.DAL\bin\Debug\net6.0\Joy.TS.DAL.runtimeconfig.json
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.DAL\bin\Debug\net6.0\Joy.TS.DAL.dll
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.DAL\bin\Debug\net6.0\Joy.TS.DAL.pdb
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.DAL\obj\Debug\net6.0\Joy.TS.DAL.csproj.AssemblyReference.cache
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.DAL\obj\Debug\net6.0\Joy.TS.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.DAL\obj\Debug\net6.0\Joy.TS.DAL.AssemblyInfoInputs.cache
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.DAL\obj\Debug\net6.0\Joy.TS.DAL.AssemblyInfo.cs
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.DAL\obj\Debug\net6.0\Joy.TS.DAL.csproj.CoreCompileInputs.cache
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.DAL\obj\Debug\net6.0\Joy.TS.DAL.dll
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.DAL\obj\Debug\net6.0\refint\Joy.TS.DAL.dll
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.DAL\obj\Debug\net6.0\Joy.TS.DAL.pdb
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.DAL\obj\Debug\net6.0\Joy.TS.DAL.genruntimeconfig.cache
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.DAL\obj\Debug\net6.0\ref\Joy.TS.DAL.dll

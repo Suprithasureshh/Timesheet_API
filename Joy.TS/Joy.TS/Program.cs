@@ -1,8 +1,15 @@
+using Joy.TS.BAL.Implementation;
+using Joy.TS.DAL.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddDbContext<TimeSheetContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("myConnection")));
+builder.Services.AddTransient<IAdmin, AdminRepo>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
