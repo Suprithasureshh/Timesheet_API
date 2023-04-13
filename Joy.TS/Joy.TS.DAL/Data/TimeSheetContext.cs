@@ -14,6 +14,7 @@ namespace Joy.TS.DAL.Data
 
         public DbSet<Client> clients { get; set; }
         public DbSet<Designations> designations { get; set; }
+        public DbSet<Fiscal_Year> Fiscal_Years { get; set; }
         public DbSet<Employee> employees { get; set; }
         public DbSet<EmployeeProject> employeeProject { get; set; }
         public DbSet<EmployeeType> employeeTypes { get; set; }
