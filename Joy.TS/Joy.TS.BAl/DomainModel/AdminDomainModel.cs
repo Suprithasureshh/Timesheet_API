@@ -10,6 +10,14 @@ namespace Joy.TS.BAL.DomainModel
 {
     public class AdminDomainModel
     {
+        //dashboard
+        public class GetDashboardModel
+        {
+            public string x { get; set; }
+            public int y { get; set; }
+
+        }
+
         //ClientModel
         public class AddClientModel
         {
@@ -268,6 +276,13 @@ namespace Joy.TS.BAL.DomainModel
             public string Joining_Date { get; set; }
             public string Email { get; set; }
             public string Mobile_No { get; set; }
+        }
+
+        //IsActive
+        public class IsActiveModel
+        {
+            public int[] Id { get; set; }
+            public bool Is_Active { get; set; }
         }
 
 

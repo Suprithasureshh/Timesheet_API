@@ -81,6 +81,25 @@ namespace Joy.TS.BAL.Implementation
             return data.ToList();
         }
 
+        public void EditClientIsActive(IsActiveModel ClientIsActiveModel)
+        {
+
+            var records = _timesheetContext.clients.Where(a => ClientIsActiveModel.Id.Contains(a.Client_Id));
+            if (records.Count() != 0)
+            {
+                foreach (var r in records)
+                {
+                    r.Is_Active = ClientIsActiveModel.Is_Active;
+                }
+                _timesheetContext.SaveChanges();
+            }
+            else
+            {
+                throw new ClientIdException();
+            }
+
+        }
+
         public IQueryable<Client> GetAllClients()
         {
             return _timesheetContext.clients.Where(e => e.Is_Active == true).OrderBy(c => c.Client_Name).AsQueryable();
@@ -153,6 +172,23 @@ namespace Joy.TS.BAL.Implementation
                 {
                     throw new ProjectNameExistException();
                 }
+            }
+            else
+            {
+                throw new ProjectIdNotExistException();
+            }
+        }
+
+        public void EditProjectIsActive(IsActiveModel ProjectIsActiveModel)
+        {
+            var records = _timesheetContext.projects.Where(a => ProjectIsActiveModel.Id.Contains(a.Project_Id));
+            if (records.Count() != 0)
+            {
+                foreach (var r in records)
+                {
+                    r.Is_Active = ProjectIsActiveModel.Is_Active;
+                }
+                _timesheetContext.SaveChanges();
             }
             else
             {
@@ -247,6 +283,23 @@ namespace Joy.TS.BAL.Implementation
             }
         }
 
+        public void EditDesignationIsActive(IsActiveModel DesignationIsActiveModel)
+        {
+            var records = _timesheetContext.designations.Where(a => DesignationIsActiveModel.Id.Contains(a.Designation_Id));
+            if (records.Count() != 0)
+            {
+                foreach (var r in records)
+                {
+                    r.Is_Active = DesignationIsActiveModel.Is_Active;
+                }
+                _timesheetContext.SaveChanges();
+            }
+            else
+            {
+                throw new DesignationIdException();
+            }
+        }
+
         public IQueryable<Designations> GetByDesignationId(int id)
         {
             var designations = _timesheetContext.designations.AsQueryable();
@@ -330,6 +383,23 @@ namespace Joy.TS.BAL.Implementation
             else
             {
                 throw new EmployeeTypeNameException();
+            }
+        }
+
+        public void EditEmployeeTypeIsActive(IsActiveModel EmployeeTypeIsActiveModel)
+        {
+            var records = _timesheetContext.employeeTypes.Where(a => EmployeeTypeIsActiveModel.Id.Contains(a.Employee_Type_Id));
+            if (records.Count() != 0)
+            {
+                foreach (var r in records)
+                {
+                    r.Is_Active = EmployeeTypeIsActiveModel.Is_Active;
+                }
+                _timesheetContext.SaveChanges();
+            }
+            else
+            {
+                throw new EmployeeTypeIdException();
             }
         }
 
@@ -511,6 +581,23 @@ namespace Joy.TS.BAL.Implementation
                 }
             }
             throw new EmployeeIdNotExistException();
+        }
+
+        public void EditEmployeIsActive(IsActiveModel EmployeIsActiveModel)
+        {
+            var records = _timesheetContext.employees.Where(a => EmployeIsActiveModel.Id.Contains(a.Employee_Id));
+            if (records.Count() != 0)
+            {
+                foreach (var r in records)
+                {
+                    r.Is_Active = EmployeIsActiveModel.Is_Active;
+                }
+                _timesheetContext.SaveChanges();
+            }
+            else
+            {
+                throw new EmployeeIdNotExistException();
+            }
         }
 
         public IQueryable<Employee> GetByEmployeeId(int id)
@@ -725,6 +812,24 @@ namespace Joy.TS.BAL.Implementation
             {
                 throw new Exception("Id does not Exist");
             }
+        }
+
+        public void EditHrContactInfoIsActive(IsActiveModel HrContactInfoIsActiveModel)
+        {
+            var records = _timesheetContext.hrContactInformations.Where(a => HrContactInfoIsActiveModel.Id.Contains(a.Hr_Contact_Id));
+            if (records.Count() != 0)
+            {
+                foreach (var r in records)
+                {
+                    r.Is_Active = HrContactInfoIsActiveModel.Is_Active;
+                }
+                _timesheetContext.SaveChanges();
+            }
+            else
+            {
+                throw new HrIdException();
+            }
+
         }
 
         public IQueryable<HrContactInformation> GetByHrContactId(int id)

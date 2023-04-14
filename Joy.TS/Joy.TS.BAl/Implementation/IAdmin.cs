@@ -10,9 +10,13 @@ namespace Joy.TS.BAL.Implementation
 {
     public interface IAdmin
     {
+        //Dashboard
+        public IEnumerable<GetDashboardModel> GetDashboard(int year, int Month_Id);
+
         //Client
         void AddClient(AddClientModel model);
         void EditClient(EditClientModel editClientModel);
+        void EditClientIsActive(IsActiveModel ClientIsActiveModel);
         IQueryable<Client> GetByClientId(int id);
         IEnumerable<GetAllClientsByEmployeeModel> GetAllClientsByEmployee();
         IQueryable<Client> GetAllClients();
@@ -20,6 +24,7 @@ namespace Joy.TS.BAL.Implementation
         //Project
         void AddProject(AddProjectsModel addProjectsModel);
         void EditProject(EditProjectsModel editProjectsModel);
+        void EditProjectIsActive(IsActiveModel ProjectIsActiveModel);
         IQueryable<Projects> GetByProjectId(int id);
         public IEnumerable<GetAllProjectsByEmployeeModel> GetAllProjectsByEmployee();
         IQueryable<Projects> GetAllProjects();
@@ -27,6 +32,7 @@ namespace Joy.TS.BAL.Implementation
         //Designation
         void AddDesignation(PostDesignationModel postDesignationModel);
         void EditDesignation(EditDesignationModel editDesignationModel);
+        void EditDesignationIsActive(IsActiveModel DesignationIsActiveModel);
         IQueryable<Designations> GetByDesignationId(int id);
         IEnumerable<GetAllDesignationsByEmployeeModel> GetAllDesignationsByEmployee();
         IQueryable<Designations> GetAllDesignations();
@@ -34,6 +40,7 @@ namespace Joy.TS.BAL.Implementation
         //EmployeeType
         void AddEmployeeType(PostEmployeeTypeModel postEmployeeTypeModel);
         void EditEmployeetype(EditEmployeeTypeModel editEmployeeTypeModel);
+        void EditEmployeeTypeIsActive(IsActiveModel EmployeeTypeIsActiveModel);
         IQueryable<EmployeeType> GetByEmployeeTypeId(int id);
         IEnumerable<GetAllEmployeeTypeByEmployeeModel> GetAllEmployeeTypesByEmployee();
         IQueryable<EmployeeType> GetAllEmplyoeeTypes();
@@ -41,6 +48,7 @@ namespace Joy.TS.BAL.Implementation
         //Employee
         void AddEmployee(AddEmployeeModel addEmployeeModel);
         void EditEmployee(EditEmployeeModel editEmployeeModel);
+        void EditEmployeIsActive(IsActiveModel EmployeIsActiveModel);
         IQueryable<Employee> GetByEmployeeId(int id);
         List<GetAllEmployeeByDesIdEmpTypeIdModel> GetAllEmployeeByDesIdEmpTypeId();
         IQueryable<Employee> GetAllEmployees();
@@ -56,6 +64,7 @@ namespace Joy.TS.BAL.Implementation
 
         void AddHrContactInfo(AddHrContactModel addHrContactModel);
         void EditHrContactInfo(EditHrContactModel editHrContactModel);
+        void EditHrContactInfoIsActive(IsActiveModel HrContactInfoIsActiveModel);
         IQueryable<HrContactInformation> GetByHrContactId(int id);
         IEnumerable<HrcontactByEmployeeModel> GetHrcontactByEmployeeEmailId(string Mail_Id);
         IQueryable<HrContactInformation> GetAllHrContacts();

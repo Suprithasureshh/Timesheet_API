@@ -17,6 +17,15 @@ namespace Joy.TS.Api.Controllers
             _admin = admin;
         }
 
+        //Dashboard
+
+        [HttpGet("GetDashboard")]
+
+        public IEnumerable<GetDashboardModel> GetDashboard(int year, int Month_Id)
+        {
+            return _admin.GetDashboard(year, Month_Id);
+        }
+
         //Clients
 
         [HttpPost("AddClient")]
@@ -29,6 +38,12 @@ namespace Joy.TS.Api.Controllers
         public void EditClient(EditClientModel editClientModel)
         {
             _admin.EditClient(editClientModel);
+        }
+
+        [HttpPut("EditClientIsActive")]
+        public void EditClientIsActive(IsActiveModel ClientIsActiveModel)
+        {
+            _admin.EditClientIsActive(ClientIsActiveModel);
         }
 
         [HttpGet("GetByClientId")]
@@ -63,6 +78,12 @@ namespace Joy.TS.Api.Controllers
             _admin.EditProject(editProjectsModel);
         }
 
+        [HttpPut("EditProjectIsActive")]
+        public void EditProjectIsActive(IsActiveModel ProjectIsActiveModel)
+        {
+            _admin.EditProjectIsActive(ProjectIsActiveModel);
+        }
+
         [HttpGet("GetByProjectId")]
         public IQueryable<Projects> GetByProjectId(int id)
         {
@@ -93,6 +114,12 @@ namespace Joy.TS.Api.Controllers
         public void EditDesignation(EditDesignationModel editDesignationModel)
         {
             _admin.EditDesignation(editDesignationModel);
+        }
+
+        [HttpPut("EditDesignationIsActive")]
+        public void EditDesignationIsActive(IsActiveModel DesignationIsActiveModel)
+        {
+            _admin.EditDesignationIsActive(DesignationIsActiveModel);
         }
 
         [HttpGet("GetByDesignationId")]
@@ -127,6 +154,12 @@ namespace Joy.TS.Api.Controllers
             _admin.EditEmployeetype(editEmployeeTypeModel);
         }
 
+        [HttpPut("EditEmployeeTypeIsActive")]
+        public void EditEmployeeTypeIsActive(IsActiveModel EmployeeTypeIsActiveModel)
+        {
+            _admin.EditEmployeeTypeIsActive(EmployeeTypeIsActiveModel);
+        }
+
         [HttpGet("GetByEmployeeTypeId")]
         public IQueryable<EmployeeType> GetByEmployeeTypeId(int id)
         {
@@ -157,6 +190,12 @@ namespace Joy.TS.Api.Controllers
         public void EditEmployee(EditEmployeeModel editEmployeeModel)
         {
             _admin.EditEmployee(editEmployeeModel);
+        }
+
+        [HttpPut("EditEmployeIsActive")]
+        public void EditEmployeIsActive(IsActiveModel EmployeIsActiveModel)
+        {
+            _admin.EditEmployeeTypeIsActive(EmployeIsActiveModel);
         }
 
         [HttpGet("GetByEmployeeId")]
@@ -221,6 +260,12 @@ namespace Joy.TS.Api.Controllers
         public void EditHrContactInfo(EditHrContactModel editHrContactModel)
         {
             _admin.EditHrContactInfo(editHrContactModel);
+        }
+
+        [HttpPut("EditHrContactInfoIsActive")]
+        public void EditHrContactInfoIsActive(IsActiveModel HrContactInfoIsActiveModel)
+        {
+            _admin.EditHrContactInfoIsActive(HrContactInfoIsActiveModel);
         }
 
         [HttpGet("GetByHrContactId")]
