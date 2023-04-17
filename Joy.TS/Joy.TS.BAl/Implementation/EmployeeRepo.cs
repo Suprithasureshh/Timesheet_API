@@ -46,7 +46,7 @@ namespace Joy.TS.BAL.Implementation
             return dash.ToList();
         }
 
-        //Timesheetsummary
+        // Add Timesheetsummary
         public string AddTimeSheet_Summary(AddTimeSheet_SummaryModel AddTimeSheet_SummaryModel)
         {
             var TS = new TimeSheetSummary();
@@ -107,7 +107,7 @@ namespace Joy.TS.BAL.Implementation
             return data.ToList();
         }
 
-        //Get timesheetsummary
+        //Get All timesheetsummary
         public List<TimesheetsummaryModel> GetAllTimeSheet_Summary(int Employee_Id, int year)
         {
             var data = from ts in this._timesheetContext.timeSheetSummarys

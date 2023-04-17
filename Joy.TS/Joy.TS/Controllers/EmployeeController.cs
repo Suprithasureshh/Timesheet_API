@@ -30,12 +30,12 @@ namespace Joy.TS.Api.Controllers
         //public IEnumerable<TimeSheet> GetTimesheets()
         //{
         //    return employeeInterface.GetTimesheets();
+        ////}
+        //[HttpPost("project")]
+        //public IActionResult project(Projects projects)
+        //{
+        //    return employeeInterface.project(projects);
         //}
-        [HttpPost("project")]
-        public IActionResult project(Projects projects)
-        {
-            return employeeInterface.project(projects);
-        }
 
         //Dashboard
 

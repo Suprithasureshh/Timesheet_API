@@ -18,6 +18,22 @@ namespace Joy.TS.BAL.Implementation
             _timesheetContext = timesheetContext;
         }
 
+        //Dashboard
+
+        public IEnumerable<GetDashboardModel> GetDashboard(int year, int Month_Id)
+        {
+            var item = new GetDashboardModel();
+            var item1 = (from ts in this._timesheetContext.timeSheetSummarys
+                         where (ts.Year == year && ts.Fiscal_Year_ID == Month_Id)
+                         group ts by ts.Status into g
+                         select new GetDashboardModel
+                         {
+                             x = g.Key,
+                             y = g.Count()
+                         });
+            return item1;
+        }
+
         //Client
 
         public void AddClient(AddClientModel model)
@@ -472,8 +488,8 @@ namespace Joy.TS.BAL.Implementation
                 var max = _timesheetContext.employees.Max(e => e.Employee_Id);
                 ts.Created_Date = DateTime.UtcNow.Date;
                 ts.Employee_Id = max;
-                ts.NoOfdays_Worked = 0;
-                ts.NoOfLeave_Taken = 0;
+                ts.No_Of_days_Worked = 0;
+                ts.No_Of_Leave_Taken = 0;
                 ts.Status = "Pending";
                 ts.Total_Working_Hours = 0;
                 ts.Year = DateTime.UtcNow.Year;
