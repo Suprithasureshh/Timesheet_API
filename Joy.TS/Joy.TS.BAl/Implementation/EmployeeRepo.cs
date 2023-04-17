@@ -16,12 +16,12 @@ using static Joy.TS.BAL.DomainModel.EmployeeDomainModel;
 
 namespace Joy.TS.BAL.Implementation
 {
-    public class EmployeeImplimentation : ControllerBase, EmployeeInterface
+    public class EmployeeRepo : ControllerBase, EmployeeInterface
     {
         private readonly TimeSheetContext _timesheetContext;
         private readonly IWebHostEnvironment _hostEnvironment;
 
-        public EmployeeImplimentation(TimeSheetContext timesheetContext, IWebHostEnvironment hostEnvironment)
+        public EmployeeRepo(TimeSheetContext timesheetContext, IWebHostEnvironment hostEnvironment)
         {
             _timesheetContext = timesheetContext;
             _hostEnvironment = hostEnvironment;
@@ -53,8 +53,8 @@ namespace Joy.TS.BAL.Implementation
             TS.Employee_Id = AddTimeSheet_SummaryModel.Employee_Id;
             TS.Fiscal_Year_ID = DateTime.Now.Month - 1;
             TS.Year = DateTime.Now.Year;
-            TS.NoOfdays_Worked = AddTimeSheet_SummaryModel.NoOfdays_Worked;
-            TS.NoOfLeave_Taken = AddTimeSheet_SummaryModel.NoOfLeave_Taken;
+            TS.No_Of_days_Worked = AddTimeSheet_SummaryModel.NoOfdays_Worked;
+            TS.No_Of_Leave_Taken = AddTimeSheet_SummaryModel.NoOfLeave_Taken;
             TS.Total_Working_Hours = AddTimeSheet_SummaryModel.Total_Working_Hours;
             TS.Created_Date = DateTime.Now.Date;
             TS.Status = "Pending";
@@ -100,8 +100,8 @@ namespace Joy.TS.BAL.Implementation
                            Employee_Id = b.Employee_Id,
                            Project_Id = b.Project_Id,
                            Leave = b.Leave,
-                           NoOfdays_Worked = a.NoOfdays_Worked,
-                           NoOfLeave_Taken = a.NoOfLeave_Taken,
+                           NoOfdays_Worked = a.No_Of_days_Worked,
+                           NoOfLeave_Taken = a.No_Of_days_Worked,
                            Total_Working_Hours = a.Total_Working_Hours
                        };
             return data.ToList();
@@ -122,8 +122,8 @@ namespace Joy.TS.BAL.Implementation
                            Fiscal_Year_ID = ts.Fiscal_Year_ID,
                            Month = fis.Month,
                            Year = ts.Year,
-                           NoOfdays_Worked = ts.NoOfdays_Worked,
-                           NoOfLeave_Taken = ts.NoOfLeave_Taken,
+                           NoOfdays_Worked = ts.No_Of_days_Worked,
+                           NoOfLeave_Taken = ts.No_Of_Leave_Taken,
                            Total_Working_Hours = ts.Total_Working_Hours,
                            Status = ts.Status,
 
@@ -208,8 +208,8 @@ namespace Joy.TS.BAL.Implementation
                            Employee_Name = emp.First_Name + " " + emp.Last_Name,
                            Reporting_Manager1 = emp.Reporting_Manager1,
                            Project_Name = pro.Project_Name,
-                           NoOfdays_Worked = tsum.NoOfdays_Worked.ToString(),
-                           NoOfLeave_Taken = tsum.NoOfLeave_Taken.ToString(),
+                           NoOfdays_Worked = tsum.No_Of_days_Worked.ToString(),
+                           NoOfLeave_Taken = tsum.No_Of_Leave_Taken.ToString(),
                            Total_Working_Hours = tsum.Total_Working_Hours.ToString(),
                            Date = t.Date.HasValue ?
                                    t.Date.Value.ToString("dd") : ToString(),

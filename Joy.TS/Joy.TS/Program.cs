@@ -50,7 +50,7 @@ builder.Services.AddAuthentication(options =>
     }
 });
 builder.Services.AddTransient<IAdmin, AdminRepo>();
-builder.Services.AddTransient<EmployeeInterface, EmployeeImplimentation>();
+builder.Services.AddTransient<EmployeeInterface, EmployeeRepo>();
 builder.Services.AddCors(options => { options.AddPolicy("AllowAnyOrigin", builder => { builder.AllowAnyOrigin(); builder.AllowAnyMethod(); builder.AllowAnyHeader(); }); });
 var app = builder.Build();
 

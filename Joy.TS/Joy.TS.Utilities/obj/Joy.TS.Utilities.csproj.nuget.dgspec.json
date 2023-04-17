@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ChandanKumar C L\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Utilities\\Joy.TS.Utilities.csproj": {}
+    "C:\\Users\\Sandhya V\\Documents\\GithubSandhya\\dotNet-Projects\\Timesheet\\Timesheet_API\\Joy.TS\\Joy.TS.Utilities\\Joy.TS.Utilities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ChandanKumar C L\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Utilities\\Joy.TS.Utilities.csproj": {
+    "C:\\Users\\Sandhya V\\Documents\\GithubSandhya\\dotNet-Projects\\Timesheet\\Timesheet_API\\Joy.TS\\Joy.TS.Utilities\\Joy.TS.Utilities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ChandanKumar C L\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Utilities\\Joy.TS.Utilities.csproj",
+        "projectUniqueName": "C:\\Users\\Sandhya V\\Documents\\GithubSandhya\\dotNet-Projects\\Timesheet\\Timesheet_API\\Joy.TS\\Joy.TS.Utilities\\Joy.TS.Utilities.csproj",
         "projectName": "Joy.TS.Utilities",
-        "projectPath": "C:\\Users\\ChandanKumar C L\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Utilities\\Joy.TS.Utilities.csproj",
-        "packagesPath": "C:\\Users\\ChandanKumar C L\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ChandanKumar C L\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Utilities\\obj\\",
+        "projectPath": "C:\\Users\\Sandhya V\\Documents\\GithubSandhya\\dotNet-Projects\\Timesheet\\Timesheet_API\\Joy.TS\\Joy.TS.Utilities\\Joy.TS.Utilities.csproj",
+        "packagesPath": "C:\\Users\\Sandhya V\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Sandhya V\\Documents\\GithubSandhya\\dotNet-Projects\\Timesheet\\Timesheet_API\\Joy.TS\\Joy.TS.Utilities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ChandanKumar C L\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sandhya V\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
