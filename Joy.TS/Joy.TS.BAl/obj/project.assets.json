@@ -3826,23 +3826,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Sandhya V\\.nuget\\packages\\": {},
+    "C:\\Users\\hi\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Sandhya V\\Documents\\GithubSandhya\\dotNet-Projects\\Timesheet\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj",
+      "projectUniqueName": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj",
       "projectName": "Joy.TS.BAL",
-      "projectPath": "C:\\Users\\Sandhya V\\Documents\\GithubSandhya\\dotNet-Projects\\Timesheet\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj",
-      "packagesPath": "C:\\Users\\Sandhya V\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Sandhya V\\Documents\\GithubSandhya\\dotNet-Projects\\Timesheet\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\obj\\",
+      "projectPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj",
+      "packagesPath": "C:\\Users\\hi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Sandhya V\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3858,8 +3858,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Sandhya V\\Documents\\GithubSandhya\\dotNet-Projects\\Timesheet\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj": {
-              "projectPath": "C:\\Users\\Sandhya V\\Documents\\GithubSandhya\\dotNet-Projects\\Timesheet\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj"
+            "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj": {
+              "projectPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj"
             }
           }
         }

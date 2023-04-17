@@ -56,6 +56,8 @@ namespace Joy.TS.BAL.Implementation
             TS.No_Of_days_Worked = AddTimeSheet_SummaryModel.NoOfdays_Worked;
             TS.No_Of_Leave_Taken = AddTimeSheet_SummaryModel.NoOfLeave_Taken;
             TS.Total_Working_Hours = AddTimeSheet_SummaryModel.Total_Working_Hours;
+            TS.ImagePathUpload = AddTimeSheet_SummaryModel.ImagePathUpload;
+            TS.ImagePathTimesheet = AddTimeSheet_SummaryModel.ImagePathTimesheet;
             TS.Created_Date = DateTime.Now.Date;
             TS.Status = "Pending";
 
@@ -106,7 +108,13 @@ namespace Joy.TS.BAL.Implementation
                        };
             return data.ToList();
         }
-
+        //Add Fiscal_Years
+        public IActionResult Fiscal_Years(Fiscal_Year fiscal_Year)
+        {
+            _timesheetContext.Fiscal_Years.Add(fiscal_Year);
+            _timesheetContext.SaveChanges();
+            return Ok("Fiscal Years Added");
+        }
         //Get All timesheetsummary
         public List<TimesheetsummaryModel> GetAllTimeSheet_Summary(int Employee_Id, int year)
         {

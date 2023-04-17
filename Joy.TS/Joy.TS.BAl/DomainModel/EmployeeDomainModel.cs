@@ -36,6 +36,8 @@ namespace Joy.TS.BAL.DomainModel
             public double NoOfdays_Worked { get; set; }
             public double NoOfLeave_Taken { get; set; }
             public double Total_Working_Hours { get; set; }
+            public string ImagePathUpload { get; set; }
+            public string ImagePathTimesheet { get; set; }
             public List<AddTimesheetDayModel> addTimesheetDay { get; set; }
 
         }

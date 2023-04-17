@@ -122,7 +122,7 @@ namespace Joy.TS.Api.Controllers
             return Ok("Password Updated successFully..!");
 
         }
-        [HttpGet, Authorize]
+        [HttpGet]
         public IEnumerable<Employee> Get()
         {
             return _timesheetContext.employees.ToList();
