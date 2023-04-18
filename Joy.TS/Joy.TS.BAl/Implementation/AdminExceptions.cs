@@ -63,6 +63,18 @@ namespace Joy.TS.BAL.Implementation
         public EmployeeTypeNameException(string message) : base(message) { }
     }
 
+    //Role
+    public class RoleIdException : Exception
+    {
+        public RoleIdException() { }
+        public RoleIdException(string message) : base(message) { }
+    }
+    public class RoleNameException : Exception
+    {
+        public RoleNameException() { }
+        public RoleNameException(string message) : base(message) { }
+    }
+
     //Employee
     public class EmployeeIdNotExistException : Exception
     {
@@ -78,6 +90,11 @@ namespace Joy.TS.BAL.Implementation
     {
         public EmployeeContactExistException() { }
         public EmployeeContactExistException(string message) : base(message) { }
+    }
+    public class EmployeeCodeExistException : Exception
+    {
+        public EmployeeCodeExistException() { }
+        public EmployeeCodeExistException(string message) : base(message) { }
     }
 
     //EmployeeProject
@@ -148,6 +165,14 @@ namespace Joy.TS.BAL.Implementation
                     context.Result = new BadRequestObjectResult("Employee Type already exists");
                     break;
 
+                //Role
+                case RoleIdException:
+                    context.Result = new BadRequestObjectResult("No role has the entered id");
+                    break;
+                case RoleNameException:
+                    context.Result = new BadRequestObjectResult("Role already exists");
+                    break;
+
                 //Employee
                 case EmployeeIdNotExistException:
                     context.Result = new BadRequestObjectResult("No Employee with the entered id");
@@ -157,6 +182,9 @@ namespace Joy.TS.BAL.Implementation
                     break;
                 case EmployeeContactExistException:
                     context.Result = new BadRequestObjectResult("Contact Number already exists");
+                    break;
+                case EmployeeCodeExistException:
+                    context.Result = new BadRequestObjectResult("Employee Code already exists");
                     break;
 
                 //HrContactInfo

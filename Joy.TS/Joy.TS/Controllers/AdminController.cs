@@ -203,6 +203,20 @@ namespace Joy.TS.Api.Controllers
             return _admin.GetAllEmplyoeeTypes();
         }
 
+        //Role
+
+        [HttpPost("AddRole")]
+        public void AddRole(AddRoleModel addRoleModel)
+        {
+            _admin.AddRole(addRoleModel);
+        }
+
+        [HttpPut("EditRole")]
+        public void EditRole(EditRoleModel editRoleModel)
+        {
+            _admin.EditRole(editRoleModel);
+        }
+
         //Employee
 
         [HttpPost("AddEmployee")]

@@ -121,6 +121,18 @@ namespace Joy.TS.BAL.DomainModel
             public int No_of_Employees { get; set; }
         }
 
+        //RoleModels
+
+        public class AddRoleModel
+        {
+            public string Role { get; set; }
+        }
+        public class EditRoleModel
+        {
+            public int Role_Id { get; set; }
+            public string Role { get; set; }
+        }
+
         //EmployeeModels
 
         public class AddEmployeeModel
@@ -131,7 +143,6 @@ namespace Joy.TS.BAL.DomainModel
             public string Reporting_Manager1 { get; set; }
             public string Reportinng_Manager2 { get; set; }
             public int Employee_Type_Id { get; set; }
-            public int Role_id { get; set; }
 
             [EmailAddress(ErrorMessage = "Invalid Email Address")]
             public string Official_Email { get; set; }
@@ -158,8 +169,6 @@ namespace Joy.TS.BAL.DomainModel
             public string Reportinng_Manager2 { get; set; }
             public int Employee_Type_Id { get; set; }
             public int Role_id { get; set; }
-            public int Client_Id { get; set; }
-            public int Project_Id { get; set; }
 
             [Required(ErrorMessage = "Official_Email field is required")]
             [EmailAddress(ErrorMessage = "Invalid Email Address")]

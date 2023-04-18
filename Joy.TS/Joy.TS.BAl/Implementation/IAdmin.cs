@@ -50,6 +50,10 @@ namespace Joy.TS.BAL.Implementation
         IEnumerable<GetAllEmployeeTypeByEmployeeModel> GetAllEmployeeTypesByEmployee();
         IQueryable<EmployeeType> GetAllEmplyoeeTypes();
 
+        //Role
+        void AddRole(AddRoleModel addRoleModel);
+        void EditRole(EditRoleModel editRoleModel);
+
         //Employee
         void AddEmployee(AddEmployeeModel addEmployeeModel);
         void EditEmployee(EditEmployeeModel editEmployeeModel);
