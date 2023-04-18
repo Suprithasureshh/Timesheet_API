@@ -21,6 +21,7 @@ namespace Joy.TS.BAL.Implementation
         private readonly TimeSheetContext _timesheetContext;
         private readonly IWebHostEnvironment _hostEnvironment;
 
+
         public EmployeeRepo(TimeSheetContext timesheetContext, IWebHostEnvironment hostEnvironment)
         {
             _timesheetContext = timesheetContext;
@@ -73,15 +74,15 @@ namespace Joy.TS.BAL.Implementation
                 T.Leave = s.Leave;
                 T.Date = s.Date;
                 T.Day = s.Day;
-                T.Employee_Id = AddTimeSheet_SummaryModel.Employee_Id;
+                T.Employee_Id = s.Employee_Id;
                 T.Duration_in_Hrs = s.Duration_in_Hrs;
                 T.TimesheetSummary_Id = lastsummaryid;
                 _timesheetContext.timeSheets.Add(T);
                 _timesheetContext.SaveChanges();
             }
-            var t = DateTime.Now.Month - 1;
-            var data = _timesheetContext.Fiscal_Years.Find(t);
-            return " Month Added Sucessfully";
+            //var t = DateTime.Now.Month - 1;
+            //var data = _timesheetContext.Fiscal_Years.Find(t);
+            return "Employee TimeSheet Added...!";
         }
 
 
