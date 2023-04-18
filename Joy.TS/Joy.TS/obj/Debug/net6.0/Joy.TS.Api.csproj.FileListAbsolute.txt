@@ -312,3 +312,12 @@ C:\Users\Subhash R\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\obj\Debug\net6.0
 C:\Users\Subhash R\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\obj\Debug\net6.0\Joy.TS.Api.genruntimeconfig.cache
 C:\Users\Subhash R\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\obj\Debug\net6.0\ref\Joy.TS.Api.dll
 C:\Users\Subhash R\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\bin\Debug\net6.0\CsvHelper.dll
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\obj\Debug\net6.0\Joy.TS.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\bin\Debug\net6.0\BCrypt.Net-Next.dll
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\bin\Debug\net6.0\CsvHelper.dll
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\bin\Debug\net6.0\Scrutor.dll
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.dll
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
+C:\Users\ChandanKumar C L\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\bin\Debug\net6.0\System.IO.Packaging.dll

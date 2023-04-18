@@ -30,6 +30,12 @@ namespace Joy.TS.DAL.Model
 
         [ForeignKey("Role_Id")]
         public int Role_Id { get; set; }
+
+        [ForeignKey("Client_Id")]
+        public int Client_Id { get; set; }
+
+        [ForeignKey("Project_Id")]
+        public int Project_Id { get; set; }
         public string Contact_No { get; set; }
         public bool Is_Active { get; set; }
 

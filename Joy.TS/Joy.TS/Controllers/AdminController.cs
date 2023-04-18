@@ -41,9 +41,9 @@ namespace Joy.TS.Api.Controllers
         }
 
         [HttpPut("EditClientIsActive")]
-        public void EditClientIsActive(IsActiveModel ClientIsActiveModel)
+        public void EditClientIsActive(IsActiveModel ClientIsActiveModel, bool Is_Active)
         {
-            _admin.EditClientIsActive(ClientIsActiveModel);
+            _admin.EditClientIsActive(ClientIsActiveModel, Is_Active);
         }
 
         [HttpGet("GetByClientId")]
@@ -51,6 +51,13 @@ namespace Joy.TS.Api.Controllers
         {
             return _admin.GetByClientId(id);
         }
+
+        [HttpGet("GetClientIsActive")]
+        public IEnumerable<ClinetIsActiveModel> GetClientIsActive(bool? isActive)
+        {
+            return _admin.GetClientIsActive(isActive);
+        }
+
 
         [HttpGet("GetAllClientsByEmployee")]
         public IEnumerable<GetAllClientsByEmployeeModel> GetAllClientsByEmployee()
@@ -79,15 +86,21 @@ namespace Joy.TS.Api.Controllers
         }
 
         [HttpPut("EditProjectIsActive")]
-        public void EditProjectIsActive(IsActiveModel ProjectIsActiveModel)
+        public void EditProjectIsActive(IsActiveModel ProjectIsActiveModel, bool Is_Active)
         {
-            _admin.EditProjectIsActive(ProjectIsActiveModel);
+            _admin.EditProjectIsActive(ProjectIsActiveModel, Is_Active);
         }
 
         [HttpGet("GetByProjectId")]
         public IQueryable<Projects> GetByProjectId(int id)
         {
             return _admin.GetByProjectId(id);
+        }
+
+        [HttpGet("GetProjectIsActive")]
+        public IEnumerable<ProjectIsActiveModel> GetProjectIsActive(bool? isActive)
+        {
+            return _admin.GetProjectIsActive(isActive);
         }
 
         [HttpGet("GetAllProjectsByEmployee")]
@@ -117,15 +130,21 @@ namespace Joy.TS.Api.Controllers
         }
 
         [HttpPut("EditDesignationIsActive")]
-        public void EditDesignationIsActive(IsActiveModel DesignationIsActiveModel)
+        public void EditDesignationIsActive(IsActiveModel DesignationIsActiveModel, bool Is_Active)
         {
-            _admin.EditDesignationIsActive(DesignationIsActiveModel);
+            _admin.EditDesignationIsActive(DesignationIsActiveModel, Is_Active);
         }
 
         [HttpGet("GetByDesignationId")]
         public IQueryable<Designations> GetByDesignationId(int id)
         {
             return _admin.GetByDesignationId(id);
+        }
+
+        [HttpGet("GetDesignationIsActive")]
+        public IEnumerable<DesignationIsActiveModel> GetDesignationIsActive(bool? isActive)
+        {
+            return _admin.GetDesignationIsActive(isActive);
         }
 
         [HttpGet("GetAllDesignationsByEmployee")]
@@ -155,15 +174,21 @@ namespace Joy.TS.Api.Controllers
         }
 
         [HttpPut("EditEmployeeTypeIsActive")]
-        public void EditEmployeeTypeIsActive(IsActiveModel EmployeeTypeIsActiveModel)
+        public void EditEmployeeTypeIsActive(IsActiveModel EmployeeTypeIsActiveModel, bool Is_Active)
         {
-            _admin.EditEmployeeTypeIsActive(EmployeeTypeIsActiveModel);
+            _admin.EditEmployeeTypeIsActive(EmployeeTypeIsActiveModel, Is_Active);
         }
 
         [HttpGet("GetByEmployeeTypeId")]
         public IQueryable<EmployeeType> GetByEmployeeTypeId(int id)
         {
             return _admin.GetByEmployeeTypeId(id);
+        }
+
+        [HttpGet("GetEmployeeTypeIsActive")]
+        public IEnumerable<EmployeeTypeIsActiveModel> GetEmployeeTypeIsActive(bool? isActive)
+        {
+            return _admin.GetEmployeeTypeIsActive(isActive);
         }
 
         [HttpGet("GetAllEmployeeTypesByEmployee")]
@@ -193,9 +218,9 @@ namespace Joy.TS.Api.Controllers
         }
 
         [HttpPut("EditEmployeIsActive")]
-        public void EditEmployeIsActive(IsActiveModel EmployeIsActiveModel)
+        public void EditEmployeIsActive(IsActiveModel EmployeIsActiveModel, bool Is_Active)
         {
-            _admin.EditEmployeeTypeIsActive(EmployeIsActiveModel);
+            _admin.EditEmployeeTypeIsActive(EmployeIsActiveModel, Is_Active);
         }
 
         [HttpGet("GetByEmployeeId")]
@@ -204,11 +229,19 @@ namespace Joy.TS.Api.Controllers
             return _admin.GetByEmployeeId(id);
         }
 
+        [HttpGet("GetEmployeeIsActive")]
+        public IEnumerable<EmployeeIsActiveModel> GetEmployeeIsActive(bool? isActive)
+        {
+            return _admin.GetEmployeeIsActive(isActive);
+        }
+
         [HttpGet("GetAllEmployeeByDesIdEmpTypeId")]
         public List<GetAllEmployeeByDesIdEmpTypeIdModel> GetAllEmployeeByDesIdEmpTypeId()
         {
             return _admin.GetAllEmployeeByDesIdEmpTypeId();
         }
+
+
 
         [HttpGet("GetAllEmployees")]
         public IQueryable<Employee> GetAllEmployees()
@@ -263,9 +296,9 @@ namespace Joy.TS.Api.Controllers
         }
 
         [HttpPut("EditHrContactInfoIsActive")]
-        public void EditHrContactInfoIsActive(IsActiveModel HrContactInfoIsActiveModel)
+        public void EditHrContactInfoIsActive(IsActiveModel HrContactInfoIsActiveModel, bool Is_Active)
         {
-            _admin.EditHrContactInfoIsActive(HrContactInfoIsActiveModel);
+            _admin.EditHrContactInfoIsActive(HrContactInfoIsActiveModel, Is_Active);
         }
 
         [HttpGet("GetByHrContactId")]
@@ -273,15 +306,64 @@ namespace Joy.TS.Api.Controllers
         {
             return _admin.GetByHrContactId(id);
         }
+
+        [HttpGet("GetHrContactInfoIsActive")]
+        public IEnumerable<HrContactInfoIsActiveModel> GetHrContactInfoIsActive(bool? isActive)
+        {
+            return _admin.GetHrContactInfoIsActive(isActive);
+        }
+
         [HttpGet("GetHrcontactByEmployeeEmailId")]
         public IEnumerable<HrcontactByEmployeeModel> GetHrcontactByEmployeeEmailId(string Mail_Id)
         {
             return _admin.GetHrcontactByEmployeeEmailId(Mail_Id);
         }
+
         [HttpGet("GetAllHrContacts")]
         public IQueryable<HrContactInformation> GetAllHrContacts()
         {
             return _admin.GetAllHrContacts();
+        }
+
+        //Timesheet status
+
+        [HttpGet("GetTimeSheetStatus")]
+        public List<GetTimeSheetStatusModel> GetTimeSheetStatus()
+        {
+            return _admin.GetTimeSheetStatus();
+        }
+
+        [HttpGet("GetTimeSheetStatusStatusByYear")]
+        public IEnumerable<TimeSheetStatusByYearModel> GetTimeSheetStatusByYear(int year)
+        {
+            return _admin.GetTimeSheetStatusByYear(year);
+        }
+
+        [HttpGet("GetTimeSheetStatusStatusByMonth")]
+        public IEnumerable<EmployeeTimeSheetByMonthModel> GetTimeSheetStatusByMonth(int Month_id, int Year)
+        {
+            return _admin.GetTimeSheetStatusByMonth(Month_id, Year);
+        }
+
+
+        [HttpGet("GetTimesheetSummaryMonthYearEmployee")]
+        public IEnumerable<GetTimesheetSummaryMonthYearEmployeeModel> GetTimesheetSummaryMonthYearEmployee(int Month_id, int Year_id, int Employee_Id)
+        {
+            return _admin.GetTimesheetSummaryMonthYearEmployee(Month_id, Year_id, Employee_Id);
+        }
+
+        //ViewPreviousChanges
+
+        [HttpGet("GetViewPreviousChanges")]
+        public IEnumerable<ViewPreviousChangesModel> GetViewPreviousChanges()
+        {
+            return _admin.GetViewPreviousChanges();
+        }
+
+        [HttpGet("GetViewPreviousChangesById")]
+        public IEnumerable<ViewPreviousChangesByIdModel> GetViewPreviousChangesById(int Id)
+        {
+            return _admin.GetViewPreviousChangesById(Id);
         }
     }
 }

@@ -98,10 +98,10 @@ namespace Joy.TS.BAL.Implementation
         public HrMailNotExistException() { }
         public HrMailNotExistException(string message) : base(message) { }
     }
-    public class HrConatactException : Exception
+    public class HrContactException : Exception
     {
-        public HrConatactException() { }
-        public HrConatactException(string message) : base(message) { }
+        public HrContactException() { }
+        public HrContactException(string message) : base(message) { }
     }
 
 
@@ -172,7 +172,7 @@ namespace Joy.TS.BAL.Implementation
                     context.Result = new BadRequestObjectResult("Email does not exists");
                     break;
 
-                case HrConatactException:
+                case HrContactException:
                     context.Result = new BadRequestObjectResult("Contact already exists");
                     break;
 

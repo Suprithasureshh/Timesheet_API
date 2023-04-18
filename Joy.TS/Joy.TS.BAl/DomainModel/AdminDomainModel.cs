@@ -10,6 +10,7 @@ namespace Joy.TS.BAL.DomainModel
 {
     public class AdminDomainModel
     {
+
         //dashboard
         public class GetDashboardModel
         {
@@ -131,7 +132,11 @@ namespace Joy.TS.BAL.DomainModel
             public string Reportinng_Manager2 { get; set; }
             public int Employee_Type_Id { get; set; }
             public int Role_id { get; set; }
+
+            [EmailAddress(ErrorMessage = "Invalid Email Address")]
             public string Official_Email { get; set; }
+
+            [EmailAddress(ErrorMessage = "Invalid Email Address")]
             public string Alternate_Email { get; set; }
             public string Password { get; set; }
             public int Designation_Id { get; set; }
@@ -153,7 +158,14 @@ namespace Joy.TS.BAL.DomainModel
             public string Reportinng_Manager2 { get; set; }
             public int Employee_Type_Id { get; set; }
             public int Role_id { get; set; }
+            public int Client_Id { get; set; }
+            public int Project_Id { get; set; }
+
+            [Required(ErrorMessage = "Official_Email field is required")]
+            [EmailAddress(ErrorMessage = "Invalid Email Address")]
             public string Official_Email { get; set; }
+
+            [EmailAddress(ErrorMessage = "Invalid Email Address")]
             public string Alternate_Email { get; set; }
             public int Designation_Id { get; set; }
             public string Contact_No { get; set; }
@@ -172,16 +184,17 @@ namespace Joy.TS.BAL.DomainModel
             public int Employee_Id { get; set; }
             public string First_Name { get; set; }
             public string last_Name { get; set; }
+            public string Full_Name { get; set; }
             public string Employee_code { get; set; }
             public string Reporting_Manager1 { get; set; }
             public string Reportinng_Manager2 { get; set; }
             public int Employee_Type_Id { get; set; }
-            public string Employee_Type_Name { get; set; }
+            public string Employee_Type { get; set; }
             public string Official_Email { get; set; }
             public string Alternate_Email { get; set; }
             public int Role_Id { get; set; }
             public int Designation_Id { get; set; }
-            public string Designation_Name { get; set; }
+            public string Designation { get; set; }
             public string Contact_No { get; set; }
             public DateTime Joining_Date { get; set; }
             public DateTime End_Date { get; set; }
@@ -206,9 +219,6 @@ namespace Joy.TS.BAL.DomainModel
             public DateTime? End_Date { get; set; }
             public string Location { get; set; }
 
-            [DataType(DataType.Date)]
-            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
-            public DateTime Create_Date { get; set; }
         }
 
         public class EditEmployeeprojectModel
@@ -278,26 +288,166 @@ namespace Joy.TS.BAL.DomainModel
             public string Mobile_No { get; set; }
         }
 
-        //IsActive
+        //EditIsActive
         public class IsActiveModel
         {
             public int[] Id { get; set; }
+        }
+
+        //GetIsActive
+
+        public class ClinetIsActiveModel
+        {
+            public int Client_Id { get; set; }
+            public string Client_Name { get; set; }
             public bool Is_Active { get; set; }
+            public int No_Of_Employees { get; set; }
+
+            [DataType(DataType.Date)]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
+            public DateTime Create_Date { get; set; }
+
+
+        }
+
+        public class DesignationIsActiveModel
+        {
+            public int Designation_Id { get; set; }
+            public string Designation { get; set; }
+            public bool Is_Active { get; set; }
+            [DataType(DataType.Date)]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
+
+            public int No_of_Employees { get; set; }
+
+        }
+        public class ProjectIsActiveModel
+        {
+            public int Project_Id { get; set; }
+            public string Project_Name { get; set; }
+            public string Project_Code { get; set; }
+            public int Client_Id { get; set; }
+            public int No_Of_Employees { get; set; }
+            public bool Is_Active { get; set; }
+            [DataType(DataType.Date)]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
+            public DateTime Project_Start_Date { get; set; }
+            [DataType(DataType.Date)]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
+            public DateTime Project_End_Date { get; set; }
+
+
+
+
+        }
+        public class EmployeeTypeIsActiveModel
+        {
+            public int Employee_Type_Id { get; set; }
+            public string Employee_Type { get; set; }
+            public int No_of_Employees { get; set; }
+            public bool Is_Active { get; set; }
+
+        }
+        public class EmployeeIsActiveModel
+        {
+            public int Employee_Id { get; set; }
+            public string First_Name { get; set; }
+            public string Last_Name { get; set; }
+            public string Full_Name { get; set; }
+            public string Employee_code { get; set; }
+            public string Reporting_Manager1 { get; set; }
+            public string Reportinng_Manager2 { get; set; }
+            public string Employee_Type { get; set; }
+            public string Email { get; set; }
+            public int Role_Id { get; set; }
+            public string Designation { get; set; }
+            public string Contact_No { get; set; }
+            public DateTime Joining_Date { get; set; }
+            public DateTime End_Date { get; set; }
+            public bool Is_Active { get; set; }
+
+        }
+
+        public class HrContactInfoIsActiveModel
+        {
+            public int Hr_Contact_Id { get; set; }
+            public string Hr_Name { get; set; }
+            public string Hr_Email_Id { get; set; }
+            public string Hr_Contact_No { get; set; }
+            public bool Is_Active { get; set; }
+
+
+
+
+        }
+
+        //Timesheet status
+
+        public class GetTimeSheetStatusModel
+        {
+            public int Year { get; set; }
+        }
+
+        public class TimeSheetStatusByYearModel
+        {
+            public int MonthID { get; set; }
+            public string Month { get; set; }
+            public string status { get; set; }
+            public int Statuscount { get; set; }
+        }
+
+        public class EmployeeTimeSheetByMonthModel
+        {
+            public int Employee_Id { get; set; }
+            public string Full_Name { get; set; }
+            public string Employee_Type { get; set; }
+            public double NoOfDaysWorked { get; set; }
+            public double NoOfLeaveTaken { get; set; }
+            public double Total_Hours { get; set; }
+            public string EmailId { get; set; }
+            public string Reporting_Manager { get; set; }
+            public string Status { get; set; }
+        }
+
+        public class GetTimesheetSummaryMonthYearEmployeeModel
+        {
+            public string Date { get; set; }
+            public string Day { get; set; }
+            public string Status { get; set; }
+            public string Project { get; set; }
+            public string Duration { get; set; }
         }
 
 
 
+        //View Previous changes
+        public class ViewPreviousChangesModel
+        {
+            public int Employee_Id { get; set; }
+            public string Full_Name { get; set; }
+            public string Employee_Type { get; set; }
+            public string Joining_Date { get; set; }
+            public string Modified_Date { get; set; }
+            public string Designation { get; set; }
+            public string Reporting_Manager { get; set; }
+            public string EmailId { get; set; }
+            public string Contact_No { get; set; }
+        }
+        public class ViewPreviousChangesByIdModel
+        {
+            public int Employee_Id { get; set; }
+            public string Full_Name { get; set; }
+            public string Employee_Type { get; set; }
+            public string Designation { get; set; }
 
+            public string Reporting_Manager1 { get; set; }
+            public string EmailId { get; set; }
+            public string Contact_No { get; set; }
 
+            public DateTime Joining_Date { get; set; }
+            public DateTime End_Date { get; set; }
+            public DateTime Modified_Date { get; set; }
 
-
-
-
-
-
-
-
-
-
+        }
     }
 }

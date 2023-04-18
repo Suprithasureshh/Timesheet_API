@@ -75,7 +75,7 @@ namespace Joy.TS.BAL.Implementation
                 T.Date = s.Date;
                 T.Day = s.Day;
                 T.Employee_Id = s.Employee_Id;
-                T.Duration_in_Hrs = s.Duration_in_Hrs;
+                T.Duration_in_Hours = s.Duration_in_Hrs;
                 T.TimesheetSummary_Id = lastsummaryid;
                 _timesheetContext.timeSheets.Add(T);
                 _timesheetContext.SaveChanges();
@@ -223,7 +223,7 @@ namespace Joy.TS.BAL.Implementation
                            Date = t.Date.HasValue ?
                                    t.Date.Value.ToString("dd") : ToString(),
                            Day = t.Day,
-                           Duration_in_Hrs = t.Duration_in_Hrs.ToString(),
+                           Duration_in_Hrs = t.Duration_in_Hours.ToString(),
                            Year = tsum.Year,
                            TimesheetSummary_Id = t.TimesheetSummary_Id,
                            Leave = t.Leave,

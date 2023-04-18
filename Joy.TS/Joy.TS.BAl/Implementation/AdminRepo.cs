@@ -31,6 +31,7 @@ namespace Joy.TS.BAL.Implementation
                              x = g.Key,
                              y = g.Count()
                          });
+
             return item1;
         }
 
@@ -64,6 +65,25 @@ namespace Joy.TS.BAL.Implementation
             }
         }
 
+        public void EditClientIsActive(IsActiveModel ClientIsActiveModel, bool Is_Active)
+        {
+
+            var records = _timesheetContext.clients.Where(a => ClientIsActiveModel.Id.Contains(a.Client_Id));
+            if (records.Count() != 0)
+            {
+                foreach (var r in records)
+                {
+                    r.Is_Active = Is_Active;
+                }
+                _timesheetContext.SaveChanges();
+            }
+            else
+            {
+                throw new ClientIdException();
+            }
+
+        }
+
         public IQueryable<Client> GetByClientId(int id)
         {
             var clients = _timesheetContext.clients.AsQueryable();
@@ -76,6 +96,38 @@ namespace Joy.TS.BAL.Implementation
             {
                 throw new ClientIdException();
             }
+        }
+
+        public IEnumerable<ClinetIsActiveModel> GetClientIsActive(bool? isActive)
+        {
+            var data = from C in _timesheetContext.clients
+                       join E in _timesheetContext.employees
+                       on C.Client_Id equals E.Client_Id into employees
+                       from E in employees.DefaultIfEmpty()
+                       select new { C, E } into t1
+                       group t1 by new { t1.C.Client_Id, t1.C.Client_Name, t1.C.Is_Active, t1.C.Create_Date } into g
+                       orderby g.Key.Client_Name
+                       select new ClinetIsActiveModel
+                       {
+                           Client_Id = g.Key.Client_Id,
+                           Client_Name = g.Key.Client_Name,
+                           Is_Active = g.Key.Is_Active,
+                           Create_Date = g.Key.Create_Date,
+                           No_Of_Employees = g.Count(x => x.E != null)
+                       };
+            if (isActive == true)
+            {
+                return data.Where(e => e.Is_Active).ToList();
+            }
+            else if (isActive == false)
+            {
+                return data.Where(e => !e.Is_Active).ToList();
+            }
+            else
+            {
+                return data.ToList();
+            }
+
         }
 
         public IEnumerable<GetAllClientsByEmployeeModel> GetAllClientsByEmployee()
@@ -95,25 +147,6 @@ namespace Joy.TS.BAL.Implementation
                             No_Of_Employees = g.Count()
                         });
             return data.ToList();
-        }
-
-        public void EditClientIsActive(IsActiveModel ClientIsActiveModel)
-        {
-
-            var records = _timesheetContext.clients.Where(a => ClientIsActiveModel.Id.Contains(a.Client_Id));
-            if (records.Count() != 0)
-            {
-                foreach (var r in records)
-                {
-                    r.Is_Active = ClientIsActiveModel.Is_Active;
-                }
-                _timesheetContext.SaveChanges();
-            }
-            else
-            {
-                throw new ClientIdException();
-            }
-
         }
 
         public IQueryable<Client> GetAllClients()
@@ -140,7 +173,7 @@ namespace Joy.TS.BAL.Implementation
                         pro.Project_Code = addProjectsModel.Project_Code;
                         pro.Client_Id = addProjectsModel.Client_Id;
                         pro.Project_Start_Date = addProjectsModel.Project_Start_Date;
-                        pro.Project_End_Date = addProjectsModel.Project_End_Date;
+                        pro.Project_End_Date = addProjectsModel.Project_End_Date.Date;
                         pro.Create_Date = DateTime.UtcNow.Date;
                         pro.Is_Active = true;
 
@@ -156,7 +189,6 @@ namespace Joy.TS.BAL.Implementation
                 {
                     throw new ProjectNameExistException();
                 }
-
             }
             else
             {
@@ -170,23 +202,32 @@ namespace Joy.TS.BAL.Implementation
             var IdCheck = _timesheetContext.projects.FirstOrDefault(p => p.Project_Id == editProjectsModel.Project_Id);
             var doubleentry = _timesheetContext.projects.FirstOrDefault(e => e.Project_Id != editProjectsModel.Project_Id &&
                                 e.Project_Name == editProjectsModel.Project_Name);
+            var client = _timesheetContext.clients.FirstOrDefault(c => c.Client_Id == editProjectsModel.Client_Id);
+
             if (IdCheck != null)
             {
-                if (doubleentry == null || doubleentry.Project_Id == IdCheck.Project_Id)
+                if (client != null)
                 {
-                    IdCheck.Project_Name = editProjectsModel.Project_Name;
-                    IdCheck.Project_Code = IdCheck.Project_Code;
-                    IdCheck.Client_Id = editProjectsModel.Client_Id;
-                    IdCheck.Project_Start_Date = IdCheck.Project_Start_Date;
-                    IdCheck.Project_End_Date = editProjectsModel.End_Date;
-                    IdCheck.Modified_Date = DateTime.UtcNow.Date;
-                    IdCheck.Is_Active = true;
-                    _timesheetContext.SaveChanges();
+                    if (doubleentry == null || doubleentry.Project_Id == IdCheck.Project_Id)
+                    {
+                        IdCheck.Project_Name = editProjectsModel.Project_Name;
+                        IdCheck.Project_Code = IdCheck.Project_Code;
+                        IdCheck.Client_Id = editProjectsModel.Client_Id;
+                        IdCheck.Project_Start_Date = IdCheck.Project_Start_Date;
+                        IdCheck.Project_End_Date = editProjectsModel.End_Date;
+                        IdCheck.Modified_Date = DateTime.UtcNow.Date;
+                        IdCheck.Is_Active = true;
+                        _timesheetContext.SaveChanges();
 
+                    }
+                    else
+                    {
+                        throw new ProjectNameExistException();
+                    }
                 }
                 else
                 {
-                    throw new ProjectNameExistException();
+                    throw new ClientNotExistException();
                 }
             }
             else
@@ -195,14 +236,14 @@ namespace Joy.TS.BAL.Implementation
             }
         }
 
-        public void EditProjectIsActive(IsActiveModel ProjectIsActiveModel)
+        public void EditProjectIsActive(IsActiveModel ProjectIsActiveModel, bool Is_Active)
         {
             var records = _timesheetContext.projects.Where(a => ProjectIsActiveModel.Id.Contains(a.Project_Id));
             if (records.Count() != 0)
             {
                 foreach (var r in records)
                 {
-                    r.Is_Active = ProjectIsActiveModel.Is_Active;
+                    r.Is_Active = Is_Active;
                 }
                 _timesheetContext.SaveChanges();
             }
@@ -211,7 +252,6 @@ namespace Joy.TS.BAL.Implementation
                 throw new ProjectIdNotExistException();
             }
         }
-
         public IQueryable<Projects> GetByProjectId(int id)
         {
             var project = _timesheetContext.projects.AsQueryable();
@@ -223,6 +263,49 @@ namespace Joy.TS.BAL.Implementation
             else
             {
                 throw new ProjectIdNotExistException();
+            }
+        }
+
+        public IEnumerable<ProjectIsActiveModel> GetProjectIsActive(bool? isActive)
+        {
+            var data = from p in _timesheetContext.projects
+                       join e in _timesheetContext.employees
+                       on p.Project_Id equals e.Project_Id into employees
+                       from e in employees.DefaultIfEmpty()
+                       select new { p, e } into t1
+                       group t1 by new
+                       {
+                           t1.p.Project_Id,
+                           t1.p.Project_Name,
+                           t1.p.Project_Code,
+                           t1.p.Client_Id,
+                           t1.p.Project_Start_Date,
+                           t1.p.Project_End_Date,
+                           t1.p.Is_Active
+                       } into g
+                       orderby g.Key.Project_Name
+                       select new ProjectIsActiveModel
+                       {
+                           Project_Id = g.Key.Project_Id,
+                           Project_Name = g.Key.Project_Name,
+                           Project_Code = g.Key.Project_Code,
+                           Client_Id = g.Key.Client_Id,
+                           Project_Start_Date = g.Key.Project_Start_Date,
+                           Project_End_Date = g.Key.Project_End_Date,
+                           Is_Active = g.Key.Is_Active,
+                           No_Of_Employees = g.Count(x => x.e != null)
+                       };
+            if (isActive == true)
+            {
+                return data.Where(e => e.Is_Active).ToList();
+            }
+            else if (isActive == false)
+            {
+                return data.Where(e => !e.Is_Active).ToList();
+            }
+            else
+            {
+                return data.ToList();
             }
         }
 
@@ -253,6 +336,8 @@ namespace Joy.TS.BAL.Implementation
             return _timesheetContext.projects.Where(e => e.Is_Active == true).OrderBy(e => e.Project_Name).AsQueryable();
         }
 
+
+
         //Designation
 
         public void AddDesignation(PostDesignationModel postDesignationModel)
@@ -278,7 +363,7 @@ namespace Joy.TS.BAL.Implementation
             var DesignationIdCheck = _timesheetContext.designations.FirstOrDefault
                  (e => (e.Designation_Id == editDesignationModel.Designation_Id));
             var DesignationNameCheck = _timesheetContext.designations.FirstOrDefault
-                 (e => (e.Designation == editDesignationModel.Designation));
+                 (e => e.Designation_Id != editDesignationModel.Designation_Id && (e.Designation == editDesignationModel.Designation));
 
             if (DesignationNameCheck == null)
             {
@@ -299,14 +384,14 @@ namespace Joy.TS.BAL.Implementation
             }
         }
 
-        public void EditDesignationIsActive(IsActiveModel DesignationIsActiveModel)
+        public void EditDesignationIsActive(IsActiveModel DesignationIsActiveModel, bool Is_Active)
         {
             var records = _timesheetContext.designations.Where(a => DesignationIsActiveModel.Id.Contains(a.Designation_Id));
             if (records.Count() != 0)
             {
                 foreach (var r in records)
                 {
-                    r.Is_Active = DesignationIsActiveModel.Is_Active;
+                    r.Is_Active = Is_Active;
                 }
                 _timesheetContext.SaveChanges();
             }
@@ -315,7 +400,6 @@ namespace Joy.TS.BAL.Implementation
                 throw new DesignationIdException();
             }
         }
-
         public IQueryable<Designations> GetByDesignationId(int id)
         {
             var designations = _timesheetContext.designations.AsQueryable();
@@ -330,6 +414,40 @@ namespace Joy.TS.BAL.Implementation
             }
         }
 
+        public IEnumerable<DesignationIsActiveModel> GetDesignationIsActive(bool? isActive)
+        {
+
+            var data = (from a in _timesheetContext.designations
+                        join b in _timesheetContext.employees
+                        on a.Designation_Id equals b.Designation_Id into employees
+                        from b in employees.DefaultIfEmpty()
+                        select new { a, b }
+                        into t1
+                        group t1 by new { t1.a.Designation, t1.a.Designation_Id, t1.a.Is_Active } into g
+                        orderby g.Key.Designation
+
+                        select new DesignationIsActiveModel
+                        {
+                            Designation_Id = g.Key.Designation_Id,
+                            Designation = g.Key.Designation,
+                            Is_Active = g.Key.Is_Active,
+                            No_of_Employees = g.Count(x => x.b != null)
+
+                        });
+
+            if (isActive == true)
+            {
+                return data.Where(e => e.Is_Active).ToList();
+            }
+            else if (isActive == false)
+            {
+                return data.Where(e => !e.Is_Active).ToList();
+            }
+            else
+            {
+                return data.ToList();
+            }
+        }
         public IEnumerable<GetAllDesignationsByEmployeeModel> GetAllDesignationsByEmployee()
         {
             var data = from a in _timesheetContext.designations
@@ -353,6 +471,8 @@ namespace Joy.TS.BAL.Implementation
         {
             return _timesheetContext.designations.Where(e => e.Is_Active == true).OrderBy(e => e.Designation).AsQueryable();
         }
+
+
 
         //Employee Type
 
@@ -402,14 +522,14 @@ namespace Joy.TS.BAL.Implementation
             }
         }
 
-        public void EditEmployeeTypeIsActive(IsActiveModel EmployeeTypeIsActiveModel)
+        public void EditEmployeeTypeIsActive(IsActiveModel EmployeeTypeIsActiveModel, bool Is_Active)
         {
             var records = _timesheetContext.employeeTypes.Where(a => EmployeeTypeIsActiveModel.Id.Contains(a.Employee_Type_Id));
             if (records.Count() != 0)
             {
                 foreach (var r in records)
                 {
-                    r.Is_Active = EmployeeTypeIsActiveModel.Is_Active;
+                    r.Is_Active = Is_Active;
                 }
                 _timesheetContext.SaveChanges();
             }
@@ -430,6 +550,38 @@ namespace Joy.TS.BAL.Implementation
             else
             {
                 throw new EmployeeTypeIdException();
+            }
+        }
+
+        public IEnumerable<EmployeeTypeIsActiveModel> GetEmployeeTypeIsActive(bool? isActive)
+        {
+
+            var data = from a in this._timesheetContext.employeeTypes
+                       join b in this._timesheetContext.employees
+                       on a.Employee_Type_Id equals b.Employee_Type_Id into employees
+                       from b in employees.DefaultIfEmpty()
+                       select new { a, b } into t1
+                       group t1 by new { t1.a.Employee_Type, t1.a.Employee_Type_Id, t1.a.Is_Active } into g
+                       orderby g.Key.Employee_Type
+                       select new EmployeeTypeIsActiveModel
+                       {
+                           Employee_Type_Id = g.Key.Employee_Type_Id,
+                           Employee_Type = g.Key.Employee_Type,
+                           Is_Active = g.Key.Is_Active,
+                           No_of_Employees = g.Count(x => x.b != null)
+                       };
+
+            if (isActive == true)
+            {
+                return data.Where(e => e.Is_Active).ToList();
+            }
+            else if (isActive == false)
+            {
+                return data.Where(e => !e.Is_Active).ToList();
+            }
+            else
+            {
+                return data.ToList();
             }
         }
 
@@ -457,6 +609,8 @@ namespace Joy.TS.BAL.Implementation
             return _timesheetContext.employeeTypes.Where(e => e.Is_Active == true).OrderBy(e => e.Employee_Type).AsQueryable();
         }
 
+
+
         //Employee
 
         public void AddEmployee(AddEmployeeModel addEmployeeModel)
@@ -465,37 +619,51 @@ namespace Joy.TS.BAL.Implementation
             var ts = new TimeSheetSummary();
             if (EmailContactCheck == null)
             {
-                var emp = new Employee();
-                emp.First_Name = addEmployeeModel.First_Name;
-                emp.Last_Name = addEmployeeModel.Last_Name;
-                emp.Employee_code = addEmployeeModel.Employee_code;
-                emp.Reporting_Manager1 = addEmployeeModel.Reporting_Manager1;
-                emp.Reportinng_Manager2 = addEmployeeModel.Reportinng_Manager2;
-                emp.Employee_Type_Id = addEmployeeModel.Employee_Type_Id;
-                emp.Role_Id = addEmployeeModel.Role_id;
-                emp.Official_Email = addEmployeeModel.Official_Email;
-                emp.Alternate_Email = addEmployeeModel.Alternate_Email;
-                emp.Contact_No = addEmployeeModel.Contact_No;
-                emp.Password = addEmployeeModel.Password;
-                emp.Designation_Id = addEmployeeModel.Designation_Id;
-                emp.Employee_Type_Id = addEmployeeModel.Employee_Type_Id;
-                emp.Is_Active = true;
-                emp.Joining_Date = addEmployeeModel.Joining_Date;
-                emp.Create_Date = DateTime.UtcNow.Date;
-                _timesheetContext.employees.Add(emp);
-                _timesheetContext.SaveChanges();
+                if (_timesheetContext.designations.FirstOrDefault(e => e.Designation_Id == addEmployeeModel.Designation_Id) != null)
+                {
+                    if (_timesheetContext.employeeTypes.FirstOrDefault(e => e.Employee_Type_Id == addEmployeeModel.Employee_Type_Id) != null)
+                    {
+                        var emp = new Employee();
+                        emp.First_Name = addEmployeeModel.First_Name;
+                        emp.Last_Name = addEmployeeModel.Last_Name;
+                        emp.Employee_code = addEmployeeModel.Employee_code;
+                        emp.Reporting_Manager1 = addEmployeeModel.Reporting_Manager1;
+                        emp.Reportinng_Manager2 = addEmployeeModel.Reportinng_Manager2;
+                        emp.Role_Id = addEmployeeModel.Role_id;
+                        emp.Official_Email = addEmployeeModel.Official_Email;
+                        emp.Alternate_Email = addEmployeeModel.Alternate_Email;
+                        emp.Contact_No = addEmployeeModel.Contact_No;
+                        emp.Password = addEmployeeModel.Password;
+                        emp.Designation_Id = addEmployeeModel.Designation_Id;
+                        emp.Employee_Type_Id = addEmployeeModel.Employee_Type_Id;
+                        emp.Is_Active = true;
+                        emp.Joining_Date = addEmployeeModel.Joining_Date;
+                        emp.Create_Date = DateTime.UtcNow.Date;
+                        _timesheetContext.employees.Add(emp);
+                        _timesheetContext.SaveChanges();
 
-                var max = _timesheetContext.employees.Max(e => e.Employee_Id);
-                ts.Created_Date = DateTime.UtcNow.Date;
-                ts.Employee_Id = max;
-                ts.No_Of_days_Worked = 0;
-                ts.No_Of_Leave_Taken = 0;
-                ts.Status = "Pending";
-                ts.Total_Working_Hours = 0;
-                ts.Year = DateTime.UtcNow.Year;
-                _timesheetContext.timeSheetSummarys.Add(ts);
-                _timesheetContext.SaveChanges();
+                        var max = _timesheetContext.employees.Max(e => e.Employee_Id);
+                        ts.Created_Date = DateTime.UtcNow.Date;
+                        ts.Employee_Id = max;
+                        ts.No_Of_days_Worked = 0;
+                        ts.No_Of_Leave_Taken = 0;
+                        ts.Status = "Pending";
+                        ts.Total_Working_Hours = 0;
+                        ts.Year = DateTime.UtcNow.Year;
+                        _timesheetContext.timeSheetSummarys.Add(ts);
+                        _timesheetContext.SaveChanges();
+                    }
+                    else
+                    {
+                        throw new EmployeeTypeIdException();
+                    }
+                }
+                else
+                {
+                    throw new DesignationIdException();
+                }
             }
+
             else
             {
                 var a = _timesheetContext.employees.FirstOrDefault(e => ((e.Official_Email == addEmployeeModel.Official_Email || e.Alternate_Email == addEmployeeModel.Official_Email)) || e.Contact_No == addEmployeeModel.Contact_No);
@@ -525,58 +693,60 @@ namespace Joy.TS.BAL.Implementation
             {
                 if (doubleentry == null || doubleentry.Employee_Id == IdCheck.Employee_Id)
                 {
-                    data.Employee_Id = IdCheck.Employee_Id;
-                    data.First_Name = IdCheck.First_Name;
-                    data.Last_Name = IdCheck.Last_Name;
-                    data.Employee_code = IdCheck.Employee_code;
-                    data.Employee_Type_Id = IdCheck.Employee_Type_Id;
-                    data.Email = IdCheck.Official_Email;
-                    data.Alternate_Email = IdCheck.Alternate_Email;
-                    data.Designation_Id = IdCheck.Designation_Id;
-                    data.Role_Id = IdCheck.Role_Id;
-                    data.Contact_No = IdCheck.Contact_No;
-                    data.Reporting_Manager1 = IdCheck.Reporting_Manager1;
-                    data.Reportinng_Manager2 = IdCheck.Reportinng_Manager2;
-                    data.Is_Active = IdCheck.Is_Active;
-                    data.Joining_Date = IdCheck.Joining_Date;
-                    data.End_Date = IdCheck.End_Date;
-                    data.Modified_Date = IdCheck.Modified_Date;
-                    _timesheetContext.viewPreviousChanges.Update(data);
-                    _timesheetContext.SaveChanges();
+                    if (_timesheetContext.designations.FirstOrDefault(e => e.Designation_Id == editEmployeeModel.Designation_Id) != null)
+                    {
+                        if (_timesheetContext.employeeTypes.FirstOrDefault(e => e.Employee_Type_Id == editEmployeeModel.Employee_Type_Id) != null)
+                        {
 
-                    //data.Employee_Id = editEmployeeModel.Employee_Id;
-                    //data.First_Name = editEmployeeModel.First_Name;
-                    //data.Last_Name = editEmployeeModel.Last_Name;
-                    //data.Employee_code = editEmployeeModel.Employee_code;
-                    //data.Employee_Type_Id = editEmployeeModel.Employee_Type_Id;
-                    //data.Email = editEmployeeModel.Official_Email;
-                    //data.Alternate_Email = editEmployeeModel.Alternate_Email;
-                    //data.Designation_Id = editEmployeeModel.Designation_Id;
-                    //data.Contact_No = editEmployeeModel.Contact_No;
-                    //data.Reporting_Manager1 = editEmployeeModel.Reporting_Manager1;
-                    //data.Reportinng_Manager2 = editEmployeeModel.Reportinng_Manager2;
-                    //data.Joining_Date = editEmployeeModel.Joining_Date;
-                    //data.End_Date = editEmployeeModel.End_Date;
-                    //data.Modified_Date = DateTime.Now.Date;
-                    //_timesheetContext.viewPreviousChanges.Update(data);
-                    //_timesheetContext.SaveChanges();
+                            data.Employee_Id = IdCheck.Employee_Id;
+                            data.First_Name = IdCheck.First_Name;
+                            data.Last_Name = IdCheck.Last_Name;
+                            data.Employee_code = IdCheck.Employee_code;
+                            data.Employee_Type_Id = IdCheck.Employee_Type_Id;
+                            data.Email = IdCheck.Official_Email;
+                            data.Alternate_Email = IdCheck.Alternate_Email;
+                            data.Designation_Id = IdCheck.Designation_Id;
+                            data.Role_Id = IdCheck.Role_Id;
+                            data.Client_Id = IdCheck.Client_Id;
+                            data.Project_Id = IdCheck.Project_Id;
+                            data.Contact_No = IdCheck.Contact_No;
+                            data.Reporting_Manager1 = IdCheck.Reporting_Manager1;
+                            data.Reportinng_Manager2 = IdCheck.Reportinng_Manager2;
+                            data.Is_Active = IdCheck.Is_Active;
+                            data.Joining_Date = IdCheck.Joining_Date;
+                            data.End_Date = IdCheck.End_Date;
+                            data.Modified_Date = IdCheck.Modified_Date;
+                            _timesheetContext.viewPreviousChanges.Update(data);
+                            _timesheetContext.SaveChanges();
 
-                    IdCheck.Employee_Id = editEmployeeModel.Employee_Id;
-                    IdCheck.First_Name = editEmployeeModel.First_Name;
-                    IdCheck.Last_Name = editEmployeeModel.Last_Name;
-                    IdCheck.Employee_Type_Id = editEmployeeModel.Employee_Type_Id;
-                    IdCheck.Official_Email = editEmployeeModel.Official_Email;
-                    IdCheck.Employee_code = editEmployeeModel.Employee_code;
-                    IdCheck.Alternate_Email = editEmployeeModel.Alternate_Email;
-                    IdCheck.Designation_Id = editEmployeeModel.Designation_Id;
-                    IdCheck.Role_Id = editEmployeeModel.Role_id;
-                    IdCheck.Contact_No = editEmployeeModel.Contact_No;
-                    IdCheck.Reporting_Manager1 = editEmployeeModel.Reporting_Manager1;
-                    IdCheck.Reportinng_Manager2 = editEmployeeModel.Reportinng_Manager2;
-                    IdCheck.Joining_Date = editEmployeeModel.Joining_Date;
-                    IdCheck.End_Date = editEmployeeModel.End_Date;
-                    IdCheck.Modified_Date = DateTime.Now.Date;
-                    _timesheetContext.SaveChanges();
+                            IdCheck.Employee_Id = editEmployeeModel.Employee_Id;
+                            IdCheck.First_Name = editEmployeeModel.First_Name;
+                            IdCheck.Last_Name = editEmployeeModel.Last_Name;
+                            IdCheck.Employee_Type_Id = editEmployeeModel.Employee_Type_Id;
+                            IdCheck.Official_Email = editEmployeeModel.Official_Email;
+                            IdCheck.Employee_code = editEmployeeModel.Employee_code;
+                            IdCheck.Alternate_Email = editEmployeeModel.Alternate_Email;
+                            IdCheck.Designation_Id = editEmployeeModel.Designation_Id;
+                            IdCheck.Role_Id = editEmployeeModel.Role_id;
+                            IdCheck.Client_Id = editEmployeeModel.Client_Id;
+                            IdCheck.Project_Id = editEmployeeModel.Project_Id;
+                            IdCheck.Contact_No = editEmployeeModel.Contact_No;
+                            IdCheck.Reporting_Manager1 = editEmployeeModel.Reporting_Manager1;
+                            IdCheck.Reportinng_Manager2 = editEmployeeModel.Reportinng_Manager2;
+                            IdCheck.Joining_Date = editEmployeeModel.Joining_Date;
+                            IdCheck.End_Date = editEmployeeModel.End_Date;
+                            IdCheck.Modified_Date = DateTime.Now.Date;
+                            _timesheetContext.SaveChanges();
+                        }
+                        else
+                        {
+                            throw new EmployeeTypeIdException();
+                        }
+                    }
+                    else
+                    {
+                        throw new DesignationIdException();
+                    }
                 }
                 else
                 {
@@ -596,17 +766,21 @@ namespace Joy.TS.BAL.Implementation
                     }
                 }
             }
-            throw new EmployeeIdNotExistException();
+            else
+            {
+                throw new EmployeeIdNotExistException();
+            }
         }
 
-        public void EditEmployeIsActive(IsActiveModel EmployeIsActiveModel)
+        public void EditEmployeIsActive(IsActiveModel EmployeIsActiveModel, bool Is_Active)
         {
+
             var records = _timesheetContext.employees.Where(a => EmployeIsActiveModel.Id.Contains(a.Employee_Id));
             if (records.Count() != 0)
             {
                 foreach (var r in records)
                 {
-                    r.Is_Active = EmployeIsActiveModel.Is_Active;
+                    r.Is_Active = Is_Active;
                 }
                 _timesheetContext.SaveChanges();
             }
@@ -614,8 +788,8 @@ namespace Joy.TS.BAL.Implementation
             {
                 throw new EmployeeIdNotExistException();
             }
-        }
 
+        }
         public IQueryable<Employee> GetByEmployeeId(int id)
         {
             var employee = _timesheetContext.employees.AsQueryable();
@@ -627,6 +801,49 @@ namespace Joy.TS.BAL.Implementation
             else
             {
                 throw new EmployeeIdNotExistException();
+            }
+        }
+
+        public IEnumerable<EmployeeIsActiveModel> GetEmployeeIsActive(bool? isActive)
+        {
+
+            var data = from Emp in _timesheetContext.employees
+                       join Des in this._timesheetContext.designations
+                       on Emp.Designation_Id equals Des.Designation_Id
+                       join ty in this._timesheetContext.employeeTypes
+                       on Emp.Employee_Type_Id equals ty.Employee_Type_Id
+                       orderby Emp.First_Name
+                       select new EmployeeIsActiveModel
+                       {
+                           Employee_Id = Emp.Employee_Id,
+                           First_Name = Emp.First_Name,
+                           Last_Name = Emp.Last_Name,
+                           Full_Name = Emp.First_Name + " " + Emp.Last_Name,
+                           Employee_code = Emp.Employee_code,
+                           Reporting_Manager1 = Emp.Reporting_Manager1,
+                           Reportinng_Manager2 = Emp.Reportinng_Manager2,
+                           Employee_Type = ty.Employee_Type,
+                           Email = Emp.Official_Email,
+                           Role_Id = Emp.Role_Id,
+                           Designation = Des.Designation,
+                           Contact_No = Emp.Contact_No,
+                           Joining_Date = Emp.Joining_Date.Date,
+                           End_Date = Emp.End_Date.HasValue ?
+                                      Emp.End_Date.Value : DateTime.MinValue.Date,
+
+                           Is_Active = Emp.Is_Active
+                       };
+            if (isActive == true)
+            {
+                return data.Where(e => e.Is_Active).ToList();
+            }
+            else if (isActive == false)
+            {
+                return data.Where(e => !e.Is_Active).ToList();
+            }
+            else
+            {
+                return data.ToList();
             }
         }
 
@@ -644,16 +861,17 @@ namespace Joy.TS.BAL.Implementation
                            Employee_Id = Emp.Employee_Id,
                            First_Name = Emp.First_Name,
                            last_Name = Emp.Last_Name,
+                           Full_Name = Emp.First_Name + " " + Emp.Last_Name,
                            Employee_code = Emp.Employee_code,
                            Reporting_Manager1 = Emp.Reporting_Manager1,
                            Reportinng_Manager2 = Emp.Reportinng_Manager2,
                            Employee_Type_Id = Emp.Employee_Type_Id,
-                           Employee_Type_Name = EmpTy.Employee_Type,
+                           Employee_Type = EmpTy.Employee_Type,
                            Official_Email = Emp.Official_Email,
                            Alternate_Email = Emp.Alternate_Email,
 
                            Designation_Id = Emp.Designation_Id,
-                           Designation_Name = Des.Designation,
+                           Designation = Des.Designation,
                            Contact_No = Emp.Contact_No,
                            Joining_Date = Emp.Joining_Date,
                            End_Date = Emp.End_Date.HasValue ?
@@ -697,7 +915,6 @@ namespace Joy.TS.BAL.Implementation
             _timesheetContext.employeeProject.Update(item);
             _timesheetContext.SaveChanges();
         }
-
         public List<GetEmployeeProjectsByIdModel> GetEmployeeProjectsById(int Id)
         {
             var res = new GetEmployeeProjectsByIdModel();
@@ -752,10 +969,12 @@ namespace Joy.TS.BAL.Implementation
         public void AddHrContactInfo(AddHrContactModel addHrContactModel)
         {
             var table = _timesheetContext.employees.FirstOrDefault(a => a.Official_Email == addHrContactModel.Hr_Email_Id);
-            var doubleentry = _timesheetContext.hrContactInformations.FirstOrDefault(a => a.Hr_Email_Id == table.Official_Email || a.Hr_Contact_No == table.Contact_No);
+
 
             if (table != null)
             {
+                var doubleentry = _timesheetContext.hrContactInformations.FirstOrDefault(a => a.Hr_Email_Id == table.Official_Email || a.Hr_Contact_No == table.Contact_No);
+
                 if (doubleentry == null)
                 {
                     var data = new HrContactInformation();
@@ -776,12 +995,12 @@ namespace Joy.TS.BAL.Implementation
                     }
                     else if (doubleentry.Hr_Contact_No == table.Contact_No && doubleentry.Hr_Email_Id != table.Official_Email)
                     {
-                        throw new HrConatactException();
+                        throw new HrContactException();
                     }
                     else
                     {
                         throw new HrMailExistException();
-                        throw new HrConatactException();
+                        throw new HrContactException();
                     }
                 }
             }
@@ -816,28 +1035,28 @@ namespace Joy.TS.BAL.Implementation
                     }
                     else
                     {
-                        throw new Exception("Contact number already exists");
+                        throw new HrContactException();
                     }
                 }
                 else
                 {
-                    throw new Exception("Email Id already exists");
+                    throw new HrMailExistException();
                 }
             }
             else
             {
-                throw new Exception("Id does not Exist");
+                throw new HrIdException();
             }
         }
 
-        public void EditHrContactInfoIsActive(IsActiveModel HrContactInfoIsActiveModel)
+        public void EditHrContactInfoIsActive(IsActiveModel HrContactInfoIsActiveModel, bool Is_Active)
         {
             var records = _timesheetContext.hrContactInformations.Where(a => HrContactInfoIsActiveModel.Id.Contains(a.Hr_Contact_Id));
             if (records.Count() != 0)
             {
                 foreach (var r in records)
                 {
-                    r.Is_Active = HrContactInfoIsActiveModel.Is_Active;
+                    r.Is_Active = Is_Active;
                 }
                 _timesheetContext.SaveChanges();
             }
@@ -847,7 +1066,6 @@ namespace Joy.TS.BAL.Implementation
             }
 
         }
-
         public IQueryable<HrContactInformation> GetByHrContactId(int id)
         {
             var hrContact = _timesheetContext.hrContactInformations.AsQueryable();
@@ -859,6 +1077,34 @@ namespace Joy.TS.BAL.Implementation
             else
             {
                 throw new Exception();
+            }
+        }
+
+        public IEnumerable<HrContactInfoIsActiveModel> GetHrContactInfoIsActive(bool? isActive)
+        {
+
+            var data = from H in this._timesheetContext.hrContactInformations
+                       orderby H.First_Name
+                       select new HrContactInfoIsActiveModel
+                       {
+                           Hr_Contact_Id = H.Hr_Contact_Id,
+                           Hr_Name = H.First_Name + " " + H.Last_Name,
+                           Hr_Email_Id = H.Hr_Email_Id,
+                           Hr_Contact_No = H.Hr_Contact_No,
+                           Is_Active = H.Is_Active,
+                       };
+
+            if (isActive == true)
+            {
+                return data.Where(e => e.Is_Active).ToList();
+            }
+            else if (isActive == false)
+            {
+                return data.Where(e => !e.Is_Active).ToList();
+            }
+            else
+            {
+                return data.ToList();
             }
         }
 
@@ -882,8 +1128,141 @@ namespace Joy.TS.BAL.Implementation
             return _timesheetContext.hrContactInformations.Where(e => e.Is_Active == true).OrderBy(e => e.First_Name).AsQueryable();
         }
 
+        //Timesheet status
 
+        public List<GetTimeSheetStatusModel> GetTimeSheetStatus()
+        {
+            var data = (from a in _timesheetContext.timeSheetSummarys
+                        select new { a } into t1
+                        group t1 by t1.a.Year into g
+                        select new GetTimeSheetStatusModel
+                        {
+                            Year = g.Key
+                        });
+            return data.ToList();
+        }
 
+        public IEnumerable<TimeSheetStatusByYearModel> GetTimeSheetStatusByYear(int Year)
+        {
+            var data = from ts in _timesheetContext.timeSheetSummarys
+                       join fis in _timesheetContext.Fiscal_Years
+                       on ts.Fiscal_Year_ID equals fis.Fiscal_Year_ID
+                       where ts.Year == Year
+                       orderby fis.Month
+                       group ts by new
+                       {
+                           ts.Fiscal_Year_ID,
+                           ts.Status,
+                           fis.Month
+                       } into g
 
+                       select new TimeSheetStatusByYearModel
+                       {
+                           MonthID = g.Key.Fiscal_Year_ID,
+                           Month = g.Key.Month,
+                           status = g.Key.Status,
+                           Statuscount = g.Count()
+                       };
+            return data.ToList();
+        }
+
+        public IEnumerable<EmployeeTimeSheetByMonthModel> GetTimeSheetStatusByMonth(int month_id, int year)                      //GETTIMESHEETBY MONTH
+        {
+            var data = from emp in _timesheetContext.employees
+                       join ts in _timesheetContext.timeSheetSummarys
+                       on emp.Employee_Id equals ts.Employee_Id
+                       where (ts.Fiscal_Year_ID == month_id && ts.Year == year)
+                       join emptyp in _timesheetContext.employeeTypes
+                       on emp.Employee_Type_Id equals emptyp.Employee_Type_Id
+                       select new EmployeeTimeSheetByMonthModel
+                       {
+                           Employee_Id = emp.Employee_Id,
+                           Employee_Type = emptyp.Employee_Type,
+                           Full_Name = emp.First_Name + " " + emp.Last_Name,
+                           EmailId = emp.Official_Email,
+                           NoOfDaysWorked = ts.No_Of_days_Worked,
+                           NoOfLeaveTaken = ts.No_Of_Leave_Taken,
+                           Total_Hours = ts.Total_Working_Hours,
+                           Reporting_Manager = emp.Reporting_Manager1,
+                           Status = ts.Status
+                       };
+            return data.ToList();
+        }
+
+        public IEnumerable<GetTimesheetSummaryMonthYearEmployeeModel> GetTimesheetSummaryMonthYearEmployee(int Month_id, int Year_id, int Employee_Id)
+        {
+            var data = from ts in _timesheetContext.timeSheetSummarys
+                       join t in _timesheetContext.timeSheets
+                       on ts.TimesheetSummary_Id equals t.TimesheetSummary_Id
+                       join pro in _timesheetContext.projects
+                       on t.Project_Id equals pro.Project_Id
+                       where ts.Year == Year_id &&
+                       ts.Fiscal_Year_ID == Month_id &&
+                       ts.Employee_Id == Employee_Id
+
+                       select new GetTimesheetSummaryMonthYearEmployeeModel
+                       {
+                           Day = t.Day,
+                           Date = t.Date.ToString(),
+                           Status = t.Leave.ToString(),
+                           Project = pro.Project_Name,
+                           Duration = t.Duration_in_Hours.ToString()
+                       };
+            return data.ToList();
+        }
+
+        //View Previous changes
+
+        public IEnumerable<ViewPreviousChangesModel> GetViewPreviousChanges()
+        {
+            var data = from emp in _timesheetContext.viewPreviousChanges
+                       join des in _timesheetContext.designations
+                       on emp.Designation_Id equals des.Designation_Id
+                       join emptyp in _timesheetContext.employeeTypes
+                       on emp.Employee_Type_Id equals emptyp.Employee_Type_Id
+                       where (emp.Modified_Date != null
+                       || des.Modified_Date != null
+                       || emptyp.Modified_Date != null)
+                       select new ViewPreviousChangesModel
+                       {
+                           Employee_Id = emp.Employee_Id,
+                           Full_Name = emp.First_Name + " " + emp.Last_Name,
+                           Employee_Type = emptyp.Employee_Type,
+                           EmailId = emp.Email,
+                           Joining_Date = emp.Joining_Date.ToString("dd/MM/yyyy"),
+                           Modified_Date = emp.Modified_Date.HasValue ?
+                            emp.Modified_Date.Value.ToString("dd/MM/yyyy") : string.Empty,
+                           Designation = des.Designation,
+                           Contact_No = emp.Contact_No,
+                           Reporting_Manager = emp.Reporting_Manager1
+                       };
+            return data.ToList();
+        }
+
+        public IEnumerable<ViewPreviousChangesByIdModel> GetViewPreviousChangesById(int Id)
+        {
+            var view = from v in this._timesheetContext.viewPreviousChanges
+                       join typ in this._timesheetContext.employeeTypes
+                       on v.Employee_Type_Id equals typ.Employee_Type_Id
+                       join des in this._timesheetContext.designations
+                       on v.Designation_Id equals des.Designation_Id
+                       where (v.Employee_Id == Id)
+                       orderby v.Modified_Date
+
+                       select new ViewPreviousChangesByIdModel
+                       {
+                           Full_Name = v.First_Name + " " + v.Last_Name,
+                           EmailId = v.Email,
+                           Employee_Id = v.Employee_Id,
+                           Employee_Type = typ.Employee_Type,
+                           Reporting_Manager1 = v.Reporting_Manager1,
+                           Contact_No = v.Contact_No,
+                           Designation = des.Designation,
+                           Joining_Date = v.Joining_Date.Date,
+                           Modified_Date = v.Modified_Date.HasValue ? v.Modified_Date.Value.Date : DateTime.MinValue,
+                           End_Date = v.End_Date.HasValue ? v.End_Date.Value.Date : DateTime.MinValue
+                       };
+            return view.ToList();
+        }
     }
 }
