@@ -28,7 +28,12 @@ namespace Joy.TS.BAL.DomainModel
             public double Total_Working_Hours { get; set; }
             public string Status { get; set; }
         }
-
+        //forgetPassword
+        public class ForgetPassword
+        {
+            public string Email { get; set; }
+            public string Password { get; set; }
+        }
         // AddTimesheet
         public class AddTimeSheet_SummaryModel
         {

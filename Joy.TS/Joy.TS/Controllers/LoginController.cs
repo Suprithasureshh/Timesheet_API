@@ -127,5 +127,25 @@ namespace Joy.TS.Api.Controllers
         {
             return _timesheetContext.employees.ToList();
         }
+
+        [HttpPut]
+        [Route("ForgetPassword")]
+        public IActionResult ResetPassword(ForgetPassword forgetPassword)
+        {
+            var data = _timesheetContext.employees.FirstOrDefault(i => i.Official_Email==forgetPassword.Email);
+            if (data== null)
+            {
+                return NotFound();
+            }
+            string Passwordpattern = "^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?])[A-Za-z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]{8,}$";
+            if (!Regex.IsMatch(forgetPassword.Password, Passwordpattern))
+            {
+                return BadRequest("Password should contain first letter should capital letter and one special symbol");
+            }
+            data.Password = forgetPassword.Password;
+            _timesheetContext.employees.Update(data);
+            _timesheetContext.SaveChanges();
+            return Ok("Password is reset");
+        }
     }
 }
