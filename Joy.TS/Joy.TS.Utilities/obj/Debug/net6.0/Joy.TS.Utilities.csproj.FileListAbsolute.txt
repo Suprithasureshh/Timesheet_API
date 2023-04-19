@@ -26,3 +26,17 @@ C:\Users\Subhash R\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Utilities\obj\De
 C:\Users\Subhash R\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Utilities\obj\Debug\net6.0\Joy.TS.Utilities.pdb
 C:\Users\Subhash R\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Utilities\obj\Debug\net6.0\Joy.TS.Utilities.genruntimeconfig.cache
 C:\Users\Subhash R\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Utilities\obj\Debug\net6.0\ref\Joy.TS.Utilities.dll
+C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Utilities\bin\Debug\net6.0\Joy.TS.Utilities.deps.json
+C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Utilities\bin\Debug\net6.0\Joy.TS.Utilities.runtimeconfig.json
+C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Utilities\bin\Debug\net6.0\Joy.TS.Utilities.dll
+C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Utilities\bin\Debug\net6.0\Joy.TS.Utilities.pdb
+C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Utilities\obj\Debug\net6.0\Joy.TS.Utilities.csproj.AssemblyReference.cache
+C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Utilities\obj\Debug\net6.0\Joy.TS.Utilities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Utilities\obj\Debug\net6.0\Joy.TS.Utilities.AssemblyInfoInputs.cache
+C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Utilities\obj\Debug\net6.0\Joy.TS.Utilities.AssemblyInfo.cs
+C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Utilities\obj\Debug\net6.0\Joy.TS.Utilities.csproj.CoreCompileInputs.cache
+C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Utilities\obj\Debug\net6.0\Joy.TS.Utilities.dll
+C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Utilities\obj\Debug\net6.0\refint\Joy.TS.Utilities.dll
+C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Utilities\obj\Debug\net6.0\Joy.TS.Utilities.pdb
+C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Utilities\obj\Debug\net6.0\Joy.TS.Utilities.genruntimeconfig.cache
+C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Utilities\obj\Debug\net6.0\ref\Joy.TS.Utilities.dll

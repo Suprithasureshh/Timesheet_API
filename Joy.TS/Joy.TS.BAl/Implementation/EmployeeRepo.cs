@@ -69,8 +69,9 @@ namespace Joy.TS.BAL.Implementation
 
             foreach (var s in AddTimeSheet_SummaryModel.addTimesheetDay)
             {
+                var M = _timesheetContext.projects.FirstOrDefault(i => i.Project_Name == s.Project_Id);
                 var T = new TimeSheets();
-                T.Project_Id = s.Project_Id;
+                T.Project_Id = M.Project_Id;
                 T.Leave = s.Leave;
                 T.Date = s.Date;
                 T.Day = s.Day;
@@ -80,8 +81,6 @@ namespace Joy.TS.BAL.Implementation
                 _timesheetContext.timeSheets.Add(T);
                 _timesheetContext.SaveChanges();
             }
-            //var t = DateTime.Now.Month - 1;
-            //var data = _timesheetContext.Fiscal_Years.Find(t);
             return "Employee TimeSheet Added...!";
         }
 

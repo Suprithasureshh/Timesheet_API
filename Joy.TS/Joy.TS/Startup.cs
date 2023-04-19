@@ -70,6 +70,13 @@ namespace Joy.TS.Api
             // Adding application services
             services.AddTransient<IAdmin, AdminRepo>();
             services.AddTransient<EmployeeInterface, EmployeeRepo>();
+            services.AddCors(options => {
+                options.AddPolicy("AllowAnyOrigin", builder => {
+                    builder.AllowAnyOrigin();
+                    builder.AllowAnyMethod();
+                    builder.AllowAnyHeader();
+                });
+            });
         }
 
 
@@ -91,7 +98,12 @@ namespace Joy.TS.Api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Joy.TS.Api V1");
                 c.RoutePrefix = "swagger";
             });
-
+            app.UseCors(
+ builder => {
+     builder.AllowAnyOrigin();
+     builder.AllowAnyMethod();
+     builder.AllowAnyHeader();
+ });
             app.UseHttpsRedirection();
 
             app.UseRouting();

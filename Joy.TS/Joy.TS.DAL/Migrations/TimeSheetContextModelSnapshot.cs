@@ -392,7 +392,7 @@ namespace Joy.TS.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Duration_in_Hrs")
+                    b.Property<int>("Duration_in_Hours")
                         .HasColumnType("int");
 
                     b.Property<int>("Employee_Id")
@@ -423,6 +423,9 @@ namespace Joy.TS.DAL.Migrations
                     b.Property<string>("Alternate_Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Client_Id")
+                        .HasColumnType("int");
 
                     b.Property<string>("Contact_No")
                         .IsRequired()
@@ -464,6 +467,9 @@ namespace Joy.TS.DAL.Migrations
 
                     b.Property<DateTime?>("Modified_Date")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("Project_Id")
+                        .HasColumnType("int");
 
                     b.Property<string>("Reporting_Manager1")
                         .IsRequired()

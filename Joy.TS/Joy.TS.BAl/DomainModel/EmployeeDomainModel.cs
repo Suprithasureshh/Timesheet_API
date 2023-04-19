@@ -50,7 +50,7 @@ namespace Joy.TS.BAL.DomainModel
         {
             [ForeignKey("Employee_Id")]
             public int Employee_Id { get; set; }
-            public int Project_Id { get; set; }
+            public string Project_Id { get; set; }
             [DataType(DataType.Date)]
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
             public Nullable<DateTime> Date { get; set; }

@@ -50,8 +50,14 @@ namespace Joy.TS.Api.Controllers
             _configuration.GetSection("AppSettings:Token").Value!));
             var creds = new SigningCredentials(newKey, SecurityAlgorithms.HmacSha512Signature);
             var token = new JwtSecurityToken(claims: claims, expires: DateTime.Now.AddDays(1), signingCredentials: creds);
-            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-            return Ok(jwt);
+            var y = _timesheetContext.employees.FirstOrDefault(e => e.Official_Email == loginModel.Email);
+            return Ok(new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                expiration = token.ValidTo,
+                Employee_Id = y.Employee_Id,
+                Role_Id = y.Role_Id,
+            });
 
         }
         [HttpPost]
@@ -83,6 +89,7 @@ namespace Joy.TS.Api.Controllers
             emp.Alternate_Email = registerModel.Alternate_Email;
             emp.Contact_No = registerModel.Contact_No;
             emp.Create_Date = DateTime.Now.Date;
+            emp.Role_Id = registerModel.role_id;
             emp.Joining_Date = registerModel.Joining_Date;
             emp.Is_Active = true;
             emp.Password = registerModel.Password;

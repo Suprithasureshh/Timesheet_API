@@ -143,6 +143,7 @@ namespace Joy.TS.BAL.DomainModel
             public string Reporting_Manager1 { get; set; }
             public string Reportinng_Manager2 { get; set; }
             public int Employee_Type_Id { get; set; }
+            public int role_id { get; set; }
 
             [EmailAddress(ErrorMessage = "Invalid Email Address")]
             public string Official_Email { get; set; }
