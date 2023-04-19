@@ -39,25 +39,40 @@ namespace Joy.TS.BAL.Implementation
 
         public void AddClient(AddClientModel model)
         {
-            var data = new Client();
-            data.Client_Name = model.Client_Name;
-            data.Create_Date = DateTime.UtcNow.Date;
-            data.Is_Active = true;
+            var ClientCheck = _timesheetContext.clients.FirstOrDefault(e => e.Client_Name == model.Client_Name);
+            if (ClientCheck == null)
+            {
+                var data = new Client();
+                data.Client_Name = model.Client_Name;
+                data.Create_Date = DateTime.UtcNow.Date;
+                data.Is_Active = true;
 
-            _timesheetContext.clients.Add(data);
-            _timesheetContext.SaveChanges();
+                _timesheetContext.clients.Add(data);
+                _timesheetContext.SaveChanges();
+            }
+            else
+            {
+                throw new ClientNameExistException();
+            }
         }
 
         public void EditClient(EditClientModel editClientModel)
         {
-            var ClientId = _timesheetContext.clients.FirstOrDefault(e =>
-            e.Client_Id == editClientModel.Client_Id);
+            var ClientId = _timesheetContext.clients.FirstOrDefault(e => e.Client_Id == editClientModel.Client_Id);
+            var ClientCheck = _timesheetContext.clients.FirstOrDefault(e => e.Client_Id != editClientModel.Client_Id && e.Client_Name == editClientModel.Client_Name);
 
             if (ClientId != null)
             {
-                ClientId.Client_Name = editClientModel.Client_Name;
-                ClientId.Modified_Date = DateTime.UtcNow.Date;
-                _timesheetContext.SaveChanges();
+                if (ClientCheck == null)
+                {
+                    ClientId.Client_Name = editClientModel.Client_Name;
+                    ClientId.Modified_Date = DateTime.UtcNow.Date;
+                    _timesheetContext.SaveChanges();
+                }
+                else
+                {
+                    throw new ClientNameExistException();
+                }
             }
             else
             {
@@ -842,7 +857,7 @@ namespace Joy.TS.BAL.Implementation
             }
         }
 
-        public void EditEmployeIsActive(IsActiveModel EmployeIsActiveModel, bool Is_Active)
+        public void EditEmployeeIsActive(IsActiveModel EmployeIsActiveModel, bool Is_Active)
         {
 
             var records = _timesheetContext.employees.Where(a => EmployeIsActiveModel.Id.Contains(a.Employee_Id));
@@ -1083,8 +1098,8 @@ namespace Joy.TS.BAL.Implementation
         public void EditHrContactInfo(EditHrContactModel editHrContactModel)
         {
             var IdCheck = _timesheetContext.hrContactInformations.FirstOrDefault(h => h.Hr_Contact_Id == editHrContactModel.Hr_Contact_Id);
-            var EmailCheck = _timesheetContext.hrContactInformations.FirstOrDefault(h => h.Hr_Email_Id == editHrContactModel.Hr_Email_Id);
-            var PhoneCheck = _timesheetContext.hrContactInformations.FirstOrDefault(h => h.Hr_Contact_No == editHrContactModel.Hr_Contact_No);
+            var EmailCheck = _timesheetContext.hrContactInformations.FirstOrDefault(h => h.Hr_Contact_Id != editHrContactModel.Hr_Contact_Id && h.Hr_Email_Id == editHrContactModel.Hr_Email_Id);
+            var PhoneCheck = _timesheetContext.hrContactInformations.FirstOrDefault(h => h.Hr_Contact_Id != editHrContactModel.Hr_Contact_Id && h.Hr_Contact_No == editHrContactModel.Hr_Contact_No);
 
             var doublee = _timesheetContext.hrContactInformations.FirstOrDefault(g => g.Hr_Contact_Id != editHrContactModel.Hr_Contact_Id &&
             (g.Hr_Contact_No == editHrContactModel.Hr_Contact_No));

@@ -232,9 +232,9 @@ namespace Joy.TS.Api.Controllers
         }
 
         [HttpPut("EditEmployeIsActive")]
-        public void EditEmployeIsActive(IsActiveModel EmployeIsActiveModel, bool Is_Active)
+        public void EditEmployeeIsActive(IsActiveModel EmployeIsActiveModel, bool Is_Active)
         {
-            _admin.EditEmployeeTypeIsActive(EmployeIsActiveModel, Is_Active);
+            _admin.EditEmployeeIsActive(EmployeIsActiveModel, Is_Active);
         }
 
         [HttpGet("GetByEmployeeId")]

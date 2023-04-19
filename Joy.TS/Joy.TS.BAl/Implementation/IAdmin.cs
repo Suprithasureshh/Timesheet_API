@@ -57,7 +57,7 @@ namespace Joy.TS.BAL.Implementation
         //Employee
         void AddEmployee(AddEmployeeModel addEmployeeModel);
         void EditEmployee(EditEmployeeModel editEmployeeModel);
-        void EditEmployeIsActive(IsActiveModel EmployeIsActiveModel, bool Is_Active);
+        void EditEmployeeIsActive(IsActiveModel EmployeIsActiveModel, bool Is_Active);
         IQueryable<Employee> GetByEmployeeId(int id);
         List<GetAllEmployeeByDesIdEmpTypeIdModel> GetAllEmployeeByDesIdEmpTypeId();
         IEnumerable<EmployeeIsActiveModel> GetEmployeeIsActive(bool? isActive);

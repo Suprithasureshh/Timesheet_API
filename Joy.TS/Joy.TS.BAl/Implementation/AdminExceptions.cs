@@ -15,6 +15,11 @@ namespace Joy.TS.BAL.Implementation
         public ClientIdException() { }
         public ClientIdException(string message) : base(message) { }
     }
+    public class ClientNameExistException : Exception
+    {
+        public ClientNameExistException() { }
+        public ClientNameExistException(string message) : base(message) { }
+    }
 
     //Project
     public class ProjectIdNotExistException : Exception
@@ -133,6 +138,9 @@ namespace Joy.TS.BAL.Implementation
                 //Client
                 case ClientIdException:
                     context.Result = new BadRequestObjectResult("No client has the entered id");
+                    break;
+                case ClientNameExistException:
+                    context.Result = new BadRequestObjectResult("Client Name already exists");
                     break;
 
                 //Project
