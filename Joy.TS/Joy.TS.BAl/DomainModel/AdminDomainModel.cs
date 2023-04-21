@@ -157,6 +157,7 @@ namespace Joy.TS.BAL.DomainModel
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
             public DateTime Joining_Date { get; set; }
             public DateTime? End_Date { get; set; }
+            public int role_id { get; set; }    
         }
 
         public class EditEmployeeModel
