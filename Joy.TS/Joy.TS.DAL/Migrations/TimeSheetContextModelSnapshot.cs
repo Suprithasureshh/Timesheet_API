@@ -83,7 +83,6 @@ namespace Joy.TS.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Employee_Id"));
 
                     b.Property<string>("Alternate_Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Client_Id")
@@ -343,11 +342,9 @@ namespace Joy.TS.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ImagePathTimesheet")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImagePathUpload")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
