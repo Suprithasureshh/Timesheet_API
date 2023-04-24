@@ -36,7 +36,7 @@ namespace Joy.TS.DAL.Model
         public string Official_Email { get; set; }
 
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
-        public string Alternate_Email { get; set; }
+        public string? Alternate_Email { get; set; }
 
         [ForeignKey("Employee_Type_Id")]
         public int Client_Id { get; set; }

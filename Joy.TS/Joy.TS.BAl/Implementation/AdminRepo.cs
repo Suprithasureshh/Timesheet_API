@@ -776,12 +776,12 @@ namespace Joy.TS.BAL.Implementation
             {
                 if (doubleentry == null || doubleentry.Employee_Id == IdCheck.Employee_Id)
                 {
-                    if (_timesheetContext.designations.FirstOrDefault(e => e.Designation_Id == editEmployeeModel.Designation_Id) != null)
-                    {
-                        if (_timesheetContext.employeeTypes.FirstOrDefault(e => e.Employee_Type_Id == editEmployeeModel.Employee_Type_Id) != null)
-                        {
-                            if (_timesheetContext.roles.FirstOrDefault(e => e.Role_Id == editEmployeeModel.Role_id) != null)
-                            {
+                    //if (_timesheetContext.designations.FirstOrDefault(e => e.Designation_Id == editEmployeeModel.Designation_Id) != null)
+                    //{
+                    //    if (_timesheetContext.employeeTypes.FirstOrDefault(e => e.Employee_Type_Id == editEmployeeModel.Employee_Type_Id) != null)
+                    //    {
+                    //        if (_timesheetContext.roles.FirstOrDefault(e => e.Role_Id == editEmployeeModel.Role_id) != null)
+                    //        {
                                 data.Employee_Id = IdCheck.Employee_Id;
                                 data.First_Name = IdCheck.First_Name;
                                 data.Last_Name = IdCheck.Last_Name;
@@ -814,6 +814,23 @@ namespace Joy.TS.BAL.Implementation
                                 IdCheck.Role_Id = editEmployeeModel.Role_id;
                                 //IdCheck.Client_Id = editEmployeeModel.Client_Id;
                                 //IdCheck.Project_Id = editEmployeeModel.Project_Id;
+
+                                var des = _timesheetContext.designations.FirstOrDefault(e => e.Designation == editEmployeeModel.Designation);
+                                var empType = _timesheetContext.employeeTypes.FirstOrDefault(e => e.Employee_Type == editEmployeeModel.Employee_Type);
+                                var role = _timesheetContext.roles.FirstOrDefault(e => e.Role == editEmployeeModel.Role);
+                                if (des != null)
+                                {
+                                IdCheck.Designation_Id = des.Designation_Id;
+                                }
+                                if (empType != null)
+                                {
+                                    IdCheck.Employee_Type_Id = empType.Employee_Type_Id;
+                                }                             
+                                if (role != null)
+                                {
+                                    IdCheck.Role_Id = role.Role_Id;
+                                }
+
                                 IdCheck.Contact_No = editEmployeeModel.Contact_No;
                                 IdCheck.Reporting_Manager1 = editEmployeeModel.Reporting_Manager1;
                                 IdCheck.Reportinng_Manager2 = editEmployeeModel.Reportinng_Manager2;
@@ -832,21 +849,21 @@ namespace Joy.TS.BAL.Implementation
                                     _timesheetContext.SaveChanges();
                                 }
 
-                            }
-                            else
-                            {
-                                throw new RoleIdException();
-                            }
-                        }
-                        else
-                        {
-                            throw new EmployeeTypeIdException();
-                        }
-                    }
-                    else
-                    {
-                        throw new DesignationIdException();
-                    }
+                    //        }
+                    //        else
+                    //        {
+                    //            throw new RoleIdException();
+                    //        }
+                    //    }
+                    //    else
+                    //    {
+                    //        throw new EmployeeTypeIdException();
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    throw new DesignationIdException();
+                    //}
                 }
                 else
                 {
