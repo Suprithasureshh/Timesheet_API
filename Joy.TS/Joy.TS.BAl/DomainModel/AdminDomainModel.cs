@@ -428,6 +428,20 @@ namespace Joy.TS.BAL.DomainModel
             public string Duration { get; set; }
         }
 
+        public class EditTimeSheetStatusModel
+        {
+
+            public string Timesheet_Status { get; set; }
+            public List<EditTimeSheetModelById> EditTimeSheetModelById { get; set; }
+        }
+        public class EditTimeSheetModelById
+        {
+
+            public int Employee_id { get; set; }
+            public int Month_Id { get; set; }
+            public int Year { get; set; }
+        }
+
 
 
         //View Previous changes
@@ -459,5 +473,24 @@ namespace Joy.TS.BAL.DomainModel
             public DateTime Modified_Date { get; set; }
 
         }
+
+
+        //Excel
+        public class ExcelEditTimesheetStatusByMonthModel
+        {
+            public int EmployeeId { get; set; }
+            public string EmployeeName { get; set; }
+            public string EmployeeType { get; set; }
+            public double NoOfDaysWorked { get; set; }
+            public string Month { get; set; }
+            public int Year { get; set; }
+            public double NoOfLeaveTaken { get; set; }
+            public double TotalHours { get; set; }
+            public string EmailId { get; set; }
+            public string ReportingManager { get; set; }
+            public string Status { get; set; }
+
+        }
+
     }
 }

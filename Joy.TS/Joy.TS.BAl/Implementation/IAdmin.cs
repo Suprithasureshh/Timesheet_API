@@ -86,9 +86,13 @@ namespace Joy.TS.BAL.Implementation
         IEnumerable<TimeSheetStatusByYearModel> GetTimeSheetStatusByYear(int Year);
         IEnumerable<EmployeeTimeSheetByMonthModel> GetTimeSheetStatusByMonth(int Month_id, int Year);
         IEnumerable<GetTimesheetSummaryMonthYearEmployeeModel> GetTimesheetSummaryMonthYearEmployee(int Month_id, int Year_id, int Employee_Id);
+        void EditTimesheetStatus(EditTimeSheetStatusModel editTimeSheetStatusModel);
 
         //View Previous changes
         IEnumerable<ViewPreviousChangesModel> GetViewPreviousChanges();
         IEnumerable<ViewPreviousChangesByIdModel> GetViewPreviousChangesById(int Id);
+
+        //Excel
+        string ExcelEditTimesheetStatusByMonth(int Year, int Month_id);
     }
 }

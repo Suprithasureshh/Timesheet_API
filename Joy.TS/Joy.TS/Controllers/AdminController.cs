@@ -2,6 +2,7 @@
 using Joy.TS.DAL.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using static Joy.TS.BAL.DomainModel.AdminDomainModel;
 
 namespace Joy.TS.Api.Controllers
@@ -366,6 +367,12 @@ namespace Joy.TS.Api.Controllers
             return _admin.GetTimesheetSummaryMonthYearEmployee(Month_id, Year_id, Employee_Id);
         }
 
+        [HttpPut("EditTimesheetStatus")]
+        public void EditTimesheetStatus(EditTimeSheetStatusModel editTimeSheetStatusModel)
+        {
+            _admin.EditTimesheetStatus(editTimeSheetStatusModel);
+        }
+
         //ViewPreviousChanges
 
         [HttpGet("GetViewPreviousChanges")]
@@ -379,5 +386,21 @@ namespace Joy.TS.Api.Controllers
         {
             return _admin.GetViewPreviousChangesById(Id);
         }
+
+        //ExportExcel
+
+        [HttpGet]
+        public IActionResult ExportExcel(int year, int Fiscial_Year_Id)
+        {
+            var fileName = _admin.ExcelEditTimesheetStatusByMonth(year, Fiscial_Year_Id);
+            var provider = new FileExtensionContentTypeProvider();
+            if (!provider.TryGetContentType(fileName, out var contentType))
+            {
+                contentType = "application/octet-stream";
+            }
+            byte[] file = System.IO.File.ReadAllBytes(fileName);
+            return File(file, contentType, Path.GetFileName(fileName));
+        }
+
     }
 }

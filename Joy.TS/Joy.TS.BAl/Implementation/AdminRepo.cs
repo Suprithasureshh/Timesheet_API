@@ -1,4 +1,7 @@
-﻿using Joy.TS.DAL.Data;
+﻿using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml;
+using Joy.TS.DAL.Data;
 using Joy.TS.DAL.Model;
 using System;
 using System.Collections.Generic;
@@ -1296,7 +1299,23 @@ namespace Joy.TS.BAL.Implementation
             return data.ToList();
         }
 
-        //View Previous changes
+        //Edit Approve
+        public void EditTimesheetStatus(EditTimeSheetStatusModel editTimeSheetStatusModel)
+        {
+            foreach (var b in editTimeSheetStatusModel.EditTimeSheetModelById)
+            {
+                var timeSlot = _timesheetContext.timeSheetSummarys.FirstOrDefault
+                (e => (e.Employee_Id == b.Employee_id && e.Year == b.Year && e.Fiscal_Year_ID == b.Month_Id));
+                //if (timeSlot != null)
+                // {
+                timeSlot.Status = editTimeSheetStatusModel.Timesheet_Status;
+                _timesheetContext.SaveChanges();
+                //}
+            }
+        }
+
+
+            //View Previous changes
 
         public IEnumerable<ViewPreviousChangesModel> GetViewPreviousChanges()
         {
@@ -1348,6 +1367,212 @@ namespace Joy.TS.BAL.Implementation
                            End_Date = v.End_Date.HasValue ? v.End_Date.Value.Date : DateTime.MinValue
                        };
             return view.ToList();
+        }
+
+        //ExportExcelEditTimesheetStatusByMonthModel
+
+        public string ExcelEditTimesheetStatusByMonth(int Year, int Month_id)
+        {
+            var data = from emp in _timesheetContext.employees
+                       join ts in _timesheetContext.timeSheetSummarys
+                       on emp.Employee_Id equals ts.Employee_Id
+                       join emptyp in _timesheetContext.employeeTypes
+                       on emp.Employee_Type_Id equals emptyp.Employee_Type_Id
+                       join fis in _timesheetContext.Fiscal_Years
+                       on ts.Fiscal_Year_ID equals fis.Fiscal_Year_ID
+                       where ts.Fiscal_Year_ID == Month_id && ts.Year == Year
+                       select new ExcelEditTimesheetStatusByMonthModel
+                       {
+                           EmployeeId = emp.Employee_Id,
+                           EmployeeType = emptyp.Employee_Type,
+                           EmployeeName = emp.First_Name + " " + emp.Last_Name,
+                           EmailId = emp.Official_Email,
+                           Month = fis.Month,
+                           Year = ts.Year,
+                           NoOfDaysWorked = ts.No_Of_days_Worked,
+                           NoOfLeaveTaken = ts.No_Of_Leave_Taken,
+                           TotalHours = ts.Total_Working_Hours,
+                           Status = ts.Status,
+                           ReportingManager = emp.Reporting_Manager1
+                       };
+
+            return CreateExcelDoc(data.ToList());
+
+        }
+
+        public string CreateExcelDoc(List<ExcelEditTimesheetStatusByMonthModel> timeSheetData)
+        {
+            string fileName = Path.Combine(Path.GetTempPath(), "TimeSheet" + ".xlsx");
+            //Directory.CreateDirectory(fileName);
+            using (SpreadsheetDocument document = SpreadsheetDocument.Create(fileName, SpreadsheetDocumentType.Workbook))
+            {
+                WorkbookPart workbookPart = document.AddWorkbookPart();
+                workbookPart.Workbook = new Workbook();
+
+                WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+                worksheetPart.Worksheet = new Worksheet();
+
+                // Adding style
+                WorkbookStylesPart stylePart = workbookPart.AddNewPart<WorkbookStylesPart>();
+                stylePart.Stylesheet = GenerateStylesheet();
+                stylePart.Stylesheet.Save();
+
+                // Setting up columns
+                Sheets sheets = workbookPart.Workbook.AppendChild(new Sheets());
+                Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "excel_edit_timesheet_status_by_month" };
+                sheets.Append(sheet);
+                workbookPart.Workbook.Save();
+                SheetData sheetData = worksheetPart.Worksheet.AppendChild(new SheetData());
+
+                var firstRow = new Row();
+                firstRow.Append(
+                     ConstructCell($"TimeSheet for {timeSheetData[0].Month + "-" + timeSheetData[0].Year}", CellValues.String, 1)
+                      );
+
+                sheetData.Append(firstRow);
+
+                var secondRow = new Row();
+                sheetData.Append(secondRow);
+
+                var thirdRow = new Row();
+                thirdRow.Append(
+                    ConstructCell("Employee_Name", CellValues.String, 1),
+                    ConstructCell(string.Empty, CellValues.String, 1),
+                    ConstructCell("Type", CellValues.String, 1),
+                    ConstructCell(string.Empty, CellValues.String, 1),
+                    ConstructCell("MailId", CellValues.String, 1),
+                    ConstructCell(string.Empty, CellValues.String, 1),
+                    ConstructCell("ReportingManager", CellValues.String, 1),
+                    ConstructCell(string.Empty, CellValues.String, 1),
+                    ConstructCell("NoDaysWorked", CellValues.String, 1),
+                    ConstructCell(string.Empty, CellValues.String, 1),
+                    ConstructCell("NoLeaveTaken", CellValues.String, 1),
+                    ConstructCell(string.Empty, CellValues.String, 1),
+                    ConstructCell("TotalHours", CellValues.String, 1),
+                    ConstructCell(string.Empty, CellValues.String, 1),
+                    ConstructCell("Status", CellValues.String, 1)
+                    );
+                sheetData.AppendChild(thirdRow);
+
+                foreach (var sheetdata in timeSheetData)
+                {
+                    var row = new Row();
+                    row.Append(
+                        ConstructCell(sheetdata.EmployeeName, CellValues.String, 1),
+                        ConstructCell(string.Empty, CellValues.String, 1),
+                        ConstructCell(sheetdata.EmployeeType, CellValues.String, 1),
+                        ConstructCell(string.Empty, CellValues.String, 1),
+                        ConstructCell(sheetdata.EmailId, CellValues.String, 1),
+                        ConstructCell(string.Empty, CellValues.String, 1),
+                        ConstructCell(sheetdata.ReportingManager, CellValues.String, 1),
+                        ConstructCell(string.Empty, CellValues.String, 1),
+                        ConstructCell(sheetdata.NoOfDaysWorked, CellValues.Number, 1),
+                        ConstructCell(string.Empty, CellValues.String, 1),
+                        ConstructCell(sheetdata.NoOfLeaveTaken, CellValues.Number, 1),
+                        ConstructCell(string.Empty, CellValues.String, 1),
+                        ConstructCell(sheetdata.TotalHours, CellValues.Number, 1),
+                        ConstructCell(string.Empty, CellValues.String, 1),
+                        ConstructCell(sheetdata.Status, CellValues.String, 1)
+                        );
+
+                    if (sheetdata.Status.ToLower() == "approved")
+                    {
+                        row.Append(
+                        ConstructCell(sheetdata.Status, CellValues.String, 2));
+                    }
+                    else if (sheetdata.Status.ToLower() == "rejected")
+                    {
+                        row.Append(
+                        ConstructCell(sheetdata.Status, CellValues.String, 3));
+                    }
+                    else
+                    {
+                        row.Append(
+                        ConstructCell(sheetdata.Status, CellValues.String, 4));
+                    }
+                    sheetData.AppendChild(row);
+                }
+
+                worksheetPart.Worksheet.Save();
+                return fileName;
+            }
+        }
+
+        private Cell ConstructCell(dynamic value, CellValues dataType, uint styleIndex = 0)
+        {
+            return new Cell()
+            {
+                CellValue = new CellValue(value),
+                DataType = new EnumValue<CellValues>(dataType),
+                StyleIndex = styleIndex
+            };
+        }
+
+        private Stylesheet GenerateStylesheet()
+        {
+            Stylesheet styleSheet = null;
+            Fonts fonts = new Fonts(
+                new Font( // Index 0 - default
+                    new FontSize() { Val = 10 }
+                ),
+                new Font( // Index 1 - header
+                    new FontSize() { Val = 10 },
+                    new Bold(),
+                    new Color() { Rgb = "#FFFFFF" }
+               ),
+                new Font( // Index 1 - header
+                    new FontSize() { Val = 10 },
+                    new Bold(),
+                    new Color() { Rgb = "#FFFFFF" }
+                ),
+                new Font( // Index 1 - header
+                    new FontSize() { Val = 10 },
+                    new Bold(),
+                    new Color() { Rgb = "#FFFFFF" }
+                    ));
+            Fills fills = new Fills(
+                    new Fill(new PatternFill() { PatternType = PatternValues.None }), // Index 0 - default
+                    new Fill(new PatternFill() { PatternType = PatternValues.Gray125 }), // Index 1 - default
+                    new Fill(new PatternFill(new ForegroundColor { Rgb = new HexBinaryValue() { Value = "99ff00" } })
+                    { PatternType = PatternValues.Solid }),
+                    new Fill(new PatternFill(new ForegroundColor { Rgb = new HexBinaryValue() { Value = "ff0900" } })
+                    { PatternType = PatternValues.Solid }),
+                    new Fill(new PatternFill(new ForegroundColor { Rgb = new HexBinaryValue() { Value = "00ffc4" } })
+                    { PatternType = PatternValues.Solid })// Index 2 - header
+                );
+
+            Borders borders = new Borders(
+                    new Border(), // index 0 default
+                    new Border( // index 1 black border
+                        new LeftBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                        new RightBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                        new TopBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                        new BottomBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                        new DiagonalBorder()),
+                     new Border( // index 1 black border
+                        new LeftBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                        new RightBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                        new TopBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                        new BottomBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                        new DiagonalBorder()),
+                      new Border( // index 1 black border
+                        new LeftBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                        new RightBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                        new TopBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                        new BottomBorder(new Color() { Auto = true }) { Style = BorderStyleValues.Thin },
+                        new DiagonalBorder())
+                );
+
+            CellFormats cellFormats = new CellFormats(
+                    new CellFormat(), // default
+                    new CellFormat { FontId = 0, FillId = 0, BorderId = 1, ApplyBorder = true }, // body
+                    new CellFormat { FontId = 1, FillId = 2, BorderId = 1, ApplyFill = true },
+                    new CellFormat { FontId = 1, FillId = 3, BorderId = 1, ApplyFill = true },
+                    new CellFormat { FontId = 1, FillId = 4, BorderId = 1, ApplyFill = true }// header
+                );
+
+            styleSheet = new Stylesheet(fonts, fills, borders, cellFormats);
+            return styleSheet;
         }
     }
 }
