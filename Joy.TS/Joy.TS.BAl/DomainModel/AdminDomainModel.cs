@@ -368,14 +368,13 @@ namespace Joy.TS.BAL.DomainModel
             public string Reporting_Manager1 { get; set; }
             public string Reportinng_Manager2 { get; set; }
             public string Employee_Type { get; set; }
-            public string Email { get; set; }
+            public string Official_Email { get; set; }
             public int Role_Id { get; set; }
             public string Designation { get; set; }
             public string Contact_No { get; set; }
             public DateTime Joining_Date { get; set; }
             public DateTime End_Date { get; set; }
             public bool Is_Active { get; set; }
-
         }
 
         public class HrContactInfoIsActiveModel
@@ -385,10 +384,6 @@ namespace Joy.TS.BAL.DomainModel
             public string Hr_Email_Id { get; set; }
             public string Hr_Contact_No { get; set; }
             public bool Is_Active { get; set; }
-
-
-
-
         }
 
         //Timesheet status

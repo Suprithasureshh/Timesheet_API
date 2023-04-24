@@ -771,6 +771,7 @@ namespace Joy.TS.BAL.Implementation
             var doubleentry = _timesheetContext.employees.FirstOrDefault(e => e.Employee_Id != editEmployeeModel.Employee_Id && (e.Official_Email == editEmployeeModel.Official_Email || e.Contact_No == editEmployeeModel.Contact_No
             || e.Official_Email == editEmployeeModel.Alternate_Email || e.Alternate_Email == editEmployeeModel.Alternate_Email));
             var data = new ViewPreviousChanges();
+            var hrContact = _timesheetContext.hrContactInformations.FirstOrDefault(e => e.Hr_Email_Id == editEmployeeModel.Official_Email);
             if (IdCheck != null)
             {
                 if (doubleentry == null || doubleentry.Employee_Id == IdCheck.Employee_Id)
@@ -820,6 +821,17 @@ namespace Joy.TS.BAL.Implementation
                                 IdCheck.End_Date = editEmployeeModel.End_Date;
                                 IdCheck.Modified_Date = DateTime.Now.Date;
                                 _timesheetContext.SaveChanges();
+
+                                if (_timesheetContext.hrContactInformations.FirstOrDefault(e => e.Hr_Email_Id == editEmployeeModel.Official_Email) != null)
+                                {
+                                    hrContact.First_Name = editEmployeeModel.First_Name;
+                                    hrContact.Last_Name = editEmployeeModel.Last_Name;
+                                    hrContact.Hr_Email_Id = editEmployeeModel.Official_Email;
+                                    hrContact.Hr_Contact_No = editEmployeeModel.Contact_No;
+                                    //hrContact.Is_Active = true;
+                                    _timesheetContext.SaveChanges();
+                                }
+
                             }
                             else
                             {
@@ -911,7 +923,7 @@ namespace Joy.TS.BAL.Implementation
                            Reporting_Manager1 = Emp.Reporting_Manager1,
                            Reportinng_Manager2 = Emp.Reportinng_Manager2,
                            Employee_Type = ty.Employee_Type,
-                           Email = Emp.Official_Email,
+                           Official_Email = Emp.Official_Email,
                            Role_Id = Emp.Role_Id,
                            Designation = Des.Designation,
                            Contact_No = Emp.Contact_No,
