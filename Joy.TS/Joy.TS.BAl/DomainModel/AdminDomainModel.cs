@@ -491,6 +491,11 @@ namespace Joy.TS.BAL.DomainModel
             public string Status { get; set; }
 
         }
+        public class ImageUpdate
+        {
+            public string ImagePathUpload { get; set; }
+            public string ImagePathTimesheet { get; set; }
+        }
 
     }
 }

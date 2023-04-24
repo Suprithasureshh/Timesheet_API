@@ -41,7 +41,7 @@ namespace Joy.TS.DAL.Model
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
         public Nullable<DateTime> Modified_Date { get; set; }
-        public string ImagePathUpload { get; set; }
-        public string ImagePathTimesheet { get; set; }
+        public string? ImagePathUpload { get; set; }
+        public string? ImagePathTimesheet { get; set; }
     }
 }

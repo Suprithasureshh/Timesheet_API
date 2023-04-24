@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Formats.Asn1;
 using System.Globalization;
 using System.Text;
+using static Joy.TS.BAL.DomainModel.AdminDomainModel;
 using static Joy.TS.BAL.DomainModel.EmployeeDomainModel;
 
 namespace Joy.TS.Api.Controllers
@@ -112,6 +113,12 @@ namespace Joy.TS.Api.Controllers
                 }; return result;
             }
         }
-
+        //ImageUpdate TimesheetSummery
+        [HttpPut]
+        [Route("ImageUpdate")]
+        public IActionResult ImageUpdate(ImageUpdate imageUpdate)
+        {
+            return employeeInterface.ImageUpdate(imageUpdate);
+        }
     }
 }

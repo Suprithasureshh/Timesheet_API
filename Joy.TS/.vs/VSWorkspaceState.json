@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Joy.TS"
+    "\\Joy.TS",
+    "\\Joy.TS\\Controllers"
   ],
-  "SelectedNode": "\\Joy.TS\\Program.cs",
+  "SelectedNode": "\\Joy.TS\\Controllers\\AdminController.cs",
   "PreviewInSolutionExplorer": false
 }

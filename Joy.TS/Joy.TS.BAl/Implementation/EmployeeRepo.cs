@@ -12,6 +12,7 @@ using Joy.TS.DAL.Model;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static Joy.TS.BAL.DomainModel.AdminDomainModel;
 using static Joy.TS.BAL.DomainModel.EmployeeDomainModel;
 
 namespace Joy.TS.BAL.Implementation
@@ -29,7 +30,7 @@ namespace Joy.TS.BAL.Implementation
         }
 
         //DashBoard
-        public IEnumerable<GetDashboardModel> GetByDashboard(int id)
+        public IEnumerable<DomainModel.EmployeeDomainModel.GetDashboardModel> GetByDashboard(int id)
         {
             var e1 = _timesheetContext.timeSheetSummarys.Max(s => s.Year);
             var t = DateTime.Now.Month - 1;
@@ -38,7 +39,7 @@ namespace Joy.TS.BAL.Implementation
                        join f in _timesheetContext.Fiscal_Years
                        on d.Fiscal_Year_ID equals f.Fiscal_Year_ID
                        where (d.Year == e1 && d.Employee_Id == id && d.Fiscal_Year_ID == t)
-                       select new GetDashboardModel
+                       select new DomainModel.EmployeeDomainModel.GetDashboardModel
                        {
                            Status = d.Status,
                            Month = f.Month,
@@ -164,7 +165,22 @@ namespace Joy.TS.BAL.Implementation
             return query;
         }
 
-
+        //Image Update in TimesheetSummary
+        public IActionResult ImageUpdate(ImageUpdate imageUpdate)
+        {
+            var TS = new TimeSheetSummary();
+            var lastsummaryid = _timesheetContext.timeSheetSummarys.FirstOrDefault(item => item.Fiscal_Year_ID == DateTime.Now.Month - 1);
+            if(lastsummaryid != null)
+            {
+                TS.ImagePathUpload = imageUpdate.ImagePathUpload;
+                TS.ImagePathTimesheet = imageUpdate.ImagePathTimesheet;
+                _timesheetContext.timeSheetSummarys.Update(TS);
+                _timesheetContext.SaveChanges();
+                return Ok("Updated");
+            }
+            return NotFound();
+           
+        }
         //Upload Images
         public async Task<IActionResult> UploadImage(IFormFile image)
         {
