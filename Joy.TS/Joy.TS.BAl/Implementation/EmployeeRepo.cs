@@ -131,6 +131,8 @@ namespace Joy.TS.BAL.Implementation
                            Fiscal_Year_ID = ts.Fiscal_Year_ID,
                            Month = fis.Month,
                            Year = ts.Year,
+                           ImagePathTimesheet = ts.ImagePathTimesheet,
+                           ImagePathUpload = ts.ImagePathUpload,
                            NoOfdays_Worked = ts.No_Of_days_Worked,
                            NoOfLeave_Taken = ts.No_Of_Leave_Taken,
                            Total_Working_Hours = ts.Total_Working_Hours,
@@ -194,7 +196,6 @@ namespace Joy.TS.BAL.Implementation
             var imageBytes = System.IO.File.ReadAllBytes(fullPath);
             return File(imageBytes, "image/jpeg");
         }
-
 
 
         //Export to excel

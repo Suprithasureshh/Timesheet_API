@@ -27,6 +27,8 @@ namespace Joy.TS.BAL.DomainModel
             public double NoOfLeave_Taken { get; set; }
             public double Total_Working_Hours { get; set; }
             public string Status { get; set; }
+            public string ImagePathUpload { get; set; }
+            public string ImagePathTimesheet { get; set; }
         }
         //forgetPassword
         public class ForgetPassword

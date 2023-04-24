@@ -10,14 +10,14 @@
         "projectUniqueName": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj",
         "projectName": "Joy.TS.BAL",
         "projectPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj",
-        "packagesPath": "C:\\Users\\hi\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Subhash R\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\hi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Subhash R\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -108,14 +108,14 @@
         "projectUniqueName": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj",
         "projectName": "Joy.TS.DAL",
         "projectPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj",
-        "packagesPath": "C:\\Users\\hi\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Subhash R\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\hi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Subhash R\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -198,14 +198,14 @@
         "projectUniqueName": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS\\Joy.TS.Api.csproj",
         "projectName": "Joy.TS.Api",
         "projectPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS\\Joy.TS.Api.csproj",
-        "packagesPath": "C:\\Users\\hi\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Subhash R\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\hi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Subhash R\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
