@@ -149,6 +149,10 @@ namespace Joy.TS.BAL.DomainModel
 
             //[EmailAddress(ErrorMessage = "Invalid Email Address")]
             public string? Alternate_Email { get; set; }
+
+            [Required(ErrorMessage = "Password field is required")]
+            [RegularExpression(@"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$",
+            ErrorMessage = "Password should contain atleast one lowercase,uppercase,number and a symbol")]
             public string Password { get; set; }
             public int Designation_Id { get; set; }
             public string Contact_No { get; set; }
