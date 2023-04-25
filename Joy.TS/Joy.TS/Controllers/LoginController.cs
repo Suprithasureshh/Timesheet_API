@@ -40,7 +40,7 @@ namespace Joy.TS.Api.Controllers
             string Passwordpattern = "^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?])[A-Za-z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]{8,}$";
             if (loginModel.Password == "" || !Regex.IsMatch(loginModel.Password, Passwordpattern))
             {
-                return BadRequest("Password should contain first letter should capital letter and one special symbol");
+                return BadRequest("Wrong Password");
             }
             List<Claim> claims = new List<Claim>
             {
@@ -72,7 +72,7 @@ namespace Joy.TS.Api.Controllers
             var Email = await _timesheetContext.employees.FirstOrDefaultAsync(i => i.Official_Email == registerModel.Official_Email);
             if (Email != null)
             {
-                return BadRequest("User already existes");
+                return BadRequest("User already exists");
             }
             string Passwordpattern = "^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?])[A-Za-z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]{8,}$";
             if (registerModel.Password == "" || !Regex.IsMatch(registerModel.Password, Passwordpattern))
