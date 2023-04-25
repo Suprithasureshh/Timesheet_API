@@ -382,8 +382,8 @@ namespace Joy.TS.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TimeSheet_Id"));
 
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<int?>("Date")
+                        .HasColumnType("int");
 
                     b.Property<string>("Day")
                         .IsRequired()
@@ -392,13 +392,13 @@ namespace Joy.TS.DAL.Migrations
                     b.Property<int>("Duration_in_Hours")
                         .HasColumnType("int");
 
-                    b.Property<int>("Employee_Id")
+                    b.Property<int?>("Employee_Id")
                         .HasColumnType("int");
 
                     b.Property<bool>("Leave")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Project_Id")
+                    b.Property<int?>("Project_Id")
                         .HasColumnType("int");
 
                     b.Property<int>("TimesheetSummary_Id")

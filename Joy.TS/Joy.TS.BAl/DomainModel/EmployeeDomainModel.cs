@@ -55,7 +55,7 @@ namespace Joy.TS.BAL.DomainModel
             public int Project_Id { get; set; }
             [DataType(DataType.Date)]
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
-            public Nullable<DateTime> Date { get; set; }
+            public int? Date { get; set; }
             public string Day { get; set; }
             public bool Leave { get; set; }
             public int Duration_in_Hrs { get; set; }
@@ -64,7 +64,7 @@ namespace Joy.TS.BAL.DomainModel
         public class GetTimeSheetByIdModel
         {
             [ForeignKey("Employee_Id")]
-            public int Employee_Id { get; set; }
+            public int? Employee_Id { get; set; }
             [ForeignKey("Fiscal_Year_ID")]
             public int Fiscal_Year_ID { get; set; }
 
@@ -74,9 +74,8 @@ namespace Joy.TS.BAL.DomainModel
             public double NoOfdays_Worked { get; set; }
             public double NoOfLeave_Taken { get; set; }
             public double Total_Working_Hours { get; set; }
-            [DataType(DataType.Date)]
-            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
-            public Nullable<DateTime> Date { get; set; }
+           
+            public int? Date { get; set; }
 
             [DataType(DataType.Date)]
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
@@ -86,7 +85,7 @@ namespace Joy.TS.BAL.DomainModel
 
 
             [ForeignKey("Project_Id")]
-            public int Project_Id { get; set; }
+            public int? Project_Id { get; set; }
 
         }
         //getUse Data
