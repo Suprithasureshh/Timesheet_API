@@ -1465,20 +1465,13 @@ namespace Joy.TS.BAL.Implementation
 
                 var thirdRow = new Row();
                 thirdRow.Append(
-                    ConstructCell("Employee_Name", CellValues.String, 1),
-                    ConstructCell(string.Empty, CellValues.String, 1),
-                    ConstructCell("Type", CellValues.String, 1),
-                    ConstructCell(string.Empty, CellValues.String, 1),
-                    ConstructCell("MailId", CellValues.String, 1),
-                    ConstructCell(string.Empty, CellValues.String, 1),
-                    ConstructCell("ReportingManager", CellValues.String, 1),
-                    ConstructCell(string.Empty, CellValues.String, 1),
-                    ConstructCell("NoDaysWorked", CellValues.String, 1),
-                    ConstructCell(string.Empty, CellValues.String, 1),
-                    ConstructCell("NoLeaveTaken", CellValues.String, 1),
-                    ConstructCell(string.Empty, CellValues.String, 1),
-                    ConstructCell("TotalHours", CellValues.String, 1),
-                    ConstructCell(string.Empty, CellValues.String, 1),
+                    ConstructCell("Employee Name", CellValues.String, 1),                   
+                    ConstructCell("Employee Type", CellValues.String, 1),
+                    ConstructCell("Official Email", CellValues.String, 1),
+                    ConstructCell("Reporting Manager", CellValues.String, 1),
+                    ConstructCell("No Of Days Worked", CellValues.String, 1),
+                    ConstructCell("No Of Leave Taken", CellValues.String, 1),
+                    ConstructCell("Total Hours", CellValues.String, 1),
                     ConstructCell("Status", CellValues.String, 1)
                     );
                 sheetData.AppendChild(thirdRow);
@@ -1488,19 +1481,12 @@ namespace Joy.TS.BAL.Implementation
                     var row = new Row();
                     row.Append(
                         ConstructCell(sheetdata.EmployeeName, CellValues.String, 1),
-                        ConstructCell(string.Empty, CellValues.String, 1),
                         ConstructCell(sheetdata.EmployeeType, CellValues.String, 1),
-                        ConstructCell(string.Empty, CellValues.String, 1),
                         ConstructCell(sheetdata.EmailId, CellValues.String, 1),
-                        ConstructCell(string.Empty, CellValues.String, 1),
                         ConstructCell(sheetdata.ReportingManager, CellValues.String, 1),
-                        ConstructCell(string.Empty, CellValues.String, 1),
                         ConstructCell(sheetdata.NoOfDaysWorked, CellValues.Number, 1),
-                        ConstructCell(string.Empty, CellValues.String, 1),
                         ConstructCell(sheetdata.NoOfLeaveTaken, CellValues.Number, 1),
-                        ConstructCell(string.Empty, CellValues.String, 1),
                         ConstructCell(sheetdata.TotalHours, CellValues.Number, 1),
-                        ConstructCell(string.Empty, CellValues.String, 1),
                         ConstructCell(sheetdata.Status, CellValues.String, 1)
                         );
 
