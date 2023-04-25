@@ -35,12 +35,17 @@ namespace Joy.TS.Api.Controllers
             var Email = await _timesheetContext.employees.FirstOrDefaultAsync(i => i.Official_Email == loginModel.Email);
             if (Email == null)
             {
-                return NotFound();
+                return NotFound("Email Not Found");
             }
             string Passwordpattern = "^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?])[A-Za-z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]{8,}$";
             if (loginModel.Password == "" || !Regex.IsMatch(loginModel.Password, Passwordpattern))
             {
                 return BadRequest("Wrong Password");
+            }
+            var Password = await _timesheetContext.employees.FirstOrDefaultAsync(i => i.Password == loginModel.Password);
+            if (Password == null)
+            {
+                return NotFound("Password Not Found");
             }
             List<Claim> claims = new List<Claim>
             {
