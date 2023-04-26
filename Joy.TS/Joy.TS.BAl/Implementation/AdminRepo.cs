@@ -834,19 +834,15 @@ namespace Joy.TS.BAL.Implementation
                 }
                 else
                 {
-                    var p = _timesheetContext.employees.FirstOrDefault(e => e.Official_Email == editEmployeeModel.Official_Email || e.Contact_No == editEmployeeModel.Contact_No);
-                    if (p.Official_Email == editEmployeeModel.Official_Email && p.Contact_No != editEmployeeModel.Contact_No)
+                    var e = _timesheetContext.employees.FirstOrDefault(e => e.Official_Email != editEmployeeModel.Official_Email);
+                    var c = _timesheetContext.employees.FirstOrDefault(e => e.Contact_No != editEmployeeModel.Contact_No);
+                    if (e.Official_Email == editEmployeeModel.Official_Email)
                     {
                         throw new EmployeeEmailExistException();
                     }
-                    else if (p.Official_Email != editEmployeeModel.Official_Email && p.Contact_No == editEmployeeModel.Contact_No)
+                    else if (c.Official_Email == editEmployeeModel.Official_Email)
                     {
                         throw new EmployeeContactExistException();
-                    }
-                    else
-                    {
-                        throw new EmployeeContactExistException();
-                        throw new EmployeeEmailExistException();
                     }
                 }
             }
