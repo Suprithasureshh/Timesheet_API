@@ -23,7 +23,7 @@ namespace Joy.TS.DAL.Model
         [ForeignKey("Employee_Type_Id")]
         public int Employee_Type_Id { get; set; }
         public string Email { get; set; }
-        public string Alternate_Email { get; set; }
+        public string? Alternate_Email { get; set; }
 
         [ForeignKey("Designation_Id")]
         public int Designation_Id { get; set; }
