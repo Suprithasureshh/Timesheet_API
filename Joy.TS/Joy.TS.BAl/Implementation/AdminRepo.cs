@@ -98,7 +98,6 @@ namespace Joy.TS.BAL.Implementation
             {
                 throw new ClientIdException();
             }
-
         }
 
         public IQueryable<Client> GetByClientId(int id)
@@ -211,7 +210,6 @@ namespace Joy.TS.BAL.Implementation
             {
                 throw new ProjectCodeExistException();
             }
-
         }
 
         public void EditProject(EditProjectsModel editProjectsModel)
@@ -352,8 +350,6 @@ namespace Joy.TS.BAL.Implementation
         {
             return _timesheetContext.projects.Where(e => e.Is_Active == true).OrderBy(e => e.Project_Name).AsQueryable();
         }
-
-
 
         //Designation
 
@@ -573,8 +569,8 @@ namespace Joy.TS.BAL.Implementation
         public IEnumerable<EmployeeTypeIsActiveModel> GetEmployeeTypeIsActive(bool? isActive)
         {
 
-            var data = from a in this._timesheetContext.employeeTypes
-                       join b in this._timesheetContext.employees
+            var data = from a in _timesheetContext.employeeTypes
+                       join b in _timesheetContext.employees
                        on a.Employee_Type_Id equals b.Employee_Type_Id into employees
                        from b in employees.DefaultIfEmpty()
                        select new { a, b } into t1
@@ -918,7 +914,6 @@ namespace Joy.TS.BAL.Implementation
                            Joining_Date = Emp.Joining_Date.Date,
                            End_Date = Emp.End_Date.HasValue ?
                                       Emp.End_Date.Value : DateTime.MinValue.Date,
-
                            Is_Active = Emp.Is_Active
                        };
             if (isActive == true)
@@ -1274,7 +1269,9 @@ namespace Joy.TS.BAL.Implementation
                            NoOfLeaveTaken = ts.No_Of_Leave_Taken,
                            Total_Hours = ts.Total_Working_Hours,
                            Reporting_Manager = emp.Reporting_Manager1,
-                           Status = ts.Status
+                           Status = ts.Status,
+                           ImagePathUpload = ts.ImagePathUpload,
+                           ImagePathTimesheet = ts.ImagePathTimesheet
                        };
             return data.ToList();
         }

@@ -146,8 +146,6 @@ namespace Joy.TS.BAL.DomainModel
 
             [EmailAddress(ErrorMessage = "Invalid Email Address")]
             public string Official_Email { get; set; }
-
-            //[EmailAddress(ErrorMessage = "Invalid Email Address")]
             public string? Alternate_Email { get; set; }
 
             [Required(ErrorMessage = "Password field is required")]
@@ -160,8 +158,8 @@ namespace Joy.TS.BAL.DomainModel
             [DataType(DataType.Date)]
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
             public DateTime Joining_Date { get; set; }
-            public DateTime? End_Date { get; set; }
-            public int role_id { get; set; }    
+            public DateTime? End_Date { get; set; }  
+            public int role_id { get; set; }
         }
 
         public class EditEmployeeModel
@@ -421,6 +419,8 @@ namespace Joy.TS.BAL.DomainModel
             public string EmailId { get; set; }
             public string Reporting_Manager { get; set; }
             public string Status { get; set; }
+            public string ImagePathUpload { get; set; }
+            public string ImagePathTimesheet { get; set; }
         }
 
         public class GetTimesheetSummaryMonthYearEmployeeModel
