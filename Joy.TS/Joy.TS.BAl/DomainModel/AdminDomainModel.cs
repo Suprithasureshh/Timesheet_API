@@ -404,8 +404,10 @@ namespace Joy.TS.BAL.DomainModel
         {
             public int MonthID { get; set; }
             public string Month { get; set; }
-            public string status { get; set; }
-            public int Statuscount { get; set; }
+            public int TimeSheet_Count { get; set; }
+            public int Pending { get; set; }
+            public int Rejected { get; set; }
+            public int Approved { get; set; }
         }
 
         public class EmployeeTimeSheetByMonthModel

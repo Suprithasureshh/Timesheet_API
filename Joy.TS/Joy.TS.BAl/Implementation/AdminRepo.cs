@@ -695,7 +695,6 @@ namespace Joy.TS.BAL.Implementation
                             emp.Employee_code = addEmployeeModel.Employee_code;
                             emp.Reporting_Manager1 = addEmployeeModel.Reporting_Manager1;
                             emp.Reportinng_Manager2 = addEmployeeModel.Reportinng_Manager2;
-                            //emp.Role_Id = addEmployeeModel.Role_id;
                             emp.Official_Email = addEmployeeModel.Official_Email;
                             emp.Alternate_Email = addEmployeeModel.Alternate_Email;
                             emp.Contact_No = addEmployeeModel.Contact_No;
@@ -775,12 +774,6 @@ namespace Joy.TS.BAL.Implementation
             {
                 if (doubleentry == null || doubleentry.Employee_Id == IdCheck.Employee_Id)
                 {
-                    //if (_timesheetContext.designations.FirstOrDefault(e => e.Designation_Id == editEmployeeModel.Designation_Id) != null)
-                    //{
-                    //    if (_timesheetContext.employeeTypes.FirstOrDefault(e => e.Employee_Type_Id == editEmployeeModel.Employee_Type_Id) != null)
-                    //    {
-                    //        if (_timesheetContext.roles.FirstOrDefault(e => e.Role_Id == editEmployeeModel.Role_id) != null)
-                    //        {
                                 data.Employee_Id = IdCheck.Employee_Id;
                                 data.First_Name = IdCheck.First_Name;
                                 data.Last_Name = IdCheck.Last_Name;
@@ -790,8 +783,6 @@ namespace Joy.TS.BAL.Implementation
                                 data.Alternate_Email = IdCheck.Alternate_Email;
                                 data.Designation_Id = IdCheck.Designation_Id;
                                 data.Role_Id = IdCheck.Role_Id;
-                                //data.Client_Id = IdCheck.Client_Id;
-                                //data.Project_Id = IdCheck.Project_Id;
                                 data.Contact_No = IdCheck.Contact_No;
                                 data.Reporting_Manager1 = IdCheck.Reporting_Manager1;
                                 data.Reportinng_Manager2 = IdCheck.Reportinng_Manager2;
@@ -811,8 +802,6 @@ namespace Joy.TS.BAL.Implementation
                                 IdCheck.Alternate_Email = editEmployeeModel.Alternate_Email;
                                 IdCheck.Designation_Id = editEmployeeModel.Designation_Id;
                                 IdCheck.Role_Id = editEmployeeModel.Role_id;
-                                //IdCheck.Client_Id = editEmployeeModel.Client_Id;
-                                //IdCheck.Project_Id = editEmployeeModel.Project_Id;
 
                                 var des = _timesheetContext.designations.FirstOrDefault(e => e.Designation == editEmployeeModel.Designation);
                                 var empType = _timesheetContext.employeeTypes.FirstOrDefault(e => e.Employee_Type == editEmployeeModel.Employee_Type);
@@ -844,25 +833,8 @@ namespace Joy.TS.BAL.Implementation
                                     hrContact.Last_Name = editEmployeeModel.Last_Name;
                                     hrContact.Hr_Email_Id = editEmployeeModel.Official_Email;
                                     hrContact.Hr_Contact_No = editEmployeeModel.Contact_No;
-                                    //hrContact.Is_Active = true;
                                     _timesheetContext.SaveChanges();
                                 }
-
-                    //        }
-                    //        else
-                    //        {
-                    //            throw new RoleIdException();
-                    //        }
-                    //    }
-                    //    else
-                    //    {
-                    //        throw new EmployeeTypeIdException();
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    throw new DesignationIdException();
-                    //}
                 }
                 else
                 {
@@ -1265,24 +1237,26 @@ namespace Joy.TS.BAL.Implementation
                        on ts.Fiscal_Year_ID equals fis.Fiscal_Year_ID
                        where ts.Year == Year
                        orderby fis.Month
-                       group ts by new
+                       select new { ts, fis } into t1
+                       group t1 by new
                        {
-                           ts.Fiscal_Year_ID,
-                           ts.Status,
-                           fis.Month
+                           t1.ts.Fiscal_Year_ID,
+                           t1.fis.Month
                        } into g
 
                        select new TimeSheetStatusByYearModel
                        {
                            MonthID = g.Key.Fiscal_Year_ID,
                            Month = g.Key.Month,
-                           status = g.Key.Status,
-                           Statuscount = g.Count()
+                           TimeSheet_Count = g.Count(),
+                           Pending = g.Where(t => t.ts.Status == "Pending").Count(),
+                           Approved = g.Where(t => t.ts.Status == "Approved").Count(),
+                           Rejected = g.Where(t => t.ts.Status == "Rejected").Count()
                        };
             return data.ToList();
         }
 
-        public IEnumerable<EmployeeTimeSheetByMonthModel> GetTimeSheetStatusByMonth(int month_id, int year)                      //GETTIMESHEETBY MONTH
+            public IEnumerable<EmployeeTimeSheetByMonthModel> GetTimeSheetStatusByMonth(int month_id, int year)                      //GETTIMESHEETBY MONTH
         {
             var data = from emp in _timesheetContext.employees
                        join ts in _timesheetContext.timeSheetSummarys
