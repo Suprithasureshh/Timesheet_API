@@ -173,9 +173,9 @@ namespace Joy.TS.BAL.Implementation
             if(lastsummaryid != null)
             {
                 TS.Status = "Pending";
-                TS.ImagePathUpload = imageUpdate.ImagePathUpload;
-                TS.ImagePathTimesheet = imageUpdate.ImagePathTimesheet;
-                _timesheetContext.timeSheetSummarys.Update(TS);
+                lastsummaryid.ImagePathUpload = imageUpdate.ImagePathUpload;
+                lastsummaryid.ImagePathTimesheet = imageUpdate.ImagePathTimesheet;
+               // _timesheetContext.timeSheetSummarys.Update(TS);
                 _timesheetContext.SaveChanges();
                 return Ok("Updated");
             }
