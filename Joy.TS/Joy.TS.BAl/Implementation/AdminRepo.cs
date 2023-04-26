@@ -26,7 +26,7 @@ namespace Joy.TS.BAL.Implementation
         public IEnumerable<GetDashboardModel> GetDashboard(int year, int Month_Id)
         {
             var item = new GetDashboardModel();
-            var item1 = (from ts in this._timesheetContext.timeSheetSummarys
+            var item1 = (from ts in _timesheetContext.timeSheetSummarys
                          where (ts.Year == year && ts.Fiscal_Year_ID == Month_Id)
                          group ts by ts.Status into g
                          select new GetDashboardModel
@@ -34,7 +34,6 @@ namespace Joy.TS.BAL.Implementation
                              x = g.Key,
                              y = g.Count()
                          });
-
             return item1;
         }
 

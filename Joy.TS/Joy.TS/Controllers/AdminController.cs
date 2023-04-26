@@ -393,7 +393,7 @@ namespace Joy.TS.Api.Controllers
 
         //ExportExcel
 
-        [HttpGet]
+        [HttpGet("ExportTimesheetByMonthToExcel")]
         public IActionResult ExportExcel(int year, int Fiscial_Year_Id)
         {
             var fileName = _admin.ExcelEditTimesheetStatusByMonth(year, Fiscial_Year_Id);
