@@ -1430,7 +1430,7 @@ namespace Joy.TS.BAL.Implementation
 
         public string CreateExcelDoc(List<ExcelEditTimesheetStatusByMonthModel> timeSheetData)
         {
-            string fileName = Path.Combine(Path.GetTempPath(), "TimeSheet" + ".xlsx");
+            string fileName = Path.Combine(Path.GetTempPath(), $"TimeSheet of {timeSheetData[0].Month + "-" + timeSheetData[0].Year}" + ".xlsx");
             //Directory.CreateDirectory(fileName);
             using (SpreadsheetDocument document = SpreadsheetDocument.Create(fileName, SpreadsheetDocumentType.Workbook))
             {
@@ -1450,6 +1450,34 @@ namespace Joy.TS.BAL.Implementation
                 Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "excel_edit_timesheet_status_by_month" };
                 sheets.Append(sheet);
                 workbookPart.Workbook.Save();
+
+                // Define column widths
+                
+                Columns columns = new Columns();
+                
+                Column column1 = new Column() { Min = 1, Max = 1, Width = 25}; // Set width of column A to 20
+                columns.Append(column1);
+                Column column2 = new Column() { Min = 2, Max = 2, Width = 14 }; // Set width of column A to 20
+                columns.Append(column2);
+
+                Column column3 = new Column() { Min = 3, Max = 3, Width = 27 }; // Set width of column A to 20
+                columns.Append(column3);
+
+                for (int i = 4; i <= 6; i++)
+                {
+                    Column column4_6 = new Column() { Min = (uint)i, Max = (uint)i, Width = 18 }; // Set width of column A to 20
+                    columns.Append(column4_6);
+                }
+
+                for (int i = 7; i <= 9; i++)
+                {
+                    Column column7_9 = new Column() { Min = (uint)i, Max = (uint)i, Width = 11 }; // Set width of column A to 20
+                    columns.Append(column7_9);
+                }
+
+                worksheetPart.Worksheet.Append(columns);
+
+
                 SheetData sheetData = worksheetPart.Worksheet.AppendChild(new SheetData());
 
                 var firstRow = new Row();
@@ -1525,25 +1553,7 @@ namespace Joy.TS.BAL.Implementation
         private Stylesheet GenerateStylesheet()
         {
             Stylesheet styleSheet = null;
-            Fonts fonts = new Fonts(
-                new Font( // Index 0 - default
-                    new FontSize() { Val = 10 }
-                ),
-                new Font( // Index 1 - header
-                    new FontSize() { Val = 10 },
-                    new Bold(),
-                    new Color() { Rgb = "#FFFFFF" }
-               ),
-                new Font( // Index 1 - header
-                    new FontSize() { Val = 10 },
-                    new Bold(),
-                    new Color() { Rgb = "#FFFFFF" }
-                ),
-                new Font( // Index 1 - header
-                    new FontSize() { Val = 10 },
-                    new Bold(),
-                    new Color() { Rgb = "#FFFFFF" }
-                    ));
+            
             Fills fills = new Fills(
                     new Fill(new PatternFill() { PatternType = PatternValues.None }), // Index 0 - default
                     new Fill(new PatternFill() { PatternType = PatternValues.Gray125 }), // Index 1 - default
@@ -1579,13 +1589,13 @@ namespace Joy.TS.BAL.Implementation
 
             CellFormats cellFormats = new CellFormats(
                     new CellFormat(), // default
-                    new CellFormat { FontId = 0, FillId = 0, BorderId = 1, ApplyBorder = true }, // body
-                    new CellFormat { FontId = 1, FillId = 2, BorderId = 1, ApplyFill = true },
-                    new CellFormat { FontId = 1, FillId = 3, BorderId = 1, ApplyFill = true },
-                    new CellFormat { FontId = 1, FillId = 4, BorderId = 1, ApplyFill = true }// header
+                    new CellFormat { FontId = 0, FillId = 0, BorderId = 1, ApplyBorder = true, Alignment = new Alignment() { Horizontal = HorizontalAlignmentValues.Center } }, // body
+                    new CellFormat { FontId = 1, FillId = 2, BorderId = 1, ApplyFill = true, Alignment = new Alignment() { Horizontal = HorizontalAlignmentValues.Center } },
+                    new CellFormat { FontId = 1, FillId = 3, BorderId = 1, ApplyFill = true, Alignment = new Alignment() { Horizontal = HorizontalAlignmentValues.Center } },
+                    new CellFormat { FontId = 1, FillId = 4, BorderId = 1, ApplyFill = true, Alignment = new Alignment() { Horizontal = HorizontalAlignmentValues.Center } }// header
                 );
 
-            styleSheet = new Stylesheet(fonts, fills, borders, cellFormats);
+            styleSheet = new Stylesheet( fills, borders, cellFormats);
             return styleSheet;
         }
     }
