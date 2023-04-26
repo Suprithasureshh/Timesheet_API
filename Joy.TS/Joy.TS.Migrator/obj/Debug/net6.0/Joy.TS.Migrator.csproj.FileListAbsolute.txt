@@ -54,3 +54,17 @@ C:\Users\Thanushree S\Documents\GIT\Timesheet_API\Joy.TS\Joy.TS.Migrator\obj\Deb
 C:\Users\Thanushree S\Documents\GIT\Timesheet_API\Joy.TS\Joy.TS.Migrator\obj\Debug\net6.0\Joy.TS.Migrator.pdb
 C:\Users\Thanushree S\Documents\GIT\Timesheet_API\Joy.TS\Joy.TS.Migrator\obj\Debug\net6.0\Joy.TS.Migrator.genruntimeconfig.cache
 C:\Users\Thanushree S\Documents\GIT\Timesheet_API\Joy.TS\Joy.TS.Migrator\obj\Debug\net6.0\ref\Joy.TS.Migrator.dll
+C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Migrator\bin\Debug\net6.0\Joy.TS.Migrator.deps.json
+C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Migrator\bin\Debug\net6.0\Joy.TS.Migrator.runtimeconfig.json
+C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Migrator\bin\Debug\net6.0\Joy.TS.Migrator.dll
+C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Migrator\bin\Debug\net6.0\Joy.TS.Migrator.pdb
+C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Migrator\obj\Debug\net6.0\Joy.TS.Migrator.csproj.AssemblyReference.cache
+C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Migrator\obj\Debug\net6.0\Joy.TS.Migrator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Migrator\obj\Debug\net6.0\Joy.TS.Migrator.AssemblyInfoInputs.cache
+C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Migrator\obj\Debug\net6.0\Joy.TS.Migrator.AssemblyInfo.cs
+C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Migrator\obj\Debug\net6.0\Joy.TS.Migrator.csproj.CoreCompileInputs.cache
+C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Migrator\obj\Debug\net6.0\Joy.TS.Migrator.dll
+C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Migrator\obj\Debug\net6.0\refint\Joy.TS.Migrator.dll
+C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Migrator\obj\Debug\net6.0\Joy.TS.Migrator.pdb
+C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Migrator\obj\Debug\net6.0\Joy.TS.Migrator.genruntimeconfig.cache
+C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Migrator\obj\Debug\net6.0\ref\Joy.TS.Migrator.dll
