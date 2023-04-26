@@ -77,7 +77,7 @@ namespace Joy.TS.BAL.Implementation
                 T.Leave = s.Leave;
                 T.Date = s.Date;
                 T.Day = s.Day;
-                T.Employee_Id = s.Employee_Id;
+                T.Employee_Id = AddTimeSheet_SummaryModel.Employee_Id;
                 T.Duration_in_Hours = s.Duration_in_Hrs;
                 T.TimesheetSummary_Id = lastsummaryid;
                 _timesheetContext.timeSheets.Add(T);
@@ -172,6 +172,7 @@ namespace Joy.TS.BAL.Implementation
             var lastsummaryid = _timesheetContext.timeSheetSummarys.FirstOrDefault(item => item.Fiscal_Year_ID == DateTime.Now.Month - 1);
             if(lastsummaryid != null)
             {
+                TS.Status = "Pending";
                 TS.ImagePathUpload = imageUpdate.ImagePathUpload;
                 TS.ImagePathTimesheet = imageUpdate.ImagePathTimesheet;
                 _timesheetContext.timeSheetSummarys.Update(TS);
