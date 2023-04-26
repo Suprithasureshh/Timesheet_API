@@ -222,10 +222,9 @@ namespace Joy.TS.BAL.Implementation
                        join t in this._timesheetContext.timeSheets
                        on tsum.TimesheetSummary_Id equals t.TimesheetSummary_Id
                        join emp in this._timesheetContext.employees
-                       on t.Employee_Id equals emp.Employee_Id
-                       where (emp.Employee_Id == 92)
+                        on id equals emp.Employee_Id
                        join pro in this._timesheetContext.projects
-                       on t.Project_Id equals pro.Project_Id
+                       on project_id equals pro.Project_Id
                        join des in this._timesheetContext.designations
                        on emp.Designation_Id equals des.Designation_Id
 
@@ -238,8 +237,7 @@ namespace Joy.TS.BAL.Implementation
                            NoOfdays_Worked = tsum.No_Of_days_Worked.ToString(),
                            NoOfLeave_Taken = tsum.No_Of_Leave_Taken.ToString(),
                            Total_Working_Hours = tsum.Total_Working_Hours.ToString(),
-                           Date = t.Date.HasValue ?
-                                   t.Date.Value.ToString("dd") : ToString(),
+                           Date = t.Date.ToString(),
                            Day = t.Day,
                            Duration_in_Hrs = t.Duration_in_Hours.ToString(),
                            Year = tsum.Year,
