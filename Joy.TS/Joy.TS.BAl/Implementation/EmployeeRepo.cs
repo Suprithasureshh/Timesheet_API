@@ -169,7 +169,7 @@ namespace Joy.TS.BAL.Implementation
         public IActionResult ImageUpdate(ImageUpdate imageUpdate)
         {
             var TS = new TimeSheetSummary();
-            var lastsummaryid = _timesheetContext.timeSheetSummarys.FirstOrDefault(item => item.Fiscal_Year_ID == DateTime.Now.Month - 1);
+            var lastsummaryid = _timesheetContext.timeSheetSummarys.FirstOrDefault(item => item.Fiscal_Year_ID == DateTime.Now.Month - 1 && item.Employee_Id == imageUpdate.Employee_Id);
             if(lastsummaryid != null)
             {
                 TS.Status = "Pending";

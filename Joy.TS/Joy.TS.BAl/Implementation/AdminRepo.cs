@@ -116,12 +116,16 @@ namespace Joy.TS.BAL.Implementation
 
         public IEnumerable<ClinetIsActiveModel> GetClientIsActive(bool? isActive)
         {
-            var data = from C in _timesheetContext.clients
-                       join E in _timesheetContext.employees
-                       on C.Client_Id equals E.Client_Id into employees
-                       from E in employees.DefaultIfEmpty()
-                       select new { C, E } into t1
-                       group t1 by new { t1.C.Client_Id, t1.C.Client_Name, t1.C.Is_Active, t1.C.Create_Date } into g
+            var data = from e in _timesheetContext.employees
+                       join ep in _timesheetContext.employeeProject
+                       on e.Employee_Id equals ep.Employee_Id
+                       join p in _timesheetContext.projects
+                       on ep.Project_Id equals p.Project_Id
+                       join C in _timesheetContext.clients
+                       on p.Client_Id equals C.Client_Id into emp
+                       from E in emp.DefaultIfEmpty()
+                       select new { e,ep,p,E } into t1
+                       group t1 by new { t1.E.Client_Id, t1.E.Client_Name, t1.E.Is_Active, t1.E.Create_Date } into g
                        orderby g.Key.Client_Name
                        select new ClinetIsActiveModel
                        {
@@ -129,7 +133,7 @@ namespace Joy.TS.BAL.Implementation
                            Client_Name = g.Key.Client_Name,
                            Is_Active = g.Key.Is_Active,
                            Create_Date = g.Key.Create_Date,
-                           No_Of_Employees = g.Count(x => x.E != null)
+                           No_Of_Employees = g.Select(x => x.ep.Employee_Id).Distinct().Count()
                        };
             if (isActive == true)
             {
@@ -284,9 +288,9 @@ namespace Joy.TS.BAL.Implementation
         public IEnumerable<ProjectIsActiveModel> GetProjectIsActive(bool? isActive)
         {
             var data = from p in _timesheetContext.projects
-                       join e in _timesheetContext.employees
-                       on p.Project_Id equals e.Project_Id into employees
-                       from e in employees.DefaultIfEmpty()
+                       join ep in _timesheetContext.employeeProject
+                       on p.Project_Id equals ep.Project_Id into emp
+                       from e in emp.DefaultIfEmpty()
                        select new { p, e } into t1
                        group t1 by new
                        {
@@ -798,8 +802,7 @@ namespace Joy.TS.BAL.Implementation
                     IdCheck.Official_Email = editEmployeeModel.Official_Email;
                     IdCheck.Employee_code = editEmployeeModel.Employee_code;
                     IdCheck.Alternate_Email = editEmployeeModel.Alternate_Email;
-                    //IdCheck.Designation_Id = editEmployeeModel.Designation_Id;
-                    //IdCheck.Role_Id = editEmployeeModel.Role_id;
+
                     if (Role.Designation.ToLower() == "hr" || Role.Designation.ToLower() == "human resource" || Role.Designation.ToLower() == " admin"
                      || Role.Designation.ToLower() == "hr manager" || Role.Designation.ToLower() == "hr admin")
                     {
@@ -812,7 +815,7 @@ namespace Joy.TS.BAL.Implementation
 
                     var des = _timesheetContext.designations.FirstOrDefault(e => e.Designation == editEmployeeModel.Designation);
                     var empType = _timesheetContext.employeeTypes.FirstOrDefault(e => e.Employee_Type == editEmployeeModel.Employee_Type);
-                    //var role = _timesheetContext.roles.FirstOrDefault(e => e.Role == editEmployeeModel.Role);
+
                     if (des != null)
                     {
                         IdCheck.Designation_Id = des.Designation_Id;
@@ -821,19 +824,7 @@ namespace Joy.TS.BAL.Implementation
                     {
                         IdCheck.Employee_Type_Id = empType.Employee_Type_Id;
                     }
-                    //if (role != null)
-                    //{
-                    //    if (Role.Designation.ToLower() == "hr" || Role.Designation.ToLower() == "human resource" || Role.Designation.ToLower() == " admin"
-                    //     || Role.Designation.ToLower() == "hr manager" || Role.Designation.ToLower() == "hr admin")
-                    //    {
-                    //        IdCheck.Role_Id = 1;
-                    //    }
-                    //    else
-                    //    {
-                    //        IdCheck.Role_Id = 2;
-                    //    }
-                    //}
-
+                    
                     IdCheck.Contact_No = editEmployeeModel.Contact_No;
                     IdCheck.Reporting_Manager1 = editEmployeeModel.Reporting_Manager1;
                     IdCheck.Reportinng_Manager2 = editEmployeeModel.Reportinng_Manager2;
@@ -997,6 +988,10 @@ namespace Joy.TS.BAL.Implementation
 
             _timesheetContext.employeeProject.Add(data);
             _timesheetContext.SaveChanges();
+
+            //var empdata = _timesheetContext.employees.FirstOrDefault(e => e.Employee_Id== addEmployeeProjectModel.Employee_Id);
+            //empdata.Project_Id = addEmployeeProjectModel.Project_Id;
+            //_timesheetContext.SaveChanges();
         }
 
         public void EditEmployeeProject(EditEmployeeprojectModel editEmployeeprojectModel)
