@@ -701,7 +701,8 @@ namespace Joy.TS.BAL.Implementation
                             emp.Joining_Date = addEmployeeModel.Joining_Date;
                             emp.Create_Date = DateTime.UtcNow.Date;
 
-                            if (Role.Designation == "HR" || Role.Designation == "Human Resourse" || Role.Designation == "HR Admin")
+                            if (Role.Designation.ToLower() == "hr" || Role.Designation.ToLower() == "human resource" || Role.Designation.ToLower() == " admin"
+                                 || Role.Designation.ToLower() == "hr manager" || Role.Designation.ToLower() == "hr admin")
                             {
                                 emp.Role_Id = 1;
                             }
@@ -766,71 +767,89 @@ namespace Joy.TS.BAL.Implementation
             || e.Official_Email == editEmployeeModel.Alternate_Email || e.Alternate_Email == editEmployeeModel.Alternate_Email));
             var data = new ViewPreviousChanges();
             var hrContact = _timesheetContext.hrContactInformations.FirstOrDefault(e => e.Hr_Email_Id == editEmployeeModel.Official_Email);
+            var Role = _timesheetContext.designations.FirstOrDefault(e => e.Designation == editEmployeeModel.Designation);
             if (IdCheck != null)
             {
                 if (doubleentry == null || doubleentry.Employee_Id == IdCheck.Employee_Id)
                 {
-                                data.Employee_Id = IdCheck.Employee_Id;
-                                data.First_Name = IdCheck.First_Name;
-                                data.Last_Name = IdCheck.Last_Name;
-                                data.Employee_code = IdCheck.Employee_code;
-                                data.Employee_Type_Id = IdCheck.Employee_Type_Id;
-                                data.Email = IdCheck.Official_Email;
-                                data.Alternate_Email = IdCheck.Alternate_Email;
-                                data.Designation_Id = IdCheck.Designation_Id;
-                                data.Role_Id = IdCheck.Role_Id;
-                                data.Contact_No = IdCheck.Contact_No;
-                                data.Reporting_Manager1 = IdCheck.Reporting_Manager1;
-                                data.Reportinng_Manager2 = IdCheck.Reportinng_Manager2;
-                                data.Is_Active = IdCheck.Is_Active;
-                                data.Joining_Date = IdCheck.Joining_Date;
-                                data.End_Date = IdCheck.End_Date;
-                                data.Modified_Date = IdCheck.Modified_Date;
-                                _timesheetContext.viewPreviousChanges.Update(data);
-                                _timesheetContext.SaveChanges();
+                    data.Employee_Id = IdCheck.Employee_Id;
+                    data.First_Name = IdCheck.First_Name;
+                    data.Last_Name = IdCheck.Last_Name;
+                    data.Employee_code = IdCheck.Employee_code;
+                    data.Employee_Type_Id = IdCheck.Employee_Type_Id;
+                    data.Email = IdCheck.Official_Email;
+                    data.Alternate_Email = IdCheck.Alternate_Email;
+                    data.Designation_Id = IdCheck.Designation_Id;
+                    data.Role_Id = IdCheck.Role_Id;
+                    data.Contact_No = IdCheck.Contact_No;
+                    data.Reporting_Manager1 = IdCheck.Reporting_Manager1;
+                    data.Reportinng_Manager2 = IdCheck.Reportinng_Manager2;
+                    data.Is_Active = IdCheck.Is_Active;
+                    data.Joining_Date = IdCheck.Joining_Date;
+                    data.End_Date = IdCheck.End_Date;
+                    data.Modified_Date = IdCheck.Modified_Date;
+                    _timesheetContext.viewPreviousChanges.Update(data);
+                    _timesheetContext.SaveChanges();
 
-                                IdCheck.Employee_Id = editEmployeeModel.Employee_Id;
-                                IdCheck.First_Name = editEmployeeModel.First_Name;
-                                IdCheck.Last_Name = editEmployeeModel.Last_Name;
-                                IdCheck.Employee_Type_Id = editEmployeeModel.Employee_Type_Id;
-                                IdCheck.Official_Email = editEmployeeModel.Official_Email;
-                                IdCheck.Employee_code = editEmployeeModel.Employee_code;
-                                IdCheck.Alternate_Email = editEmployeeModel.Alternate_Email;
-                                IdCheck.Designation_Id = editEmployeeModel.Designation_Id;
-                                IdCheck.Role_Id = editEmployeeModel.Role_id;
+                    IdCheck.Employee_Id = editEmployeeModel.Employee_Id;
+                    IdCheck.First_Name = editEmployeeModel.First_Name;
+                    IdCheck.Last_Name = editEmployeeModel.Last_Name;
+                    IdCheck.Employee_Type_Id = editEmployeeModel.Employee_Type_Id;
+                    IdCheck.Official_Email = editEmployeeModel.Official_Email;
+                    IdCheck.Employee_code = editEmployeeModel.Employee_code;
+                    IdCheck.Alternate_Email = editEmployeeModel.Alternate_Email;
+                    //IdCheck.Designation_Id = editEmployeeModel.Designation_Id;
+                    //IdCheck.Role_Id = editEmployeeModel.Role_id;
+                    if (Role.Designation.ToLower() == "hr" || Role.Designation.ToLower() == "human resource" || Role.Designation.ToLower() == " admin"
+                     || Role.Designation.ToLower() == "hr manager" || Role.Designation.ToLower() == "hr admin")
+                    {
+                        IdCheck.Role_Id = 1;
+                    }
+                    else
+                    {
+                        IdCheck.Role_Id = 2;
+                    }
 
-                                var des = _timesheetContext.designations.FirstOrDefault(e => e.Designation == editEmployeeModel.Designation);
-                                var empType = _timesheetContext.employeeTypes.FirstOrDefault(e => e.Employee_Type == editEmployeeModel.Employee_Type);
-                                var role = _timesheetContext.roles.FirstOrDefault(e => e.Role == editEmployeeModel.Role);
-                                if (des != null)
-                                {
-                                IdCheck.Designation_Id = des.Designation_Id;
-                                }
-                                if (empType != null)
-                                {
-                                    IdCheck.Employee_Type_Id = empType.Employee_Type_Id;
-                                }                             
-                                if (role != null)
-                                {
-                                    IdCheck.Role_Id = role.Role_Id;
-                                }
+                    var des = _timesheetContext.designations.FirstOrDefault(e => e.Designation == editEmployeeModel.Designation);
+                    var empType = _timesheetContext.employeeTypes.FirstOrDefault(e => e.Employee_Type == editEmployeeModel.Employee_Type);
+                    //var role = _timesheetContext.roles.FirstOrDefault(e => e.Role == editEmployeeModel.Role);
+                    if (des != null)
+                    {
+                        IdCheck.Designation_Id = des.Designation_Id;
+                    }
+                    if (empType != null)
+                    {
+                        IdCheck.Employee_Type_Id = empType.Employee_Type_Id;
+                    }
+                    //if (role != null)
+                    //{
+                    //    if (Role.Designation.ToLower() == "hr" || Role.Designation.ToLower() == "human resource" || Role.Designation.ToLower() == " admin"
+                    //     || Role.Designation.ToLower() == "hr manager" || Role.Designation.ToLower() == "hr admin")
+                    //    {
+                    //        IdCheck.Role_Id = 1;
+                    //    }
+                    //    else
+                    //    {
+                    //        IdCheck.Role_Id = 2;
+                    //    }
+                    //}
 
-                                IdCheck.Contact_No = editEmployeeModel.Contact_No;
-                                IdCheck.Reporting_Manager1 = editEmployeeModel.Reporting_Manager1;
-                                IdCheck.Reportinng_Manager2 = editEmployeeModel.Reportinng_Manager2;
-                                IdCheck.Joining_Date = editEmployeeModel.Joining_Date;
-                                IdCheck.End_Date = editEmployeeModel.End_Date;
-                                IdCheck.Modified_Date = DateTime.Now.Date;
-                                _timesheetContext.SaveChanges();
+                    IdCheck.Contact_No = editEmployeeModel.Contact_No;
+                    IdCheck.Reporting_Manager1 = editEmployeeModel.Reporting_Manager1;
+                    IdCheck.Reportinng_Manager2 = editEmployeeModel.Reportinng_Manager2;
+                    IdCheck.Joining_Date = editEmployeeModel.Joining_Date;
+                    IdCheck.End_Date = editEmployeeModel.End_Date;
+                    IdCheck.Modified_Date = DateTime.Now.Date;
+                    _timesheetContext.SaveChanges();
 
-                                if (_timesheetContext.hrContactInformations.FirstOrDefault(e => e.Hr_Email_Id == editEmployeeModel.Official_Email) != null)
-                                {
-                                    hrContact.First_Name = editEmployeeModel.First_Name;
-                                    hrContact.Last_Name = editEmployeeModel.Last_Name;
-                                    hrContact.Hr_Email_Id = editEmployeeModel.Official_Email;
-                                    hrContact.Hr_Contact_No = editEmployeeModel.Contact_No;
-                                    _timesheetContext.SaveChanges();
-                                }
+                    if (_timesheetContext.hrContactInformations.FirstOrDefault(e => e.Hr_Email_Id == editEmployeeModel.Official_Email) != null)
+                    {
+                        hrContact.First_Name = editEmployeeModel.First_Name;
+                        hrContact.Last_Name = editEmployeeModel.Last_Name;
+                        hrContact.Hr_Email_Id = editEmployeeModel.Official_Email;
+                        hrContact.Hr_Contact_No = editEmployeeModel.Contact_No;
+                        _timesheetContext.SaveChanges();
+                    }
                 }
                 else
                 {
