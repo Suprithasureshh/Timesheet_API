@@ -31,7 +31,7 @@ namespace Joy.TS.Api.Controllers
 
         [HttpPost] //, Authorize
         [Route("AddTimesheet")]
-        public string AddTimeSheet_Summary(AddTimeSheet_SummaryModel AddTimeSheet_SummaryModel)
+        public IActionResult AddTimeSheet_Summary(AddTimeSheet_SummaryModel AddTimeSheet_SummaryModel)
         {
             return employeeInterface.AddTimeSheet_Summary(AddTimeSheet_SummaryModel);
         }

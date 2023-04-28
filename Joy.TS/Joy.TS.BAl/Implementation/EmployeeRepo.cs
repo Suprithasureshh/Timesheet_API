@@ -49,7 +49,7 @@ namespace Joy.TS.BAL.Implementation
         }
 
         // Add Timesheetsummary
-        public string AddTimeSheet_Summary(AddTimeSheet_SummaryModel AddTimeSheet_SummaryModel)
+        public IActionResult AddTimeSheet_Summary(AddTimeSheet_SummaryModel AddTimeSheet_SummaryModel)
         {
             var data = _timesheetContext.timeSheetSummarys.FirstOrDefault(i => i.Employee_Id == AddTimeSheet_SummaryModel.Employee_Id && i.Fiscal_Year_ID == DateTime.Now.Month - 1);
             if (data == null)
@@ -86,11 +86,11 @@ namespace Joy.TS.BAL.Implementation
                     _timesheetContext.timeSheets.Add(T);
                     _timesheetContext.SaveChanges();
                 }
-                return "Employee TimeSheet Added...!";
+                return Ok("Employee TimeSheet Added...!");
             }
             else
             {
-                return "Timesheet already Submited...!";
+                return BadRequest("Timesheet already Submited...!");
             }
         }
 
