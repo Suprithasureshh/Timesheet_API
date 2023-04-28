@@ -49,7 +49,8 @@ namespace Joy.TS.Api.Controllers
             }
             List<Claim> claims = new List<Claim>
             {
-                        new Claim(ClaimTypes.Email, loginModel.Password)
+            {
+                        new Claim(ClaimTypes.Email, loginModel.Email)
             };
             var newKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
             _configuration.GetSection("AppSettings:Token").Value!));
@@ -63,7 +64,6 @@ namespace Joy.TS.Api.Controllers
                 Employee_Id = y.Employee_Id,
                 Role_Id = y.Role_Id,
             });
-
         }
         [HttpPost]
         [Route("Register")]
@@ -132,7 +132,6 @@ namespace Joy.TS.Api.Controllers
             _timesheetContext.SaveChanges();
 
             return Ok("Password Updated successFully..!");
-
         }
         [HttpGet]
         public IEnumerable<Employee> Get()
