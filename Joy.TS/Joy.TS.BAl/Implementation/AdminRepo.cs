@@ -116,16 +116,14 @@ namespace Joy.TS.BAL.Implementation
 
         public IEnumerable<ClinetIsActiveModel> GetClientIsActive(bool? isActive)
         {
-            var data = from e in _timesheetContext.employees
-                       join ep in _timesheetContext.employeeProject
-                       on e.Employee_Id equals ep.Employee_Id
+            var data = from c in _timesheetContext.clients
                        join p in _timesheetContext.projects
-                       on ep.Project_Id equals p.Project_Id
-                       join C in _timesheetContext.clients
-                       on p.Client_Id equals C.Client_Id into emp
-                       from E in emp.DefaultIfEmpty()
-                       select new { e,ep,p,E } into t1
-                       group t1 by new { t1.E.Client_Id, t1.E.Client_Name, t1.E.Is_Active, t1.E.Create_Date } into g
+                       on c.Client_Id equals p.Client_Id into cp
+                       from x in cp.DefaultIfEmpty()
+                       join ep in _timesheetContext.employeeProject
+                       on x.Project_Id equals ep.Project_Id into epx
+                       from y in epx.DefaultIfEmpty()
+                       group y by new { c.Client_Id, c.Client_Name, c.Is_Active, c.Create_Date } into g
                        orderby g.Key.Client_Name
                        select new ClinetIsActiveModel
                        {
@@ -133,7 +131,7 @@ namespace Joy.TS.BAL.Implementation
                            Client_Name = g.Key.Client_Name,
                            Is_Active = g.Key.Is_Active,
                            Create_Date = g.Key.Create_Date,
-                           No_Of_Employees = g.Select(x => x.ep.Employee_Id).Distinct().Count()
+                           No_Of_Employees = g.Select(x => x.Employee_Id).Distinct().Count()
                        };
             if (isActive == true)
             {
@@ -988,10 +986,6 @@ namespace Joy.TS.BAL.Implementation
 
             _timesheetContext.employeeProject.Add(data);
             _timesheetContext.SaveChanges();
-
-            //var empdata = _timesheetContext.employees.FirstOrDefault(e => e.Employee_Id== addEmployeeProjectModel.Employee_Id);
-            //empdata.Project_Id = addEmployeeProjectModel.Project_Id;
-            //_timesheetContext.SaveChanges();
         }
 
         public void EditEmployeeProject(EditEmployeeprojectModel editEmployeeprojectModel)
