@@ -51,39 +51,47 @@ namespace Joy.TS.BAL.Implementation
         // Add Timesheetsummary
         public string AddTimeSheet_Summary(AddTimeSheet_SummaryModel AddTimeSheet_SummaryModel)
         {
-            var TS = new TimeSheetSummary();
-            TS.Employee_Id = AddTimeSheet_SummaryModel.Employee_Id;
-            TS.Fiscal_Year_ID = DateTime.Now.Month - 1;
-            TS.Year = DateTime.Now.Year;
-            TS.No_Of_days_Worked = AddTimeSheet_SummaryModel.NoOfdays_Worked;
-            TS.No_Of_Leave_Taken = AddTimeSheet_SummaryModel.NoOfLeave_Taken;
-            TS.Total_Working_Hours = AddTimeSheet_SummaryModel.Total_Working_Hours;
-            TS.ImagePathUpload = AddTimeSheet_SummaryModel.ImagePathUpload;
-            TS.ImagePathTimesheet = AddTimeSheet_SummaryModel.ImagePathTimesheet;
-            TS.Created_Date = DateTime.Now.Date;
-            TS.Status = "Pending";
-
-            _timesheetContext.timeSheetSummarys.Add(TS);
-            _timesheetContext.SaveChanges();
-            int lastsummaryid = _timesheetContext.timeSheetSummarys.Max(item => item.TimesheetSummary_Id);
-
-
-            foreach (var s in AddTimeSheet_SummaryModel.addTimesheetDay)
+            var data = _timesheetContext.timeSheetSummarys.FirstOrDefault(i => i.Employee_Id == AddTimeSheet_SummaryModel.Employee_Id && i.Fiscal_Year_ID == DateTime.Now.Month - 1);
+            if (data == null)
             {
-               // var M = _timesheetContext.projects.FirstOrDefault(i => i.Project_Name == s.Project_Id);
+                var TS = new TimeSheetSummary();
+                TS.Employee_Id = AddTimeSheet_SummaryModel.Employee_Id;
+                TS.Fiscal_Year_ID = DateTime.Now.Month - 1;
+                TS.Year = DateTime.Now.Year;
+                TS.No_Of_days_Worked = AddTimeSheet_SummaryModel.NoOfdays_Worked;
+                TS.No_Of_Leave_Taken = AddTimeSheet_SummaryModel.NoOfLeave_Taken;
+                TS.Total_Working_Hours = AddTimeSheet_SummaryModel.Total_Working_Hours;
+                TS.ImagePathUpload = AddTimeSheet_SummaryModel.ImagePathUpload;
+                TS.ImagePathTimesheet = AddTimeSheet_SummaryModel.ImagePathTimesheet;
+                TS.Created_Date = DateTime.Now.Date;
+                TS.Status = "Pending";
 
-                var T = new TimeSheets();
-                T.Project_Id = s.Project_Id;
-                T.Leave = s.Leave;
-                T.Date = s.Date;
-                T.Day = s.Day;
-                T.Employee_Id = AddTimeSheet_SummaryModel.Employee_Id;
-                T.Duration_in_Hours = s.Duration_in_Hrs;
-                T.TimesheetSummary_Id = lastsummaryid;
-                _timesheetContext.timeSheets.Add(T);
+                _timesheetContext.timeSheetSummarys.Add(TS);
                 _timesheetContext.SaveChanges();
+                int lastsummaryid = _timesheetContext.timeSheetSummarys.Max(item => item.TimesheetSummary_Id);
+
+
+                foreach (var s in AddTimeSheet_SummaryModel.addTimesheetDay)
+                {
+                    // var M = _timesheetContext.projects.FirstOrDefault(i => i.Project_Name == s.Project_Id);
+
+                    var T = new TimeSheets();
+                    T.Project_Id = s.Project_Id;
+                    T.Leave = s.Leave;
+                    T.Date = s.Date;
+                    T.Day = s.Day;
+                    T.Employee_Id = AddTimeSheet_SummaryModel.Employee_Id;
+                    T.Duration_in_Hours = s.Duration_in_Hrs;
+                    T.TimesheetSummary_Id = lastsummaryid;
+                    _timesheetContext.timeSheets.Add(T);
+                    _timesheetContext.SaveChanges();
+                }
+                return "Employee TimeSheet Added...!";
             }
-            return "Employee TimeSheet Added...!";
+            else
+            {
+                return "Timesheet already Submited...!";
+            }
         }
 
 
