@@ -49,7 +49,7 @@ namespace Joy.TS.Api.Controllers
             }
             List<Claim> claims = new List<Claim>
             {
-            {
+            
                         new Claim(ClaimTypes.Email, loginModel.Email)
             };
             var newKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
