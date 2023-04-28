@@ -227,6 +227,8 @@ namespace Joy.TS.BAL.Implementation
                        on project_id equals pro.Project_Id
                        join des in this._timesheetContext.designations
                        on emp.Designation_Id equals des.Designation_Id
+                       join loc in this._timesheetContext.employeeProject
+                      on id equals loc.Employee_Id
 
                        select new ExcelTimeSheetModel
                        {
@@ -237,6 +239,7 @@ namespace Joy.TS.BAL.Implementation
                            NoOfdays_Worked = tsum.No_Of_days_Worked.ToString(),
                            NoOfLeave_Taken = tsum.No_Of_Leave_Taken.ToString(),
                            Total_Working_Hours = tsum.Total_Working_Hours.ToString(),
+                           Location = loc.Location.ToString(),
                            Date = t.Date.ToString(),
                            Day = t.Day,
                            Duration_in_Hrs = t.Duration_in_Hours.ToString(),
@@ -460,7 +463,7 @@ namespace Joy.TS.BAL.Implementation
                     ConstructCell("location", CellValues.String, 1),
                     ConstructCell(string.Empty, CellValues.String, 1),
                     ConstructCell(string.Empty, CellValues.String, 1),
-                    ConstructCell(" ", CellValues.String, 1),
+                    ConstructCell(timeSheetData[0].Location.ToString(), CellValues.String, 1),
                     ConstructCell(string.Empty, CellValues.String, 1),
                      ConstructCell(string.Empty, CellValues.String, 1),
                     ConstructCell(string.Empty, CellValues.String, 1),
