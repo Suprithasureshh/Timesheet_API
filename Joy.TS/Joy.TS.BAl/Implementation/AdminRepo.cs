@@ -715,17 +715,6 @@ namespace Joy.TS.BAL.Implementation
 
                             _timesheetContext.employees.Add(emp);
                             _timesheetContext.SaveChanges();
-
-                            var max = _timesheetContext.employees.Max(e => e.Employee_Id);
-                            ts.Created_Date = DateTime.UtcNow.Date;
-                            ts.Employee_Id = max;
-                            ts.No_Of_days_Worked = 0;
-                            ts.No_Of_Leave_Taken = 0;
-                            ts.Status = "Pending";
-                            ts.Total_Working_Hours = 0;
-                            ts.Year = DateTime.UtcNow.Year;
-                            _timesheetContext.timeSheetSummarys.Add(ts);
-                            _timesheetContext.SaveChanges();
                         }
                         else
                         {
