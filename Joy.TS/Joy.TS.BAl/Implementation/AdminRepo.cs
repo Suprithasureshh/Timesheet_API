@@ -755,7 +755,7 @@ namespace Joy.TS.BAL.Implementation
         {
             var IdCheck = _timesheetContext.employees.FirstOrDefault(e => e.Employee_Id == editEmployeeModel.Employee_Id);
             var doubleentry = _timesheetContext.employees.FirstOrDefault(e => e.Employee_Id != editEmployeeModel.Employee_Id && (e.Official_Email == editEmployeeModel.Official_Email || e.Contact_No == editEmployeeModel.Contact_No
-            || e.Official_Email == editEmployeeModel.Alternate_Email || e.Alternate_Email == editEmployeeModel.Alternate_Email));
+            || e.Official_Email == editEmployeeModel.Alternate_Email || (e.Alternate_Email == editEmployeeModel.Alternate_Email && e.Alternate_Email!=null)));
             var data = new ViewPreviousChanges();
             var hrContact = _timesheetContext.hrContactInformations.FirstOrDefault(e => e.Hr_Email_Id == editEmployeeModel.Official_Email);
             var Role = _timesheetContext.designations.FirstOrDefault(e => e.Designation == editEmployeeModel.Designation);
