@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Thanushree S\\Documents\\GIT\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj": {}
+    "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Thanushree S\\Documents\\GIT\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj": {
+    "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Thanushree S\\Documents\\GIT\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj",
+        "projectUniqueName": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj",
         "projectName": "Joy.TS.BAL",
-        "projectPath": "C:\\Users\\Thanushree S\\Documents\\GIT\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj",
+        "projectPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj",
         "packagesPath": "C:\\Users\\hi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Thanushree S\\Documents\\GIT\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\obj\\",
+        "outputPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,8 +33,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Thanushree S\\Documents\\GIT\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj": {
-                "projectPath": "C:\\Users\\Thanushree S\\Documents\\GIT\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj"
+              "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj": {
+                "projectPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj"
               }
             }
           }
@@ -102,14 +102,14 @@
         }
       }
     },
-    "C:\\Users\\Thanushree S\\Documents\\GIT\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj": {
+    "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Thanushree S\\Documents\\GIT\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj",
+        "projectUniqueName": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj",
         "projectName": "Joy.TS.DAL",
-        "projectPath": "C:\\Users\\Thanushree S\\Documents\\GIT\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj",
+        "projectPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj",
         "packagesPath": "C:\\Users\\hi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Thanushree S\\Documents\\GIT\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\obj\\",
+        "outputPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

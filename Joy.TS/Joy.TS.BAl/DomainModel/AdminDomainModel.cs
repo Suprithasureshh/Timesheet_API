@@ -256,6 +256,7 @@ namespace Joy.TS.BAL.DomainModel
         {
             public int Employee_Project_Id { get; set; }
             public string Employee_Name { get; set; }
+            public int Project_Id { get; set; }
             public string Project_Name { get; set; }
             public string Start_Date { get; set; }
             public string End_Date { get; set; }

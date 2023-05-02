@@ -1005,6 +1005,7 @@ namespace Joy.TS.BAL.Implementation
                            Employee_Project_Id = emppro.Employee_Project_Id,
                            Employee_Name = emp.First_Name + " " + emp.Last_Name,
                            Project_Name = pro.Project_Name,
+                           Project_Id =emppro.Project_Id,
                            Location = emppro.Location,
                            Start_Date = emppro.Start_Date.ToString("yyyy/MM/dd"),
                            End_Date = emppro.End_Date.HasValue ?
