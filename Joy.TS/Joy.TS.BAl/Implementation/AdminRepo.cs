@@ -997,7 +997,7 @@ namespace Joy.TS.BAL.Implementation
             var data = from emppro in _timesheetContext.employeeProject
                        join pro in _timesheetContext.projects
                        on emppro.Project_Id equals pro.Project_Id
-                       where (emppro.Employee_Project_Id == Id)
+                       where (emppro.Employee_Id == Id)
                        join emp in _timesheetContext.employees
                        on emppro.Employee_Id equals emp.Employee_Id
                        select new GetEmployeeProjectsByIdModel
