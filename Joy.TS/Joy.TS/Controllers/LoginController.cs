@@ -157,7 +157,18 @@ namespace Joy.TS.Api.Controllers
             emp.Alternate_Email = registerModel.Alternate_Email;
             emp.Contact_No = registerModel.Contact_No;
             emp.Create_Date = DateTime.Now.Date;
-            emp.Role_Id = registerModel.role_id;
+
+            var Role = _timesheetContext.designations.FirstOrDefault(e => e.Designation_Id == registerModel.Designation_Id);
+            if (Role.Designation.ToLower() == "hr" || Role.Designation.ToLower() == "human resource" || Role.Designation.ToLower() == " admin"
+                  || Role.Designation.ToLower() == "hr manager" || Role.Designation.ToLower() == "hr admin")
+            {
+                emp.Role_Id = 1;
+            }
+            else
+            {
+                emp.Role_Id = 2;
+            }
+
             emp.Joining_Date = registerModel.Joining_Date;
             emp.Is_Active = true;
             emp.Password = "Joyit@Admin@1234";

@@ -147,10 +147,6 @@ namespace Joy.TS.BAL.DomainModel
             public string Official_Email { get; set; }
             public string? Alternate_Email { get; set; }
 
-            [Required(ErrorMessage = "Password field is required")]
-            [RegularExpression(@"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$",
-            ErrorMessage = "Password should contain atleast one lowercase,uppercase,number and a symbol")]
-            public string Password { get; set; }
             public int Designation_Id { get; set; }
             public string Contact_No { get; set; }
 
@@ -158,7 +154,6 @@ namespace Joy.TS.BAL.DomainModel
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
             public DateTime Joining_Date { get; set; }
             public DateTime? End_Date { get; set; }  
-            public int role_id { get; set; }
         }
 
         public class EditEmployeeModel
