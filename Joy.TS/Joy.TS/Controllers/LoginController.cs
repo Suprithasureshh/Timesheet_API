@@ -76,67 +76,6 @@ namespace Joy.TS.Api.Controllers
         [Route("Register")]
         public async Task<IActionResult> RegisterAdmin([FromBody] AddEmployeeModel registerModel)
         {
-            //var message = new MimeMessage();
-            //message.From.Add(new MailboxAddress("Shivakumara S C", "shivukumarasc010@gmail.com"));
-            //message.To.Add(new MailboxAddress("Shivakumara S C", "shivakumarasc010@gmail.com"));
-            //message.Subject = "Test Email";
-            //message.Body = new TextPart("plain")
-            //{
-            //    Text = "This is a test email."
-            //};
-
-            //// send message
-            //using var client = new MailKit.Net.Smtp.SmtpClient();
-            //client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-            //client.Authenticate("bharathkvpessmca@gmail.com", "vdkywjudsntfergv");
-            //client.Send(message);
-            //client.Disconnect(true);
-            //string fromAddress = "bharathkvpessmca@gmail.com";
-            //string toAddress = "shivukumarasc010@gmail.com";
-            //string subject = "Test email";
-            //string body = "This is a test email sent using C#.";
-
-            //MailMessage message = new MailMessage(fromAddress, toAddress, subject, body);
-            //System.Net.Mail.SmtpClient smtpClient = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
-
-            //smtpClient.UseDefaultCredentials = false;
-            //smtpClient.EnableSsl = true;
-            //smtpClient.Credentials = new NetworkCredential(fromAddress, "vdkywjudsntfergv");
-
-            //smtpClient.Send(message);
-            //string toAddress = "shivukumarasc010@gmail.com";
-            //string fromAddress = "bharathkvpessmca@gmail.com";
-            //string subject = "Test Email";
-            //string body = "This is a test email sent using Gmail SMTP server.";
-
-            //// Set Gmail SMTP server details
-            //System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient();
-            //smtp.Host = "smtp.gmail.com";
-            //smtp.Port = 587;
-            //smtp.EnableSsl = true;
-            //smtp.UseDefaultCredentials = false;
-            //smtp.Credentials = new NetworkCredential("bharathkvpessmca@gmail.com", "vdkywjudsntfergv");
-
-            // Create and send email message
-            //MailMessage message = new MailMessage(fromAddress, toAddress, subject, body);
-            //smtp.Send(message);
-            //string recipientEmail = registerModel.Official_Email;
-            //string subject ="nothing";
-            //string body ="no body";
-            //var message = new MailMessage();
-            //message.From = new MailAddress("shivukumarasc010@gmail.com");
-            //message.To.Add(new MailAddress(recipientEmail));
-            //message.Subject = subject;
-            //message.Body = body;
-
-            //var smtpClient = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
-            //smtpClient.UseDefaultCredentials = false;
-            //smtpClient.Credentials = new NetworkCredential("bharathkvpessmca@gmail.com", "Bharath@123");
-
-            //smtpClient.EnableSsl = true;
-
-            //smtpClient.Send(message);
-
             string email = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
             if (registerModel.Official_Email == "" || !Regex.IsMatch(registerModel.Official_Email, email))
             {
@@ -177,28 +116,6 @@ namespace Joy.TS.Api.Controllers
             emp.Reporting_Manager1 = registerModel.Reporting_Manager1;
             _timesheetContext.employees.Add(emp);
             _timesheetContext.SaveChanges();
-
-
-            //string senderEmail = "bharathkvpessmca@gmail.com";
-            //string appPassword = "Bharath@123";
-
-            //// Define the recipient's email address
-            //string recipientEmail = registerModel.Official_Email; 
-
-            //// Create a new email message
-            //MailMessage message = new MailMessage(senderEmail, recipientEmail);
-            //message.Subject = "Employee Added";
-            //message.Body = "Dear Employee, \n\n You have been successfully added to our system. \n\n Thank you.";
-
-            //// Create a new SMTP client
-            //SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
-            //smtpClient.UseDefaultCredentials = false;
-            //smtpClient.Credentials = new NetworkCredential(senderEmail, appPassword);
-            //smtpClient.EnableSsl = true;
-
-            //// Send the email message
-            //smtpClient.Send(message);
-
             return Ok("User Added Successfully..!");
 
         }

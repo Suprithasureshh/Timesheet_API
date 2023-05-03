@@ -12,6 +12,8 @@ using static Joy.TS.BAL.DomainModel.AdminDomainModel;
 using DocumentFormat.OpenXml.Math;
 using HorizontalAlignmentValues = DocumentFormat.OpenXml.Spreadsheet.HorizontalAlignmentValues;
 using Alignment = DocumentFormat.OpenXml.Spreadsheet.Alignment;
+using System.Net.Mail;
+using System.Net;
 
 namespace Joy.TS.BAL.Implementation
 {
@@ -723,6 +725,29 @@ namespace Joy.TS.BAL.Implementation
 
                                     _timesheetContext.employees.Add(emp);
                                     _timesheetContext.SaveChanges();
+                                    var fullname = emp.First_Name + " " + emp.Last_Name;
+                                    string fromAddress = "Joyitsolutions1@gmail.com";
+                                    string Password = "fgrgmlzwwtokccov";
+                                    string toAddress = addEmployeeModel.Official_Email;
+                                    string emailHeader = "<html><body><h1>Congratulations</h1></body></html>";
+                                    string emailFooter = $"<html><head><title>JoyItsolutions</title></head><body><p>Hi {fullname}, <br> This is the confidencial email Don't Shere Password with any one..! <br>Don't replay this Mail</p></body></html>";
+                                    string emailBody = $"<html><head><title>Don't replay this Mail</title></head><body><p>Your password is: {emp.Password}</p></body></html>";
+                                    string emailContent = emailHeader + emailBody + emailFooter;
+                                    MailMessage message = new MailMessage();
+                                    message.From = new MailAddress(fromAddress);
+                                    message.Subject = "WellCome To Joy Family";
+                                    message.To.Add(new MailAddress(toAddress));
+                                    message.Body = emailContent;
+                                    message.IsBodyHtml = true;
+
+                                    var smtpClient = new System.Net.Mail.SmtpClient("smtp.gmail.com")
+                                    {
+                                        Port = 587,
+                                        Credentials = new NetworkCredential(fromAddress, Password),
+                                        EnableSsl = true,
+                                    };
+
+                                    smtpClient.Send(message);
                                 }
                                 else
                                 {
