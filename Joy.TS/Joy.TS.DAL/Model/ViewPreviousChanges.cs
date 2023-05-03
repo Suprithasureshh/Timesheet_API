@@ -18,7 +18,6 @@ namespace Joy.TS.DAL.Model
         public string Last_Name { get; set; }
         public string Employee_code { get; set; }
         public string Reporting_Manager1 { get; set; }
-        public string Reportinng_Manager2 { get; set; }
 
         [ForeignKey("Employee_Type_Id")]
         public int Employee_Type_Id { get; set; }

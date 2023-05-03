@@ -246,7 +246,8 @@ namespace Joy.TS.BAL.Implementation
                            Project_Name = pro.Project_Name,
                            NoOfdays_Worked = tsum.No_Of_days_Worked.ToString(),
                            NoOfLeave_Taken = tsum.No_Of_Leave_Taken.ToString(),
-                           Total_Working_Hours = tsum.Total_Working_Hours.ToString(),
+                           //Total_Working_Hours = tsum.Total_Working_Hours.ToString(),
+                           Total_Working_Hours = t.Duration_in_Hours <= 8 ? t.Duration_in_Hours.ToString() : "8", // Display 8 if duration exceeds 8
                            Location = loc.Location.ToString(),
                            Date = t.Date.ToString(),
                            Day = t.Day,
