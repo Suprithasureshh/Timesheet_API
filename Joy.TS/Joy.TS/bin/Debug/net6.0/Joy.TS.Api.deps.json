@@ -878,6 +878,7 @@
       },
       "Joy.TS.BAL/1.0.0": {
         "dependencies": {
+          "BCrypt.Net-Next": "4.0.3",
           "DocumentFormat.OpenXml": "2.20.0",
           "Joy.TS.DAL": "1.0.0",
           "Microsoft.AspNetCore.Cors": "2.2.0",
@@ -891,6 +892,7 @@
       },
       "Joy.TS.DAL/1.0.0": {
         "dependencies": {
+          "BCrypt.Net-Next": "4.0.3",
           "Microsoft.AspNetCore.Cors": "2.2.0",
           "Microsoft.EntityFrameworkCore": "7.0.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.5",
