@@ -141,7 +141,6 @@ namespace Joy.TS.BAL.DomainModel
             public string Last_Name { get; set; }
             public string Employee_code { get; set; }
             public string Reporting_Manager1 { get; set; }
-            public string Reportinng_Manager2 { get; set; }
             public int Employee_Type_Id { get; set; }
 
             [EmailAddress(ErrorMessage = "Invalid Email Address")]
@@ -169,7 +168,6 @@ namespace Joy.TS.BAL.DomainModel
             public string Last_Name { get; set; }
             public string Employee_code { get; set; }
             public string Reporting_Manager1 { get; set; }
-            public string Reportinng_Manager2 { get; set; }
             public int Employee_Type_Id { get; set; }
             public string Designation { get; set; }
             public string Employee_Type { get; set; }
@@ -197,7 +195,6 @@ namespace Joy.TS.BAL.DomainModel
             public string Full_Name { get; set; }
             public string Employee_code { get; set; }
             public string Reporting_Manager1 { get; set; }
-            public string Reportinng_Manager2 { get; set; }
             public int Employee_Type_Id { get; set; }
             public string Employee_Type { get; set; }
             public string Official_Email { get; set; }
@@ -367,7 +364,6 @@ namespace Joy.TS.BAL.DomainModel
             public string Full_Name { get; set; }
             public string Employee_code { get; set; }
             public string Reporting_Manager1 { get; set; }
-            public string Reportinng_Manager2 { get; set; }
             public string Employee_Type { get; set; }
             public string Official_Email { get; set; }
             public int Role_Id { get; set; }

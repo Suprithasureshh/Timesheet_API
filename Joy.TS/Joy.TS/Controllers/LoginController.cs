@@ -99,7 +99,6 @@ namespace Joy.TS.Api.Controllers
             emp.Is_Active = true;
             emp.Password = registerModel.Password;
             emp.Reporting_Manager1 = registerModel.Reporting_Manager1;
-            emp.Reportinng_Manager2 = registerModel.Reportinng_Manager2;
             _timesheetContext.employees.Add(emp);
             _timesheetContext.SaveChanges();
             return Ok("User Added Successfully..!");

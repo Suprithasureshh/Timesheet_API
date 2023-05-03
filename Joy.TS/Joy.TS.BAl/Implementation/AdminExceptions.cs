@@ -101,6 +101,11 @@ namespace Joy.TS.BAL.Implementation
         public EmployeeCodeExistException() { }
         public EmployeeCodeExistException(string message) : base(message) { }
     }
+    public class OEmailAEmailSameException : Exception
+    {
+        public OEmailAEmailSameException() { }
+        public OEmailAEmailSameException(string message) : base(message) { }
+    }
 
     //EmployeeProject
 
@@ -194,6 +199,10 @@ namespace Joy.TS.BAL.Implementation
                 case EmployeeCodeExistException:
                     context.Result = new BadRequestObjectResult("Employee Code already exists");
                     break;
+                case OEmailAEmailSameException:
+                    context.Result = new BadRequestObjectResult("Employee Alternate Email should not be same as Official Email");
+                    break;
+
 
                 //HrContactInfo
                 case HrIdException:
