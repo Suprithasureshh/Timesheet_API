@@ -618,3 +618,8 @@ C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\obj\Debug\net6.
 C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\obj\Debug\net6.0\Joy.TS.Api.pdb
 C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\obj\Debug\net6.0\Joy.TS.Api.genruntimeconfig.cache
 C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\obj\Debug\net6.0\ref\Joy.TS.Api.dll
+C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\bin\Debug\net6.0\MailKit.dll
+C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\bin\Debug\net6.0\MimeKit.dll
+C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll

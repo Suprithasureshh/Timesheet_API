@@ -6,6 +6,6 @@
     "\\Joy.TS.DAL\\Migrations",
     "\\Joy.TS\\Controllers"
   ],
-  "SelectedNode": "\\Joy.TS.DAL\\Migrations\\20230428095422_chanduA.cs",
+  "SelectedNode": "\\Joy.TS\\Controllers\\LoginController.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -112,6 +112,9 @@ namespace Joy.TS.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Hashpassword")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("Is_Active")
                         .HasColumnType("bit");
 

@@ -699,7 +699,9 @@ namespace Joy.TS.BAL.Implementation
                                     emp.Official_Email = addEmployeeModel.Official_Email;
                                     emp.Alternate_Email = addEmployeeModel.Alternate_Email;
                                     emp.Contact_No = addEmployeeModel.Contact_No;
-                                    emp.Password = addEmployeeModel.Password;
+                                    emp.Password = "Joyit@Admin@1234";
+                                    string passwordHash = BCrypt.Net.BCrypt.HashPassword(emp.Password);
+                                    emp.Hashpassword = passwordHash;
                                     emp.Designation_Id = addEmployeeModel.Designation_Id;
                                     emp.Employee_Type_Id = addEmployeeModel.Employee_Type_Id;
                                     emp.Is_Active = true;
