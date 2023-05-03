@@ -58,11 +58,10 @@ namespace Joy.TS.DAL.Model
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
         public DateTime Joining_Date { get; set; }
 
-        //[Required(ErrorMessage = "Password field is required")]
-        //[RegularExpression(@"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$",
-        //ErrorMessage = "Password should contain atleast one lowercase,uppercase,number and a symbol")]
-        public string? Password { get; set; }
-        public string? Hashpassword { get; set; }   
+        [Required(ErrorMessage = "Password field is required")]
+        [RegularExpression(@"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$",
+        ErrorMessage = "Password should contain atleast one lowercase,uppercase,number and a symbol")]
+        public string Password { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
