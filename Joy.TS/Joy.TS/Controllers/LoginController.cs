@@ -171,7 +171,8 @@ namespace Joy.TS.Api.Controllers
                 return BadRequest("Password should contain first letter should capital letter and one special symbol");
             }
             data.Password = forgetPassword.Password;
-            _timesheetContext.employees.Update(data);
+            string passwordHash = BCrypt.Net.BCrypt.HashPassword(forgetPassword.Password);
+            data.Hashpassword = passwordHash;
             _timesheetContext.SaveChanges();
             return Ok("Password is reset");
         }
