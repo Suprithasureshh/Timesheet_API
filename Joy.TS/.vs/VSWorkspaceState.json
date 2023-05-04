@@ -2,10 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\Joy.TS",
+    "\\Joy.TS.BAl",
+    "\\Joy.TS.BAl\\Implementation",
     "\\Joy.TS.DAL",
     "\\Joy.TS.DAL\\Migrations",
     "\\Joy.TS\\Controllers"
   ],
-  "SelectedNode": "\\Joy.TS\\Joy.TS.sln",
+  "SelectedNode": "\\Joy.TS.BAl\\Implementation\\EmployeeInterface.cs",
   "PreviewInSolutionExplorer": false
 }
