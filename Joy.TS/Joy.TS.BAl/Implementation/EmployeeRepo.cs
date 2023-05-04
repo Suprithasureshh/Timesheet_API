@@ -273,7 +273,8 @@ namespace Joy.TS.BAL.Implementation
         {
             var months = _timesheetContext.Fiscal_Years.FirstOrDefault(e => e.Fiscal_Year_ID == DateTime.UtcNow.Month);
             var y1 = timeSheetData[0].Project_Name;
-            string fileName = Path.Combine(Path.GetTempPath(), "Timesheet" + " " + months.Month + " " + timeSheetData[0].Employee_Name + ".xlsx");
+            string fileName = ("Timesheet" + " " + months.Month + " " + timeSheetData[0].Employee_Name + ".xlsx");
+            //string fileName = Path.Combine(Path.GetTempPath(), "Timesheet" + " " + months.Month + " " + timeSheetData[0].Employee_Name + ".xlsx");
             //Directory.CreateDirectory(fileName);
             using (SpreadsheetDocument document = SpreadsheetDocument.Create(fileName, SpreadsheetDocumentType.Workbook))
             {
