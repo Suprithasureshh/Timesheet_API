@@ -8,8 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Joy.TS.Common
-<<<<<<< HEAD
-build_property.ProjectDir = C:\Users\Subhash R\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Common\
-=======
-build_property.ProjectDir = C:\Users\Meghashree\Desktop\Meghashree S Github\Timesheet_API\Joy.TS\Joy.TS.Common\
->>>>>>> 001a494039470a65ed15a306482f9b98907356ce
+build_property.ProjectDir = C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS.Common\

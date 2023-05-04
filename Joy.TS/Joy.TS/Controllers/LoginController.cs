@@ -50,7 +50,7 @@ namespace Joy.TS.Api.Controllers
             }
             bool isPasswordCorrect = BCrypt.Net.BCrypt.Verify(Email.Hashpassword, passwordHash);
             //var Password = await _timesheetContext.employees.FirstOrDefaultAsync(i => i.Hashpassword == passwordHash);
-            if (isPasswordCorrect)
+            if (!isPasswordCorrect)
             {
                 return NotFound("Password Not Found");
             }

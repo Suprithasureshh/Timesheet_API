@@ -704,7 +704,7 @@ namespace Joy.TS.BAL.Implementation
                                     emp.Official_Email = addEmployeeModel.Official_Email;
                                     emp.Alternate_Email = addEmployeeModel.Alternate_Email;
                                     emp.Contact_No = addEmployeeModel.Contact_No;
-                                    emp.Password = "Joyit@Admin@1234";
+                                    emp.Password = "Joyit@1234";
                                     string passwordHash = BCrypt.Net.BCrypt.HashPassword(emp.Password);
                                     emp.Hashpassword = passwordHash;
                                     emp.Designation_Id = addEmployeeModel.Designation_Id;
@@ -730,7 +730,7 @@ namespace Joy.TS.BAL.Implementation
                                     string Password = "fgrgmlzwwtokccov";
                                     string toAddress = addEmployeeModel.Official_Email;
                                     string emailHeader = "<html><body><h1>Congratulations</h1></body></html>";
-                                    string emailFooter = $"<html><head><title>JoyItsolutions</title></head><body><p>Hi {fullname}, <br> This is the confidencial email Don't Shere Password with any one..! <br>Don't replay this Mail</p></body></html>";
+                                    string emailFooter = $"<html><head><title>JoyItsolutions</title></head><body><p>Hi {fullname}, <br> This is the confidential email. Don't share your password with anyone..!<br> Click here to fill Timesheet <a href=\"http://localhost:3000/\">website</a> </p></body></html>";
                                     string emailBody = $"<html><head><title>Don't replay this Mail</title></head><body><p>Your password is: {emp.Password}</p></body></html>";
                                     string emailContent = emailHeader + emailBody + emailFooter;
                                     MailMessage message = new MailMessage();

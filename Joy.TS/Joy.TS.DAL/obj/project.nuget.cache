@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "r7HIXGXyiPbLLJ7Ul4qG5KuiALuuUurnxPl9IS808Jugxu/2OKQBuYQge2jI8kF8/EyAclgr5PrHrEY1Jjvb7Q==",
+  "dgSpecHash": "TfsIVvy6xs91Lo3I6/F4PY3ss5w067Fa1QMkgBI+ZCLQf+ovGOGIqCNWxPF5Qr3sayiHnCX9sZn7MqZqU8W6tQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj",
-=======
-  "dgSpecHash": "ES5UmLaxVhUzpa91dr0rPedfiIxQyrFYw4dWc+WcEtS+SqxqkBF9T0HqYNi3qtot5VD0EnEaNpuJG2tPR/Bkhw==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\Meghashree\\Desktop\\Meghashree S Github\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj",
->>>>>>> 001a494039470a65ed15a306482f9b98907356ce
+  "projectFilePath": "C:\\Users\\Shivakumara S C\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hi\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\hi\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
