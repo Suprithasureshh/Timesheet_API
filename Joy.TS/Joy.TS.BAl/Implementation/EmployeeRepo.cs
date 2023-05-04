@@ -148,7 +148,7 @@ namespace Joy.TS.BAL.Implementation
                            Status = ts.Status,
 
                        };
-            return data.ToList();
+            return data.OrderBy(i =>i.Fiscal_Year_ID).ToList();
         }
 
 
@@ -235,8 +235,8 @@ namespace Joy.TS.BAL.Implementation
                        on project_id equals pro.Project_Id
                        join des in this._timesheetContext.designations
                        on emp.Designation_Id equals des.Designation_Id
-                       join loc in this._timesheetContext.employeeProject
-                      on id equals loc.Employee_Id
+                      // join loc in this._timesheetContext.employeeProject
+                      //on id equals loc.Employee_Id
 
                        select new ExcelTimeSheetModel
                        {
@@ -248,7 +248,7 @@ namespace Joy.TS.BAL.Implementation
                            NoOfLeave_Taken = tsum.No_Of_Leave_Taken.ToString(),
                            //Total_Working_Hours = tsum.Total_Working_Hours.ToString(),
                            Total_Working_Hours = t.Duration_in_Hours <= 8 ? t.Duration_in_Hours.ToString() : "8", // Display 8 if duration exceeds 8
-                           Location = loc.Location.ToString(),
+                           //Location = loc.Location.ToString(),
                            Date = t.Date.ToString(),
                            Day = t.Day,
                            Duration_in_Hrs = t.Duration_in_Hours.ToString(),
@@ -473,7 +473,7 @@ namespace Joy.TS.BAL.Implementation
                     ConstructCell("location", CellValues.String, 1),
                     ConstructCell(string.Empty, CellValues.String, 1),
                     ConstructCell(string.Empty, CellValues.String, 1),
-                    ConstructCell(timeSheetData[0].Location.ToString(), CellValues.String, 1),
+                    ConstructCell("Bangalore", CellValues.String, 1),//timeSheetData[0].Location.ToString()
                     ConstructCell(string.Empty, CellValues.String, 1),
                      ConstructCell(string.Empty, CellValues.String, 1),
                     ConstructCell(string.Empty, CellValues.String, 1),
