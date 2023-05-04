@@ -175,7 +175,7 @@ namespace Joy.TS.BAL.DomainModel
 
             [DataType(DataType.Date)]
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
-            public DateTime Joining_Date { get; set; }
+            public DateTime Joining_Dates { get; set; }
 
             [DataType(DataType.Date)]
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]

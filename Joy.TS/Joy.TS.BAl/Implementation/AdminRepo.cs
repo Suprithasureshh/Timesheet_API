@@ -860,7 +860,7 @@ namespace Joy.TS.BAL.Implementation
 
                             IdCheck.Contact_No = editEmployeeModel.Contact_No;
                             IdCheck.Reporting_Manager1 = editEmployeeModel.Reporting_Manager1;
-                            IdCheck.Joining_Date = editEmployeeModel.Joining_Date;
+                            IdCheck.Joining_Date = editEmployeeModel.Joining_Dates;
                             IdCheck.End_Date = editEmployeeModel.End_Date;
                             IdCheck.Modified_Date = DateTime.Now.Date;
                             _timesheetContext.SaveChanges();
