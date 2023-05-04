@@ -42,14 +42,13 @@ namespace Joy.TS.Api.Controllers
             {
                 return NotFound("Email Not Found");
             }
-            string passwordHash = BCrypt.Net.BCrypt.HashPassword(loginModel.Password);
             string Passwordpattern = "^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?])[A-Za-z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]{8,}$";
             if (loginModel.Password == "" || !Regex.IsMatch(loginModel.Password, Passwordpattern))
             {
                 return BadRequest("Wrong Password");
             }
-            bool isPasswordCorrect = BCrypt.Net.BCrypt.Verify(Email.Hashpassword, passwordHash);
-            //var Password = await _timesheetContext.employees.FirstOrDefaultAsync(i => i.Hashpassword == passwordHash);
+            string storedPasswordHash = Email.Hashpassword;
+            bool isPasswordCorrect = BCrypt.Net.BCrypt.Verify(loginModel.Password, storedPasswordHash);
             if (!isPasswordCorrect)
             {
                 return NotFound("Password Not Found");
