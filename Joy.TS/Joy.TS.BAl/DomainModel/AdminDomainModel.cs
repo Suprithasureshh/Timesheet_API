@@ -173,9 +173,9 @@ namespace Joy.TS.BAL.DomainModel
             public string? Alternate_Email { get; set; }
             public string Contact_No { get; set; }
 
-            [DataType(DataType.Date)]
-            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
-            public DateTime Joining_Dates { get; set; }
+            //[DataType(DataType.Date)]
+            //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
+            //public DateTime Joining_Dates { get; set; }
 
             [DataType(DataType.Date)]
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]

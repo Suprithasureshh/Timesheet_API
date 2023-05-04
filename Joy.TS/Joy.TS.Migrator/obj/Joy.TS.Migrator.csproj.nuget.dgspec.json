@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Migrator\\Joy.TS.Migrator.csproj": {}
+    "C:\\Users\\ChandanKumar C L\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Migrator\\Joy.TS.Migrator.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Migrator\\Joy.TS.Migrator.csproj": {
+    "C:\\Users\\ChandanKumar C L\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Migrator\\Joy.TS.Migrator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Migrator\\Joy.TS.Migrator.csproj",
+        "projectUniqueName": "C:\\Users\\ChandanKumar C L\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Migrator\\Joy.TS.Migrator.csproj",
         "projectName": "Joy.TS.Migrator",
-        "projectPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Migrator\\Joy.TS.Migrator.csproj",
-        "packagesPath": "C:\\Users\\hi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Migrator\\obj\\",
+        "projectPath": "C:\\Users\\ChandanKumar C L\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Migrator\\Joy.TS.Migrator.csproj",
+        "packagesPath": "C:\\Users\\ChandanKumar C L\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ChandanKumar C L\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Migrator\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\hi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ChandanKumar C L\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
