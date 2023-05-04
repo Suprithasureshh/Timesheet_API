@@ -6,6 +6,7 @@ using Joy.TS.DAL.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using System.Formats.Asn1;
 using System.Globalization;
 using System.Text;
@@ -80,9 +81,16 @@ namespace Joy.TS.Api.Controllers
 
         [HttpGet]
         [Route("ExportExcel")]
-        public string ExportExcel(int id, int monthid, int year, int project_id)
+        public IActionResult ExportExcel(int id, int monthid, int year, int project_id)
         {
-            return employeeInterface.ExportExcel(id, monthid, year, project_id);
+            var fileName = employeeInterface.ExportExcel(id, monthid, year, project_id);
+            var provider = new FileExtensionContentTypeProvider();
+            if (!provider.TryGetContentType(fileName, out var contentType))
+            {
+                contentType = "application/octet-stream";
+            }
+            byte[] file = System.IO.File.ReadAllBytes(fileName);
+            return File(file, contentType, Path.GetFileName(fileName));
         }
         [HttpGet]
         [Route("ImagePath")]
