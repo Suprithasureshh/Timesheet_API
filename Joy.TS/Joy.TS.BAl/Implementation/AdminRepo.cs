@@ -730,12 +730,12 @@ namespace Joy.TS.BAL.Implementation
                                     string Password = "fgrgmlzwwtokccov";
                                     string toAddress = addEmployeeModel.Official_Email;
                                     string emailHeader = "<html><body><h1>Congratulations</h1></body></html>";
-                                    string emailFooter = $"<html><head><title>JoyItsolutions</title></head><body><p>Hi {fullname}, <br> This is the confidential email. Don't share your password with anyone..!<br> Click here to fill Timesheet <a href=\"http://localhost:3000/\">website</a> </p></body></html>";
+                                    string emailFooter = $"<html><head><title>JoyItsolutions</title></head><body><p>Hi {fullname}, <br> This is the confidential email. Don't share your password with anyone..!<br> Click here to change your credentials or fill Timesheet  <a href=\"http://localhost:3000/\"> : http://localhost:3000/ </a> </p></body></html>";
                                     string emailBody = $"<html><head><title>Don't replay this Mail</title></head><body><p>Your password is: {emp.Password}</p></body></html>";
                                     string emailContent = emailHeader + emailBody + emailFooter;
                                     MailMessage message = new MailMessage();
                                     message.From = new MailAddress(fromAddress);
-                                    message.Subject = "WellCome To Joy Family";
+                                    message.Subject = "Welcome To JOY IT SOLUTIONS";
                                     message.To.Add(new MailAddress(toAddress));
                                     message.Body = emailContent;
                                     message.IsBodyHtml = true;
