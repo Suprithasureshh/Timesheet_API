@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\91636\\OneDrive\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS\\Joy.TS.Api.csproj": {}
+    "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS\\Joy.TS.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\91636\\OneDrive\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj": {
+    "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\91636\\OneDrive\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj",
+        "projectUniqueName": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj",
         "projectName": "Joy.TS.BAL",
-        "projectPath": "C:\\Users\\91636\\OneDrive\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj",
-        "packagesPath": "C:\\Users\\91636\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\91636\\OneDrive\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\obj\\",
+        "projectPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj",
+        "packagesPath": "C:\\Users\\hi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\91636\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -29,8 +33,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\91636\\OneDrive\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj": {
-                "projectPath": "C:\\Users\\91636\\OneDrive\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj"
+              "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj": {
+                "projectPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj"
               }
             }
           }
@@ -98,21 +102,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\91636\\OneDrive\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj": {
+    "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\91636\\OneDrive\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj",
+        "projectUniqueName": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj",
         "projectName": "Joy.TS.DAL",
-        "projectPath": "C:\\Users\\91636\\OneDrive\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj",
-        "packagesPath": "C:\\Users\\91636\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\91636\\OneDrive\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\obj\\",
+        "projectPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj",
+        "packagesPath": "C:\\Users\\hi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\91636\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -188,21 +196,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\91636\\OneDrive\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS\\Joy.TS.Api.csproj": {
+    "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS\\Joy.TS.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\91636\\OneDrive\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS\\Joy.TS.Api.csproj",
+        "projectUniqueName": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS\\Joy.TS.Api.csproj",
         "projectName": "Joy.TS.Api",
-        "projectPath": "C:\\Users\\91636\\OneDrive\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS\\Joy.TS.Api.csproj",
-        "packagesPath": "C:\\Users\\91636\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\91636\\OneDrive\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS\\obj\\",
+        "projectPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS\\Joy.TS.Api.csproj",
+        "packagesPath": "C:\\Users\\hi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\91636\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -217,11 +229,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\91636\\OneDrive\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj": {
-                "projectPath": "C:\\Users\\91636\\OneDrive\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj"
+              "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj": {
+                "projectPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.BAl\\Joy.TS.BAL.csproj"
               },
-              "C:\\Users\\91636\\OneDrive\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj": {
-                "projectPath": "C:\\Users\\91636\\OneDrive\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj"
+              "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj": {
+                "projectPath": "C:\\Users\\Subhash R\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.DAL\\Joy.TS.DAL.csproj"
               }
             }
           }
@@ -304,7 +316,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

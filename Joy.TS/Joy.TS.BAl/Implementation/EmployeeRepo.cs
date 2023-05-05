@@ -229,14 +229,13 @@ namespace Joy.TS.BAL.Implementation
             var data = from tsum in this._timesheetContext.timeSheetSummarys
                        join t in this._timesheetContext.timeSheets
                        on tsum.TimesheetSummary_Id equals t.TimesheetSummary_Id
+                       where (tsum.Employee_Id==id)
                        join emp in this._timesheetContext.employees
                         on id equals emp.Employee_Id
                        join pro in this._timesheetContext.projects
                        on project_id equals pro.Project_Id
                        join des in this._timesheetContext.designations
                        on emp.Designation_Id equals des.Designation_Id
-                      // join loc in this._timesheetContext.employeeProject
-                      //on id equals loc.Employee_Id
 
                        select new ExcelTimeSheetModel
                        {
