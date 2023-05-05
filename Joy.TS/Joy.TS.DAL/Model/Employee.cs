@@ -60,7 +60,9 @@ namespace Joy.TS.DAL.Model
 
         public string Password { get; set; }
 
-        public string Hashpassword { get; set; }    
+        public string Hashpassword { get; set; } 
+        
+        public string Otp { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]

@@ -15,6 +15,7 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using System.Net.Mail;
 using System.Net;
 using DocumentFormat.OpenXml.Wordprocessing;
+using Joy.TS.BAL.Implementation;
 
 namespace Joy.TS.Api.Controllers
 {
@@ -25,12 +26,14 @@ namespace Joy.TS.Api.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly TimeSheetContext _timesheetContext;
+        private readonly ILogin _login;
 
         public LoginController(IConfiguration configuration
-            , TimeSheetContext timesheetContext)
+            , TimeSheetContext timesheetContext, ILogin login)
         {
             _configuration = configuration;
             _timesheetContext = timesheetContext;
+            _login = login;
         }
 
         [HttpPost]
@@ -156,25 +159,87 @@ namespace Joy.TS.Api.Controllers
             return _timesheetContext.employees.ToList();
         }
 
-        [HttpPut]
-        [Route("ForgetPassword")]
-        public IActionResult ResetPassword(ForgetPassword forgetPassword)
+        //For reset password
+
+        [HttpPost]
+        [Route("GenerateOTP")]
+        public IActionResult GeneratesOTP(string email)
         {
-            var data = _timesheetContext.employees.FirstOrDefault(i => i.Official_Email == forgetPassword.Email);
-            if (data == null)
+            // Generate a random 4-digit OTP
+            Random random = new Random();
+            string otp = (random.Next(1000, 9999)).ToString();
+
+            var emailCheck = _timesheetContext.employees.FirstOrDefault(e => e.Official_Email == email);
+            if (emailCheck == null)
             {
-                return NotFound();
+                return BadRequest("Invalid email address");
             }
-            string Passwordpattern = "^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?])[A-Za-z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]{8,}$";
-            if (!Regex.IsMatch(forgetPassword.Password, Passwordpattern))
-            {
-                return BadRequest("Password should contain first letter should capital letter and one special symbol");
-            }
-            data.Password = forgetPassword.Password;
-            string passwordHash = BCrypt.Net.BCrypt.HashPassword(forgetPassword.Password);
-            data.Hashpassword = passwordHash;
+
+            emailCheck.Otp = otp;
             _timesheetContext.SaveChanges();
-            return Ok("Password is reset");
+
+            // Send the OTP to the user via email 
+            var fullname = emailCheck.First_Name + " " + emailCheck.Last_Name;
+            string fromAddress = "Joyitsolutions1@gmail.com";
+            string Password = "fgrgmlzwwtokccov";
+            string toAddress = emailCheck.Official_Email;
+            string emailHeader = "<html><body><h1>OTP to Reset Password</h1></body></html>";
+            string emailFooter = $"<html><head><title>JoyItsolutions</title></head><body><p>Hi {fullname}, <br> This is the confidential email. Don't share your otp with anyone..!<br>  </p></body></html>";
+            string emailBody = $"<html><head><title>Don't replay this Mail</title></head><body><p>Your one time password(otp) is: <h3>{emailCheck.Otp}</h3></p></body></html>";
+            string emailContent = emailHeader + emailBody + emailFooter;
+            MailMessage message = new MailMessage();
+            message.From = new MailAddress(fromAddress);
+            message.Subject = "Reset Password";
+            message.To.Add(new MailAddress(toAddress));
+            message.Body = emailContent;
+            message.IsBodyHtml = true;
+
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential(fromAddress, Password),
+                EnableSsl = true,
+            };
+
+            smtpClient.Send(message);
+
+            return Ok($"OTP generated and sent to MailID: '{emailCheck.Official_Email}'");
         }
+
+        [HttpPost]
+        [Route("VerifyOTP")]
+        public IActionResult VerifyOTP(string email, string otp, string newPassword)
+        {
+            var result = _login.ResetPassword(email, otp, newPassword);
+            if (result is OkObjectResult)
+            {
+                return Ok("Password reset successful");
+            }
+            else
+            {
+                return result;
+            }
+        }
+
+        //[HttpPut]
+        //[Route("ForgetPassword")]
+        //public IActionResult ResetPassword(ForgetPassword forgetPassword)
+        //{
+        //    var data = _timesheetContext.employees.FirstOrDefault(i => i.Official_Email == forgetPassword.Email);
+        //    if (data == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    string Passwordpattern = "^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?])[A-Za-z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]{8,}$";
+        //    if (!Regex.IsMatch(forgetPassword.Password, Passwordpattern))
+        //    {
+        //        return BadRequest("Password should contain first letter should capital letter and one special symbol");
+        //    }
+        //    data.Password = forgetPassword.Password;
+        //    string passwordHash = BCrypt.Net.BCrypt.HashPassword(forgetPassword.Password);
+        //    data.Hashpassword = passwordHash;
+        //    _timesheetContext.SaveChanges();
+        //    return Ok("Password is reset");
+        //}
     }
 }

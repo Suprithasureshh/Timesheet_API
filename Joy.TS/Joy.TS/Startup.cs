@@ -70,6 +70,7 @@ namespace Joy.TS.Api
             // Adding application services
             services.AddTransient<IAdmin, AdminRepo>();
             services.AddTransient<EmployeeInterface, EmployeeRepo>();
+            services.AddTransient<ILogin, LoginRepo>();
             services.AddCors(options => {
                 options.AddPolicy("AllowAnyOrigin", builder => {
                     builder.AllowAnyOrigin();
