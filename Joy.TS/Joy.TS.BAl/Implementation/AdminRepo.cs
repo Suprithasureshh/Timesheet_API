@@ -712,6 +712,7 @@ namespace Joy.TS.BAL.Implementation
                                     emp.Is_Active = true;
                                     emp.Joining_Date = addEmployeeModel.Joining_Date;
                                     emp.Create_Date = DateTime.UtcNow.Date;
+                                    emp.Otp = "1";
 
                                     if (Role.Designation.ToLower() == "hr" || Role.Designation.ToLower() == "human resource" || Role.Designation.ToLower() == " admin"
                                          || Role.Designation.ToLower() == "hr manager" || Role.Designation.ToLower() == "hr admin")
