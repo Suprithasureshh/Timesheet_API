@@ -728,7 +728,7 @@ namespace Joy.TS.BAL.Implementation
                                     _timesheetContext.SaveChanges();
                                     var fullname = emp.First_Name + " " + emp.Last_Name;
                                     string fromAddress = "Joyitsolutions1@gmail.com";
-                                    string Password = "fgrgmlzwwtokccov";
+                                    string Password = "rpcfydphzeoafsig";
                                     string toAddress = addEmployeeModel.Official_Email;
                                     string emailHeader = "<html><body><h1>Congratulations</h1></body></html>";
                                     string emailFooter = $"<html><head><title>JoyItsolutions</title></head><body><p>Hi {fullname}, <br> This is the confidential email. Don't share your password with anyone..!<br> Click here to change your credentials or fill Timesheet  <a href=\"http://localhost:3000/\"> : http://localhost:3000/ </a> </p></body></html>";

@@ -16,6 +16,9 @@ using System.Net.Mail;
 using System.Net;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Joy.TS.BAL.Implementation;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
 
 namespace Joy.TS.Api.Controllers
 {
@@ -163,47 +166,74 @@ namespace Joy.TS.Api.Controllers
 
         [HttpPost]
         [Route("GenerateOTP")]
-        public IActionResult GeneratesOTP(string email)
+        public IActionResult GeneratesOTP(string? email,string? PhoneNumber)
         {
+            if(email==null&& PhoneNumber==null)
+            {
+                return Ok("Please enter Any one Informetion");
+            }
+            var emailCheck = _timesheetContext.employees.FirstOrDefault(e => e.Official_Email == email || e.Contact_No == PhoneNumber);
             // Generate a random 4-digit OTP
             Random random = new Random();
             string otp = (random.Next(1000, 9999)).ToString();
-
-            var emailCheck = _timesheetContext.employees.FirstOrDefault(e => e.Official_Email == email);
-            if (emailCheck == null)
+            if (email != "" || PhoneNumber != "")
             {
-                return BadRequest("Invalid email address");
+                if (emailCheck.Official_Email == null && emailCheck.Contact_No == null)
+                {
+                    return BadRequest("Please provid valied Mail Or Phone Number");
+                }
+                if (email == null && emailCheck.Contact_No != null)
+                {
+                    // Your Account SID and Auth Token from twilio.com/console
+                    string accountSid = "AC6e58d36390a5ec00be0016b2d424e99f";
+                    string authToken = "8a9f0037211e06a8c25ddabfc02760a0";
+
+                    // Initialize the Twilio client
+                    TwilioClient.Init(accountSid, authToken);
+
+                    // Send an SMS message
+                    var message1 = MessageResource.Create(
+                        body: $"Your otp is:{otp} Do not shere with any one...!",
+                        from: new Twilio.Types.PhoneNumber("+12707173050"), // Twilio phone number
+                        to: new Twilio.Types.PhoneNumber("+916363112696") // recipient's phone number
+                    );
+                    emailCheck.Otp = otp;
+                    _timesheetContext.SaveChanges();
+                    return Ok($"OTP generated and sent to Phone Number: '{PhoneNumber}'");
+                }
+                if (PhoneNumber == null)
+                {
+                    emailCheck.Otp = otp;
+                    _timesheetContext.SaveChanges();
+
+                    // Send the OTP to the user via email 
+                    var fullname = emailCheck.First_Name + " " + emailCheck.Last_Name;
+                    string fromAddress = "Joyitsolutions1@gmail.com";
+                    string Password = "rpcfydphzeoafsig";
+                    string toAddress = emailCheck.Official_Email;
+                    string emailHeader = "<html><body><h1>OTP to Reset Password</h1></body></html>";
+                    string emailFooter = $"<html><head><title>JoyItsolutions</title></head><body><p>Hi {fullname}, <br> This is the confidential email. Don't share your otp with anyone..!<br>  </p></body></html>";
+                    string emailBody = $"<html><head><title>Don't replay this Mail</title></head><body><p>Your one time password(otp) is: <h3>{emailCheck.Otp}</h3></p></body></html>";
+                    string emailContent = emailHeader + emailBody + emailFooter;
+                    MailMessage message = new MailMessage();
+                    message.From = new MailAddress(fromAddress);
+                    message.Subject = "Reset Password";
+                    message.To.Add(new MailAddress(toAddress));
+                    message.Body = emailContent;
+                    message.IsBodyHtml = true;
+
+                    var smtpClient = new SmtpClient("smtp.gmail.com")
+                    {
+                        Port = 587,
+                        Credentials = new NetworkCredential(fromAddress, Password),
+                        EnableSsl = true,
+                    };
+
+                    smtpClient.Send(message);
+                    return Ok($"OTP generated and sent to MailID: '{emailCheck.Official_Email}'");
+                }
             }
-
-            emailCheck.Otp = otp;
-            _timesheetContext.SaveChanges();
-
-            // Send the OTP to the user via email 
-            var fullname = emailCheck.First_Name + " " + emailCheck.Last_Name;
-            string fromAddress = "Joyitsolutions1@gmail.com";
-            string Password = "fgrgmlzwwtokccov";
-            string toAddress = emailCheck.Official_Email;
-            string emailHeader = "<html><body><h1>OTP to Reset Password</h1></body></html>";
-            string emailFooter = $"<html><head><title>JoyItsolutions</title></head><body><p>Hi {fullname}, <br> This is the confidential email. Don't share your otp with anyone..!<br>  </p></body></html>";
-            string emailBody = $"<html><head><title>Don't replay this Mail</title></head><body><p>Your one time password(otp) is: <h3>{emailCheck.Otp}</h3></p></body></html>";
-            string emailContent = emailHeader + emailBody + emailFooter;
-            MailMessage message = new MailMessage();
-            message.From = new MailAddress(fromAddress);
-            message.Subject = "Reset Password";
-            message.To.Add(new MailAddress(toAddress));
-            message.Body = emailContent;
-            message.IsBodyHtml = true;
-
-            var smtpClient = new SmtpClient("smtp.gmail.com")
-            {
-                Port = 587,
-                Credentials = new NetworkCredential(fromAddress, Password),
-                EnableSsl = true,
-            };
-
-            smtpClient.Send(message);
-
-            return Ok($"OTP generated and sent to MailID: '{emailCheck.Official_Email}'");
+            return Ok("OTP generated");
         }
 
         [HttpPost]
