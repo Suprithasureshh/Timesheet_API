@@ -20,9 +20,9 @@ namespace Joy.TS.BAL.Implementation
         }
 
 
-        public IActionResult ResetPassword(string email, string otp, string newPassword)
+        public IActionResult ResetPassword(string? email, string? PhoneNumber, string otp, string newPassword)
         {
-            var data = _timesheetContext.employees.FirstOrDefault(i => i.Official_Email == email && i.Otp == otp);
+            var data = _timesheetContext.employees.FirstOrDefault(i =>  i.Otp == otp && i.Official_Email == email ||i.Contact_No== PhoneNumber);
             if (data == null)
             {
                 return BadRequest("Invalid OTP");

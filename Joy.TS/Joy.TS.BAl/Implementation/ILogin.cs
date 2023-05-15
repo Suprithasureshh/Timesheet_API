@@ -9,6 +9,6 @@ namespace Joy.TS.BAL.Implementation
 {
     public interface ILogin
     {
-        IActionResult ResetPassword(string email, string otp, string newPassword);
+        IActionResult ResetPassword(string email, string? PhoneNumber, string otp, string newPassword);
     }
 }

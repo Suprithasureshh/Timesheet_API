@@ -185,8 +185,8 @@ namespace Joy.TS.Api.Controllers
                 if (email == null && emailCheck.Contact_No != null)
                 {
                     // Your Account SID and Auth Token from twilio.com/console
-                    string accountSid = "AC6e58d36390a5ec00be0016b2d424e99f";
-                    string authToken = "8a9f0037211e06a8c25ddabfc02760a0";
+                    string accountSid = "AC6e58d36390a5ec00be0016b2d424e99fff";
+                    string authToken = "c94e935541ed3f3b83f3712e1a48852eee";
 
                     // Initialize the Twilio client
                     TwilioClient.Init(accountSid, authToken);
@@ -238,9 +238,9 @@ namespace Joy.TS.Api.Controllers
 
         [HttpPost]
         [Route("VerifyOTP")]
-        public IActionResult VerifyOTP(string email, string otp, string newPassword)
+        public IActionResult VerifyOTP(string? email,string? PhoneNumber,string otp, string newPassword)
         {
-            var result = _login.ResetPassword(email, otp, newPassword);
+            var result = _login.ResetPassword(email, PhoneNumber, otp, newPassword);
             if (result is OkObjectResult)
             {
                 return Ok("Password reset successful");

@@ -819,3 +819,5 @@ C:\Users\91636\OneDrive\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\obj\Debug\n
 C:\Users\91636\OneDrive\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\obj\Debug\net6.0\ref\Joy.TS.Api.dll
 C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\Shivakumara S C\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\bin\Debug\net6.0\Twilio.dll
+C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Supritha S\Documents\GitHub\Timesheet_API\Joy.TS\Joy.TS\bin\Debug\net6.0\Twilio.dll
