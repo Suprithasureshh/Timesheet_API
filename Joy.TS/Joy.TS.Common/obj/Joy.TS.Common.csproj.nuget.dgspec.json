@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Shivakumara S C\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Common\\Joy.TS.Common.csproj": {}
+    "C:\\Users\\Supritha S\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Common\\Joy.TS.Common.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Shivakumara S C\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Common\\Joy.TS.Common.csproj": {
+    "C:\\Users\\Supritha S\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Common\\Joy.TS.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Shivakumara S C\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Common\\Joy.TS.Common.csproj",
+        "projectUniqueName": "C:\\Users\\Supritha S\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Common\\Joy.TS.Common.csproj",
         "projectName": "Joy.TS.Common",
-        "projectPath": "C:\\Users\\Shivakumara S C\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Common\\Joy.TS.Common.csproj",
+        "projectPath": "C:\\Users\\Supritha S\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Common\\Joy.TS.Common.csproj",
         "packagesPath": "C:\\Users\\hi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Shivakumara S C\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Common\\obj\\",
+        "outputPath": "C:\\Users\\Supritha S\\Documents\\GitHub\\Timesheet_API\\Joy.TS\\Joy.TS.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
