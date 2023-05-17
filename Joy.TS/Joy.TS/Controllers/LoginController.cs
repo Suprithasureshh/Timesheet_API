@@ -178,15 +178,15 @@ namespace Joy.TS.Api.Controllers
             string otp = (random.Next(1000, 9999)).ToString();
             if (email != "" || PhoneNumber != "")
             {
-                if (emailCheck.Official_Email == null && emailCheck.Contact_No == null)
+                if (emailCheck==null)
                 {
                     return BadRequest("Please provid valied Mail Or Phone Number");
                 }
-                if (email == null && emailCheck.Contact_No != null)
+                if (email == null && PhoneNumber != null)
                 {
                     // Your Account SID and Auth Token from twilio.com/console
-                    string accountSid = "AC6e58d36390a5ec00be0016b2d424e99fff";
-                    string authToken = "c94e935541ed3f3b83f3712e1a48852eee";
+                    string accountSid = "AC6e58d36390a5ec00be0016b2d424e99f";
+                    string authToken = "c94e935541ed3f3b83f3712e1a48852e";
 
                     // Initialize the Twilio client
                     TwilioClient.Init(accountSid, authToken);
@@ -201,7 +201,7 @@ namespace Joy.TS.Api.Controllers
                     _timesheetContext.SaveChanges();
                     return Ok($"OTP generated and sent to Phone Number: '{PhoneNumber}'");
                 }
-                if (PhoneNumber == null)
+                if (PhoneNumber == null && emailCheck.Official_Email!=null)
                 {
                     emailCheck.Otp = otp;
                     _timesheetContext.SaveChanges();

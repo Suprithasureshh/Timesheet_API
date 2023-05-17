@@ -343,8 +343,7 @@ namespace Joy.TS.BAL.Implementation
                 firstRow.Append(
 
 
-
-                    ConstructCell($" TimeSheet for {DateTime.Today.ToString("MMM - yy")}", CellValues.String, 1),
+                    ConstructCell($" TimeSheet for {DateTime.Today.AddMonths(-1).ToString("MMM - yy")}", CellValues.String, 1),
                     ConstructCell(string.Empty, CellValues.String, 1),
                     ConstructCell(string.Empty, CellValues.String, 1),
                     ConstructCell(string.Empty, CellValues.String, 1),
@@ -435,7 +434,7 @@ namespace Joy.TS.BAL.Implementation
                     ConstructCell("Time Sheet for Month ", CellValues.String, 1),
                     ConstructCell(string.Empty, CellValues.String, 1),
                     ConstructCell(string.Empty, CellValues.String, 1),
-                    ConstructCell(DateTime.Today.ToString("MMM-yy"), CellValues.String, 1),
+                    ConstructCell(DateTime.Today.AddMonths(-1).ToString("MMM-yy"), CellValues.String, 1),
                     ConstructCell(string.Empty, CellValues.String, 1),
                     ConstructCell(string.Empty, CellValues.String, 1),
                     ConstructCell(string.Empty, CellValues.String, 1),
