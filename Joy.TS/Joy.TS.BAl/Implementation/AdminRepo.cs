@@ -196,7 +196,7 @@ namespace Joy.TS.BAL.Implementation
                         pro.Project_Code = addProjectsModel.Project_Code;
                         pro.Client_Id = addProjectsModel.Client_Id;
                         pro.Project_Start_Date = addProjectsModel.Project_Start_Date;
-                        pro.Project_End_Date = addProjectsModel.Project_End_Date.Date;
+                     
                         pro.Create_Date = DateTime.UtcNow.Date;
                         pro.Is_Active = true;
 

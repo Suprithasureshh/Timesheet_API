@@ -48,9 +48,6 @@ namespace Joy.TS.BAL.DomainModel
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
             public DateTime Project_Start_Date { get; set; }
 
-            [DataType(DataType.Date)]
-            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
-            public DateTime Project_End_Date { get; set; }
         }
 
         public class EditProjectsModel
@@ -153,7 +150,7 @@ namespace Joy.TS.BAL.DomainModel
             [DataType(DataType.Date)]
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/DD/YYYY}")]
             public DateTime Joining_Date { get; set; }
-            public DateTime? End_Date { get; set; }  
+          
         }
 
         public class EditEmployeeModel
