@@ -185,8 +185,8 @@ namespace Joy.TS.Api.Controllers
                 if (email == null && PhoneNumber != null)
                 {
                     // Your Account SID and Auth Token from twilio.com/console
-                    string accountSid = "AC6e58d36390a5ec00be001546b2d424e99f";
-                    string authToken = "c94e935541ed3f3b83f3712e54eg1a48852e";
+                    string accountSid = "AC6e58d36390a5ec00be0016b2d424e99f";
+                    string authToken = "c94e935541ed3f3b83f3712e1a48852e";
 
                     // Initialize the Twilio client
                     TwilioClient.Init(accountSid, authToken);
