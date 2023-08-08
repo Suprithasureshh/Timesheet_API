@@ -6,8 +6,11 @@
     "\\Joy.TS\\Joy.TS.BAl",
     "\\Joy.TS\\Joy.TS.BAl\\DomainModel",
     "\\Joy.TS\\Joy.TS.BAl\\Implementation",
+    "\\Joy.TS\\Joy.TS.DAL",
+    "\\Joy.TS\\Joy.TS.DAL\\Data",
+    "\\Joy.TS\\Joy.TS.DAL\\Model",
     "\\Joy.TS\\Joy.TS\\Controllers"
   ],
-  "SelectedNode": "\\Joy.TS\\Joy.TS\\appsettings.json",
+  "SelectedNode": "\\Joy.TS\\Joy.TS.BAl\\Implementation\\EmployeeRepo.cs",
   "PreviewInSolutionExplorer": false
 }
